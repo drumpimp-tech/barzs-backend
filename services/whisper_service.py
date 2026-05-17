@@ -65,12 +65,20 @@ async def fetch_lyrics_from_youtube(url: str) -> dict:
     title = data.get("title", "")
     uploader = data.get("author_name", "")
 
-    # Strip common YouTube noise from the title before searching Genius
+    # Strip YouTube noise and translation markers before searching Genius.
+    # First pass: remove known English noise tags.
     clean_title = re.sub(
         r'\s*[\(\[]\s*(official\s*(video|audio|music\s*video|lyric\s*video)?|'
         r'lyrics?|4k|hd|remaster(ed)?|ft\.?.*|feat\.?.*|prod\.?.*|dir\.?.*|'
         r'explicit|clean)\s*[\)\]]\s*',
         ' ', title, flags=re.IGNORECASE
+    ).strip()
+    # Second pass: strip any parenthetical containing a translation/language keyword
+    # (matches accented chars via [^\)]+ catch-all after the keyword).
+    clean_title = re.sub(
+        r'\s*[\(\[]\s*(?:traduct|translat|subtitl|paroles?|letra|testo|tekst|'
+        r'версия|перевод|перевод|แปล|翻译|翻訳)[^\)\]]*[\)\]]\s*',
+        ' ', clean_title, flags=re.IGNORECASE
     ).strip()
 
     songs = await search_songs(clean_title)
