@@ -1,5 +1,5 @@
 from pydantic import BaseModel, Field
-from typing import Optional
+from typing import Optional, Union, Any
 from uuid import uuid4, UUID
 
 
@@ -84,7 +84,7 @@ class AnalysisRequest(BaseModel):
 
 
 class DictionaryTerm(BaseModel):
-    id: UUID = Field(default_factory=uuid4)
+    id: Any = Field(default_factory=uuid4)
     term: str
     definition: str
     origin: Optional[str] = None
