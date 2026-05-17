@@ -116,20 +116,30 @@ async def get_artist_albums(artist_id: int) -> list[Album]:
                 break
             page += 1
 
-    # Group by normalized cover_url (strip query params so ?width=300 and ?width=100
-    # both map to the same key — otherwise songs from the same album get split).
-    # Preserve API order (already newest-first); do NOT re-sort by date
-    # because the newest songs often have null release_date in the API.
+    # Grouping strategy:
+    # 1. If the song has a specific release date (e.g. "May 15, 2026"), group by date —
+    #    new albums often get uploaded with different per-track artwork, so cover_url
+    #    alone splits one album into many fake albums.
+    # 2. Fall back to normalized cover_url for older songs that only have a year ("2019")
+    #    or no date at all, where date-grouping would merge unrelated songs.
     def _norm(url: str | None) -> str | None:
         if not url:
             return None
         p = urlparse(url)
         return urlunparse(p._replace(query="", fragment=""))
 
+    def _group_key(song: Song) -> str:
+        date = song.release_date or ""
+        # Specific date: "May 15, 2026" or "2026-05-15" — use date as key
+        if date and re.search(r"(\w+ \d{1,2},\s*\d{4}|\d{4}-\d{2}-\d{2})", date):
+            return f"date::{date}"
+        # Year-only or no date — fall back to cover art
+        return _norm(song.cover_url) or f"no_cover::{date or song.id}"
+
     groups: dict[str, list[Song]] = {}
     group_order: list[str] = []  # tracks insertion order
     for song in all_songs:
-        key = _norm(song.cover_url) or f"no_cover_{song.release_date}"
+        key = _group_key(song)
         if key not in groups:
             groups[key] = []
             group_order.append(key)
@@ -192,24 +202,72 @@ async def get_song_with_lyrics(song_id: int) -> tuple[Song, list[LyricSection]]:
         genius_url=data.get("url"),
     )
 
-    raw_lyrics = await _fetch_lyrics_via_client(song_id, data.get("title", ""), data.get("primary_artist", {}).get("name", ""))
+    genius_url = data.get("url", "")
+    raw_lyrics = await _scrape_lyrics_from_url(genius_url) if genius_url else ""
     sections = parse_lyrics_to_sections(raw_lyrics)
 
     return song, sections
 
 
 async def _fetch_lyrics_via_client(song_id: int, title: str, artist: str) -> str:
-    """Use lyricsgenius in a thread executor (it's synchronous) to bypass Genius's scraping block."""
-    def _fetch():
-        try:
-            genius = _get_genius_client()
-            result = genius.search_song(song_id=song_id)
-            return result.lyrics if result else ""
-        except Exception:
-            return ""
+    """Fetch lyrics by scraping the Genius HTML page with browser headers."""
+    # Get the song URL from the API first
+    try:
+        async with httpx.AsyncClient(timeout=20) as client:
+            r = await client.get(f"{GENIUS_BASE}/songs/{song_id}", headers=HEADERS)
+            r.raise_for_status()
+            genius_url = r.json()["response"]["song"].get("url", "")
+    except Exception:
+        genius_url = ""
 
-    loop = asyncio.get_event_loop()
-    return await loop.run_in_executor(None, _fetch)
+    if not genius_url:
+        return ""
+
+    return await _scrape_lyrics_from_url(genius_url)
+
+
+async def _scrape_lyrics_from_url(url: str) -> str:
+    """Scrape lyrics from a Genius page URL using browser-like headers."""
+    browser_headers = {
+        "User-Agent": "Mozilla/5.0 (iPhone; CPU iPhone OS 17_0 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.0 Mobile/15E148 Safari/604.1",
+        "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
+        "Accept-Language": "en-US,en;q=0.9",
+        "Accept-Encoding": "gzip, deflate, br",
+        "Connection": "keep-alive",
+        "Referer": "https://genius.com/",
+    }
+    try:
+        async with httpx.AsyncClient(timeout=30, follow_redirects=True) as client:
+            r = await client.get(url, headers=browser_headers)
+            r.raise_for_status()
+            html = r.text
+    except Exception:
+        return ""
+
+    soup = BeautifulSoup(html, "html.parser")
+
+    # Genius stores lyrics in data-lyrics-container divs
+    containers = soup.find_all("div", attrs={"data-lyrics-container": "true"})
+    if not containers:
+        return ""
+
+    parts = []
+    for container in containers:
+        for br in container.find_all("br"):
+            br.replace_with("\n")
+        parts.append(container.get_text())
+
+    raw = "\n".join(parts)
+
+    # Strip everything before the first section header [...]
+    # This removes the "Translations..." and "Song Title Lyrics" prefix
+    first_bracket = raw.find("[")
+    if first_bracket > 0:
+        raw = raw[first_bracket:]
+
+    # Collapse excessive blank lines
+    raw = re.sub(r"\n{3,}", "\n\n", raw).strip()
+    return raw
 
 
 def _clean_lyricsgenius_raw(raw: str) -> str:
