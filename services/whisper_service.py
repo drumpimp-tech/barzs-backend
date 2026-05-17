@@ -49,23 +49,23 @@ async def transcribe_audio(file_bytes: bytes, filename: str) -> dict:
 
 
 async def fetch_lyrics_from_youtube(url: str) -> dict:
-    import yt_dlp
+    import re
+    import httpx
 
-    ydl_opts = {
-        "quiet": True,
-        "no_warnings": True,
-        "skip_download": True,
-        "extract_flat": False,
-    }
+    # YouTube oEmbed — free, no auth, not blocked by cloud server IPs
+    async with httpx.AsyncClient(timeout=10) as client:
+        r = await client.get(
+            "https://www.youtube.com/oembed",
+            params={"url": url, "format": "json"},
+        )
+        if r.status_code != 200:
+            raise ValueError(f"Could not fetch video info (status {r.status_code}). Check the URL and try again.")
+        data = r.json()
 
-    with yt_dlp.YoutubeDL(ydl_opts) as ydl:
-        info = ydl.extract_info(url, download=False)
-
-    title = info.get("title", "")
-    uploader = info.get("uploader", "")
+    title = data.get("title", "")
+    uploader = data.get("author_name", "")
 
     # Strip common YouTube noise from the title before searching Genius
-    import re
     clean_title = re.sub(
         r'\s*[\(\[]\s*(official\s*(video|audio|music\s*video|lyric\s*video)?|'
         r'lyrics?|4k|hd|remaster(ed)?|ft\.?.*|feat\.?.*|prod\.?.*|dir\.?.*|'
