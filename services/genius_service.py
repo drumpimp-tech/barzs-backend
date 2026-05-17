@@ -91,14 +91,30 @@ def _extract_year(date_str: str | None) -> int | None:
     return int(m.group()) if m else None
 
 
-async def get_artist_latest_songs(artist_id: int, max_pages: int = 6) -> list[Song]:
+def _date_sort_key(date_str: str | None) -> tuple:
+    """Return (year, month, day) for sorting. Unknown parts default to 0."""
+    import datetime
+    if not date_str:
+        return (0, 0, 0)
+    for fmt in ("%B %d, %Y", "%B %Y", "%Y-%m-%d", "%Y-%m", "%Y"):
+        try:
+            d = datetime.datetime.strptime(date_str.strip(), fmt)
+            return (d.year, d.month, d.day)
+        except ValueError:
+            continue
+    year = _extract_year(date_str)
+    return (year or 0, 0, 0)
+
+
+async def get_artist_latest_songs(artist_id: int) -> list[Song]:
     """
-    Fetch up to max_pages × 50 songs concurrently then sort newest-first.
-    Concurrent fetching keeps latency near a single request regardless of page count.
+    Fetch ALL songs for an artist from Genius, then sort newest-first.
+    Fetches 10 pages concurrently per round and stops when Genius says no more.
     """
     import asyncio
 
-    async def fetch_page(client: httpx.AsyncClient, page: int) -> list:
+    async def fetch_page(client: httpx.AsyncClient, page: int) -> tuple[list, bool]:
+        """Returns (songs_raw, has_more_pages)."""
         try:
             r = await client.get(
                 f"{GENIUS_BASE}/artists/{artist_id}/songs",
@@ -106,35 +122,59 @@ async def get_artist_latest_songs(artist_id: int, max_pages: int = 6) -> list[So
                 params={"sort": "popularity", "per_page": 50, "page": page},
             )
             if r.status_code != 200:
-                return []
-            return r.json()["response"].get("songs", [])
+                return [], False
+            data = r.json()["response"]
+            return data.get("songs", []), bool(data.get("next_page"))
         except Exception:
-            return []
+            return [], False
 
-    async with httpx.AsyncClient(timeout=20) as client:
-        pages = await asyncio.gather(*[fetch_page(client, p) for p in range(1, max_pages + 1)])
-
+    all_raw: list = []
     seen_ids: set[int] = set()
-    songs: list[Song] = []
-    for batch in pages:
-        for s in batch:
-            song_id = s.get("id", 0)
-            if song_id in seen_ids:
-                continue
-            seen_ids.add(song_id)
-            primary_artist = s.get("primary_artist", {})
-            songs.append(Song(
-                id=song_id,
-                title=s.get("title", ""),
-                artist_name=primary_artist.get("name", ""),
-                artist_id=primary_artist.get("id"),
-                cover_url=s.get("song_art_image_url"),
-                release_date=s.get("release_date_for_display"),
-                genius_url=s.get("url"),
-            ))
+    batch_size = 10
+    page = 1
 
-    songs.sort(key=lambda s: (-(_extract_year(s.release_date) or 0), -s.id))
-    return songs
+    async with httpx.AsyncClient(timeout=30) as client:
+        while True:
+            results = await asyncio.gather(
+                *[fetch_page(client, p) for p in range(page, page + batch_size)]
+            )
+            got_any = False
+            has_more = False
+            for songs_raw, more in results:
+                if songs_raw:
+                    got_any = True
+                    all_raw.extend(songs_raw)
+                if more:
+                    has_more = True
+            if not got_any or not has_more:
+                break
+            page += batch_size
+
+    songs: list[Song] = []
+    for s in all_raw:
+        song_id = s.get("id", 0)
+        if song_id in seen_ids:
+            continue
+        seen_ids.add(song_id)
+        primary_artist = s.get("primary_artist", {})
+        songs.append(Song(
+            id=song_id,
+            title=s.get("title", ""),
+            artist_name=primary_artist.get("name", ""),
+            artist_id=primary_artist.get("id"),
+            cover_url=s.get("song_art_image_url"),
+            release_date=s.get("release_date_for_display"),
+            genius_url=s.get("url"),
+        ))
+
+    # Dated songs sort by full date desc; undated by Genius ID desc (higher = newer)
+    def _sort_key(s: Song) -> tuple:
+        date = _date_sort_key(s.release_date)
+        has_date = date != (0, 0, 0)
+        return (1 if has_date else 0, date[0], date[1], date[2], s.id)
+
+    songs.sort(key=_sort_key, reverse=True)
+    return songs[:100]
 
 
 async def get_artist_albums(artist_id: int, max_pages: int = 3) -> list[Album]:
