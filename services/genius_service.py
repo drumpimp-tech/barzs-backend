@@ -4,7 +4,6 @@ import asyncio
 import httpx
 import lyricsgenius
 from urllib.parse import urlparse, urlunparse
-from bs4 import BeautifulSoup
 from models import Song, Album, Artist, LyricSection, LyricLine
 
 GENIUS_BASE = "https://api.genius.com"
@@ -202,72 +201,71 @@ async def get_song_with_lyrics(song_id: int) -> tuple[Song, list[LyricSection]]:
         genius_url=data.get("url"),
     )
 
-    genius_url = data.get("url", "")
-    raw_lyrics = await _scrape_lyrics_from_url(genius_url) if genius_url else ""
-    sections = parse_lyrics_to_sections(raw_lyrics)
+    # lyrics.ovh: free API, no Cloudflare blocking on cloud servers
+    raw_lyrics = await _fetch_lyrics_ovh(song.artist_name, song.title)
 
+    # Fallback: Genius referents API (official token-gated, not Cloudflare blocked)
+    if not raw_lyrics:
+        raw_lyrics = await _fetch_lyrics_referents(song_id)
+
+    sections = parse_lyrics_to_sections(raw_lyrics)
     return song, sections
 
 
-async def _fetch_lyrics_via_client(song_id: int, title: str, artist: str) -> str:
-    """Fetch lyrics by scraping the Genius HTML page with browser headers."""
-    # Get the song URL from the API first
+def _clean_for_lyrics_ovh(s: str) -> str:
+    """Normalize a title/artist for lyrics.ovh — strip apostrophes, features, parens."""
+    # Remove feat. / ft. / featuring suffix
+    s = re.sub(r'\s*(feat\.?|ft\.?|featuring)\s+.*', '', s, flags=re.IGNORECASE)
+    # Remove parenthetical suffixes: (Official), (Remix), (prod. X), etc.
+    s = re.sub(r'\s*\(.*?\)', '', s)
+    # Remove curly/square brackets
+    s = re.sub(r'\s*[\[{].*?[\]}]', '', s)
+    # Remove apostrophes and backticks that break URL parsing
+    s = re.sub(r"[''`‘’]", '', s)
+    # Collapse extra whitespace
+    return ' '.join(s.split())
+
+
+async def _fetch_lyrics_ovh(artist: str, title: str) -> str:
+    """Fetch full lyrics from lyrics.ovh (cloud-friendly, no Cloudflare)."""
+    from urllib.parse import quote
+    artist_clean = _clean_for_lyrics_ovh(artist)
+    title_clean = _clean_for_lyrics_ovh(title)
+    url = f"https://api.lyrics.ovh/v1/{quote(artist_clean)}/{quote(title_clean)}"
     try:
-        async with httpx.AsyncClient(timeout=20) as client:
-            r = await client.get(f"{GENIUS_BASE}/songs/{song_id}", headers=HEADERS)
-            r.raise_for_status()
-            genius_url = r.json()["response"]["song"].get("url", "")
+        async with httpx.AsyncClient(timeout=12) as client:
+            r = await client.get(url)
+            if r.status_code == 200:
+                lyrics = r.json().get("lyrics", "").strip()
+                # lyrics.ovh sometimes returns "\n\n" as the whole body for missing songs
+                if len(lyrics) > 20:
+                    return lyrics
     except Exception:
-        genius_url = ""
-
-    if not genius_url:
-        return ""
-
-    return await _scrape_lyrics_from_url(genius_url)
+        pass
+    return ""
 
 
-async def _scrape_lyrics_from_url(url: str) -> str:
-    """Scrape lyrics from a Genius page URL using browser-like headers."""
-    browser_headers = {
-        "User-Agent": "Mozilla/5.0 (iPhone; CPU iPhone OS 17_0 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.0 Mobile/15E148 Safari/604.1",
-        "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
-        "Accept-Language": "en-US,en;q=0.9",
-        "Accept-Encoding": "gzip, deflate, br",
-        "Connection": "keep-alive",
-        "Referer": "https://genius.com/",
-    }
+async def _fetch_lyrics_referents(song_id: int) -> str:
+    """Fallback: pull lyric fragments from Genius referents API (token-gated, not scraping)."""
     try:
-        async with httpx.AsyncClient(timeout=30, follow_redirects=True) as client:
-            r = await client.get(url, headers=browser_headers)
-            r.raise_for_status()
-            html = r.text
+        async with httpx.AsyncClient(timeout=15) as client:
+            r = await client.get(
+                f"{GENIUS_BASE}/referents",
+                headers=HEADERS,
+                params={"song_id": song_id, "text_format": "plain", "per_page": 50},
+            )
+            if r.status_code != 200:
+                return ""
+            referents = r.json()["response"]["referents"]
+
+        fragments = []
+        for ref in referents:
+            fragment = ref.get("fragment", "").strip()
+            if fragment:
+                fragments.append(fragment)
+        return "\n".join(fragments)
     except Exception:
         return ""
-
-    soup = BeautifulSoup(html, "html.parser")
-
-    # Genius stores lyrics in data-lyrics-container divs
-    containers = soup.find_all("div", attrs={"data-lyrics-container": "true"})
-    if not containers:
-        return ""
-
-    parts = []
-    for container in containers:
-        for br in container.find_all("br"):
-            br.replace_with("\n")
-        parts.append(container.get_text())
-
-    raw = "\n".join(parts)
-
-    # Strip everything before the first section header [...]
-    # This removes the "Translations..." and "Song Title Lyrics" prefix
-    first_bracket = raw.find("[")
-    if first_bracket > 0:
-        raw = raw[first_bracket:]
-
-    # Collapse excessive blank lines
-    raw = re.sub(r"\n{3,}", "\n\n", raw).strip()
-    return raw
 
 
 def _clean_lyricsgenius_raw(raw: str) -> str:
