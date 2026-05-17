@@ -91,46 +91,48 @@ def _extract_year(date_str: str | None) -> int | None:
     return int(m.group()) if m else None
 
 
-async def get_artist_latest_songs(artist_id: int, max_pages: int = 3) -> list[Song]:
+async def get_artist_latest_songs(artist_id: int, max_pages: int = 6) -> list[Song]:
     """
-    Fast path: return a flat list of the artist's most recent songs (newest first).
-    Max 3 pages × 50 = 150 songs. No album grouping overhead.
+    Fetch up to max_pages × 50 songs concurrently then sort newest-first.
+    Concurrent fetching keeps latency near a single request regardless of page count.
     """
-    songs: list[Song] = []
-    seen_ids: set[int] = set()
-    async with httpx.AsyncClient(timeout=15) as client:
-        for page in range(1, max_pages + 1):
+    import asyncio
+
+    async def fetch_page(client: httpx.AsyncClient, page: int) -> list:
+        try:
             r = await client.get(
                 f"{GENIUS_BASE}/artists/{artist_id}/songs",
                 headers=HEADERS,
                 params={"sort": "popularity", "per_page": 50, "page": page},
             )
             if r.status_code != 200:
-                break
-            data = r.json()["response"]
-            batch = data.get("songs", [])
-            if not batch:
-                break
-            for s in batch:
-                song_id = s.get("id", 0)
-                if song_id in seen_ids:
-                    continue
-                seen_ids.add(song_id)
-                primary_artist = s.get("primary_artist", {})
-                songs.append(Song(
-                    id=song_id,
-                    title=s.get("title", ""),
-                    artist_name=primary_artist.get("name", ""),
-                    artist_id=primary_artist.get("id"),
-                    cover_url=s.get("song_art_image_url"),
-                    release_date=s.get("release_date_for_display"),
-                    genius_url=s.get("url"),
-                ))
-            if not data.get("next_page"):
-                break
+                return []
+            return r.json()["response"].get("songs", [])
+        except Exception:
+            return []
 
-    # Re-sort newest-first: dated songs by year desc, undated by Genius ID desc
-    # (Genius only supports popularity sort via API; date sort must be done client-side)
+    async with httpx.AsyncClient(timeout=20) as client:
+        pages = await asyncio.gather(*[fetch_page(client, p) for p in range(1, max_pages + 1)])
+
+    seen_ids: set[int] = set()
+    songs: list[Song] = []
+    for batch in pages:
+        for s in batch:
+            song_id = s.get("id", 0)
+            if song_id in seen_ids:
+                continue
+            seen_ids.add(song_id)
+            primary_artist = s.get("primary_artist", {})
+            songs.append(Song(
+                id=song_id,
+                title=s.get("title", ""),
+                artist_name=primary_artist.get("name", ""),
+                artist_id=primary_artist.get("id"),
+                cover_url=s.get("song_art_image_url"),
+                release_date=s.get("release_date_for_display"),
+                genius_url=s.get("url"),
+            ))
+
     songs.sort(key=lambda s: (-(_extract_year(s.release_date) or 0), -s.id))
     return songs
 
