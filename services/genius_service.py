@@ -110,13 +110,11 @@ async def get_artist_albums(artist_id: int) -> list[Album]:
             batch = data.get("songs", [])
             if not batch:
                 break
-            stop_early = False
             for s in batch:
                 release = s.get("release_date_for_display")
                 year = _extract_year(release)
-                # Stop paginating once we hit songs clearly before 2000
-                if year is not None and year < 2000:
-                    stop_early = True
+                # Skip anything clearly before 1980; keep songs with no date
+                if year is not None and year < 1980:
                     continue
                 all_songs.append(Song(
                     id=s.get("id", 0),
@@ -126,7 +124,7 @@ async def get_artist_albums(artist_id: int) -> list[Album]:
                     release_date=release,
                     genius_url=s.get("url"),
                 ))
-            if stop_early or not data.get("next_page"):
+            if not data.get("next_page"):
                 break
             page += 1
 
