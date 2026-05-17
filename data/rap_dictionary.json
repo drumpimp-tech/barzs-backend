@@ -4723,5 +4723,1085 @@
       "acknowledge",
       "craft"
     ]
+  },
+  {
+    "id": 261,
+    "term": "pressure",
+    "definition": "Bars or a verse that is so intense and lyrically dense it puts metaphorical 'pressure' on the listener or opponent.",
+    "origin": "Widespread hip-hop slang.",
+    "region": "Universal",
+    "era": "2010s",
+    "category": "Technique",
+    "example_lines": [
+      "He came with pressure on that track — nobody was ready"
+    ],
+    "related_terms": [
+      "bars",
+      "heat",
+      "fire",
+      "spit"
+    ]
+  },
+  {
+    "id": 262,
+    "term": "sauce",
+    "definition": "Style, swag, or a certain undeniable cool factor that's hard to define but instantly recognizable.",
+    "origin": "Southern hip-hop, popularized early 2010s.",
+    "region": "Southern",
+    "era": "2010s",
+    "category": "Style",
+    "example_lines": [
+      "Dripping in sauce before it was fashionable"
+    ],
+    "related_terms": [
+      "drip",
+      "swag",
+      "flavor",
+      "steez"
+    ]
+  },
+  {
+    "id": 263,
+    "term": "no cap",
+    "definition": "Truthfully; without exaggeration. Assertion that what is being said is completely honest.",
+    "origin": "Atlanta slang, popularized mid-2010s via rap.",
+    "region": "Atlanta",
+    "era": "2010s",
+    "category": "NYC Slang",
+    "example_lines": [
+      "This the hardest album of the year, no cap"
+    ],
+    "related_terms": [
+      "cap",
+      "facts",
+      "on God",
+      "straight up"
+    ]
+  },
+  {
+    "id": 264,
+    "term": "cap",
+    "definition": "A lie or exaggeration. To 'cap' is to lie.",
+    "origin": "Atlanta slang, went national via rap in the 2010s.",
+    "region": "Atlanta",
+    "era": "2010s",
+    "category": "NYC Slang",
+    "example_lines": [
+      "Stop capping — you were never in those streets"
+    ],
+    "related_terms": [
+      "no cap",
+      "fronting",
+      "lying",
+      "fake"
+    ]
+  },
+  {
+    "id": 265,
+    "term": "lit",
+    "definition": "Exciting, fun, high-energy; a party or moment that is going exceptionally well.",
+    "origin": "African American slang, popularized in rap mid-2010s.",
+    "region": "Universal",
+    "era": "2010s",
+    "category": "NYC Slang",
+    "example_lines": [
+      "The section was lit from the jump"
+    ],
+    "related_terms": [
+      "turnt",
+      "hype",
+      "fire",
+      "banging"
+    ]
+  },
+  {
+    "id": 266,
+    "term": "turnt",
+    "definition": "Highly energized, intoxicated, or in a state of intense excitement, usually at a party or event.",
+    "origin": "Southern slang, popularized by rap in early 2010s.",
+    "region": "Southern",
+    "era": "2010s",
+    "category": "NYC Slang",
+    "example_lines": [
+      "We were turnt the whole night, no breaks"
+    ],
+    "related_terms": [
+      "lit",
+      "hype",
+      "turned up",
+      "wilding"
+    ]
+  },
+  {
+    "id": 267,
+    "term": "fye",
+    "definition": "Fire; exceptionally good. Common Southern pronunciation/spelling of 'fire.'",
+    "origin": "Southern hip-hop, particularly Atlanta.",
+    "region": "Atlanta",
+    "era": "2000s",
+    "category": "General Slang",
+    "example_lines": [
+      "That beat is fye, he needs that one"
+    ],
+    "related_terms": [
+      "fire",
+      "hard",
+      "slaps",
+      "knocks"
+    ]
+  },
+  {
+    "id": 268,
+    "term": "slaps",
+    "definition": "Describes music that sounds extremely good, especially with bass — it 'slaps' in the car.",
+    "origin": "West Coast slang, widely adopted.",
+    "region": "West Coast",
+    "era": "2000s",
+    "category": "General Slang",
+    "example_lines": [
+      "This project slaps front to back, no skips"
+    ],
+    "related_terms": [
+      "knocks",
+      "bangs",
+      "hard",
+      "fye"
+    ]
+  },
+  {
+    "id": 269,
+    "term": "knocks",
+    "definition": "Music that hits hard in a car system; bass-heavy tracks that physically knock.",
+    "origin": "Bay Area/West Coast slang.",
+    "region": "Bay Area",
+    "era": "2000s",
+    "category": "General Slang",
+    "example_lines": [
+      "Throw that in the whip — it knocks"
+    ],
+    "related_terms": [
+      "slaps",
+      "bangs",
+      "bumps",
+      "hard"
+    ]
+  },
+  {
+    "id": 270,
+    "term": "on sight",
+    "definition": "Immediate confrontation or action upon seeing someone — no conversation, no delay.",
+    "origin": "Street slang adopted widely in hip-hop.",
+    "region": "Universal",
+    "era": "2010s",
+    "category": "Violence/Street Terms",
+    "example_lines": [
+      "After what he did, it's on sight if I catch him"
+    ],
+    "related_terms": [
+      "slide",
+      "fade",
+      "catch a fade",
+      "beef"
+    ]
+  },
+  {
+    "id": 271,
+    "term": "slide",
+    "definition": "To go confront someone; to pull up on an enemy location.",
+    "origin": "Chicago drill slang, spread nationally via rap.",
+    "region": "Chicago",
+    "era": "2010s",
+    "category": "Violence/Street Terms",
+    "example_lines": [
+      "They slid through and the whole block scattered"
+    ],
+    "related_terms": [
+      "pull up",
+      "on sight",
+      "drill",
+      "drop by"
+    ]
+  },
+  {
+    "id": 272,
+    "term": "drill",
+    "definition": "A Chicago street term for gang activity; also the name of the subgenre that emerged from Chicago in the early 2010s characterized by dark, trap-influenced beats and street narratives.",
+    "origin": "Chicago, early 2010s. Chief Keef, G Herbo, Chance the Rapper's early circle.",
+    "region": "Chicago",
+    "era": "2010s",
+    "category": "Regional Terms",
+    "example_lines": [
+      "He really from the drill — been moving since day one"
+    ],
+    "related_terms": [
+      "chiraq",
+      "opps",
+      "slide",
+      "trap"
+    ]
+  },
+  {
+    "id": 273,
+    "term": "ops",
+    "definition": "Enemies; opposition; people who are actively against you or your crew.",
+    "origin": "Chicago drill slang, now universal in hip-hop.",
+    "region": "Universal",
+    "era": "2010s",
+    "category": "Violence/Street Terms",
+    "example_lines": [
+      "The ops been lurking so we don't move sloppy"
+    ],
+    "related_terms": [
+      "opps",
+      "fade",
+      "beef",
+      "enemy"
+    ]
+  },
+  {
+    "id": 274,
+    "term": "clout",
+    "definition": "Influence, fame, or social status — especially online. To have 'clout' is to have people paying attention to you.",
+    "origin": "Hip-hop and social media, went mainstream mid-2010s.",
+    "region": "Universal",
+    "era": "2010s",
+    "category": "Social/Internet Culture",
+    "example_lines": [
+      "He only did that for clout — no principles"
+    ],
+    "related_terms": [
+      "fame",
+      "influence",
+      "status",
+      "juice"
+    ]
+  },
+  {
+    "id": 275,
+    "term": "clout chaser",
+    "definition": "Someone who associates with famous people or does controversial things purely to gain attention and followers.",
+    "origin": "Internet/hip-hop culture, 2010s.",
+    "region": "Universal",
+    "era": "2010s",
+    "category": "Social/Internet Culture",
+    "example_lines": [
+      "She a clout chaser — wasn't around when he was unknown"
+    ],
+    "related_terms": [
+      "clout",
+      "groupie",
+      "industry plant",
+      "fake love"
+    ]
+  },
+  {
+    "id": 276,
+    "term": "bodies",
+    "definition": "Either actual violence or devastatingly effective verses — to 'body' a track is to deliver an outstanding performance; 'bodies' can refer to street violence.",
+    "origin": "Hip-hop slang with street origins.",
+    "region": "Universal",
+    "era": "90s",
+    "category": "Technique",
+    "example_lines": [
+      "He bodied every verse on that feature run"
+    ],
+    "related_terms": [
+      "murk",
+      "kill",
+      "snap",
+      "bars"
+    ]
+  },
+  {
+    "id": 277,
+    "term": "ethered",
+    "definition": "To be lyrically destroyed in a diss track — named after Nas's legendary diss 'Ether' (2001).",
+    "origin": "Named after Nas's 2001 track 'Ether,' considered one of the greatest diss records.",
+    "region": "Universal",
+    "era": "2000s",
+    "category": "Technique",
+    "example_lines": [
+      "He got ethered on wax and never fully recovered"
+    ],
+    "related_terms": [
+      "diss",
+      "bars",
+      "buried",
+      "bodied"
+    ]
+  },
+  {
+    "id": 278,
+    "term": "takeover",
+    "definition": "To completely dominate a situation, track, or scene — seizing control through skill or force.",
+    "origin": "Hip-hop slang with cultural references to Jay-Z's 2001 diss 'The Takeover.'",
+    "region": "Universal",
+    "era": "2000s",
+    "category": "Technique",
+    "example_lines": [
+      "The new generation is staging a full takeover of the rap game"
+    ],
+    "related_terms": [
+      "run",
+      "dominate",
+      "ethered",
+      "beef"
+    ]
+  },
+  {
+    "id": 279,
+    "term": "vibe",
+    "definition": "The overall feeling or energy of a place, situation, or piece of music. A good vibe = positive energy.",
+    "origin": "African American slang, adopted universally via hip-hop.",
+    "region": "Universal",
+    "era": "90s",
+    "category": "General Slang",
+    "example_lines": [
+      "The studio session had the right vibe — album came out crazy"
+    ],
+    "related_terms": [
+      "energy",
+      "mood",
+      "feel",
+      "atmosphere"
+    ]
+  },
+  {
+    "id": 280,
+    "term": "wave",
+    "definition": "A cultural movement or trend; to be 'on the wave' is to be ahead of or part of a rising cultural shift.",
+    "origin": "New York/A$AP Mob popularized the term in 2010s hip-hop.",
+    "region": "New York",
+    "era": "2010s",
+    "category": "Social/Internet Culture",
+    "example_lines": [
+      "He started the wave before everybody caught on"
+    ],
+    "related_terms": [
+      "trendsetter",
+      "culture",
+      "movement",
+      "ahead of your time"
+    ]
+  },
+  {
+    "id": 281,
+    "term": "bop",
+    "definition": "A catchy, enjoyable song — usually upbeat and radio-friendly rather than lyric-heavy.",
+    "origin": "African American slang, popularized in hip-hop and R&B.",
+    "region": "Universal",
+    "era": "2010s",
+    "category": "General Slang",
+    "example_lines": [
+      "That's a bop — going to be stuck in your head all week"
+    ],
+    "related_terms": [
+      "slaps",
+      "anthem",
+      "hit",
+      "banger"
+    ]
+  },
+  {
+    "id": 282,
+    "term": "feature",
+    "definition": "A guest appearance on a song by an artist who is not the primary performer.",
+    "origin": "Standard music industry term embedded deeply in hip-hop culture.",
+    "region": "Universal",
+    "era": "90s",
+    "category": "Technique",
+    "example_lines": [
+      "His feature rate is astronomical but it's worth every penny"
+    ],
+    "related_terms": [
+      "collab",
+      "verse",
+      "guest spot",
+      "joint"
+    ]
+  },
+  {
+    "id": 283,
+    "term": "interpolation",
+    "definition": "Reusing the melody or lyrics of an existing song but re-recording it rather than sampling the original master.",
+    "origin": "Music production and copyright law term, central to hip-hop sample culture.",
+    "region": "Universal",
+    "era": "80s",
+    "category": "Production",
+    "example_lines": [
+      "They interpolated the hook and avoided the sample clearance fee"
+    ],
+    "related_terms": [
+      "sample",
+      "flip",
+      "loop",
+      "chop"
+    ]
+  },
+  {
+    "id": 284,
+    "term": "replay value",
+    "definition": "How often listeners return to a song or album; a measure of quality and depth beyond first impressions.",
+    "origin": "Music criticism term adopted in hip-hop culture.",
+    "region": "Universal",
+    "era": "90s",
+    "category": "Technique",
+    "example_lines": [
+      "The album has crazy replay value — something new every listen"
+    ],
+    "related_terms": [
+      "classic",
+      "grower",
+      "layers",
+      "depth"
+    ]
+  },
+  {
+    "id": 285,
+    "term": "wordsmith",
+    "definition": "A skilled lyricist who crafts words with precision and artistry.",
+    "origin": "Classic hip-hop term of respect for elite lyricists.",
+    "region": "Universal",
+    "era": "80s",
+    "category": "Technique",
+    "example_lines": [
+      "He's a true wordsmith — every line has multiple readings"
+    ],
+    "related_terms": [
+      "lyricist",
+      "penmanship",
+      "bars",
+      "craft"
+    ]
+  },
+  {
+    "id": 286,
+    "term": "punchlines",
+    "definition": "The climactic, impactful line in a verse — usually at the end of a bar sequence — designed to land with maximum effect.",
+    "origin": "Comedy term adapted by hip-hop to describe clever or hard-hitting bar endings.",
+    "region": "Universal",
+    "era": "90s",
+    "category": "Technique",
+    "example_lines": [
+      "He builds the setup for four bars just to land one devastating punchline"
+    ],
+    "related_terms": [
+      "bars",
+      "setup",
+      "delivery",
+      "timing"
+    ]
+  },
+  {
+    "id": 287,
+    "term": "entendres",
+    "definition": "Double or triple meanings embedded in a single line — a hallmark of elite lyricism.",
+    "origin": "French linguistic term adopted by hip-hop lyricists.",
+    "region": "Universal",
+    "era": "90s",
+    "category": "Technique",
+    "example_lines": [
+      "That bar has at least three entendres — took me a week to catch them all"
+    ],
+    "related_terms": [
+      "wordplay",
+      "double meaning",
+      "subliminal",
+      "layers"
+    ]
+  },
+  {
+    "id": 288,
+    "term": "multis",
+    "definition": "Short for multisyllabic rhymes — rhyming multiple syllables across words in the same bar or across bars.",
+    "origin": "Lyrical hip-hop technique term.",
+    "region": "Universal",
+    "era": "90s",
+    "category": "Technique",
+    "example_lines": [
+      "His multis are insane — three-syllable rhymes for sixteen bars straight"
+    ],
+    "related_terms": [
+      "rhyme scheme",
+      "internal rhymes",
+      "wordplay",
+      "craft"
+    ]
+  },
+  {
+    "id": 289,
+    "term": "internal rhymes",
+    "definition": "Rhymes that occur within a single bar rather than only at the end of lines.",
+    "origin": "Advanced lyrical technique in hip-hop.",
+    "region": "Universal",
+    "era": "90s",
+    "category": "Technique",
+    "example_lines": [
+      "His internal rhymes pack more content into one bar than most rappers put in a verse"
+    ],
+    "related_terms": [
+      "multis",
+      "rhyme scheme",
+      "bars",
+      "wordplay"
+    ]
+  },
+  {
+    "id": 290,
+    "term": "concept album",
+    "definition": "An album built around a central theme, story, or idea where songs connect as a cohesive artistic statement.",
+    "origin": "Rock music term that became central to hip-hop's most ambitious projects.",
+    "region": "Universal",
+    "era": "90s",
+    "category": "Production",
+    "example_lines": [
+      "That concept album changed how people thought about what rap could do"
+    ],
+    "related_terms": [
+      "project",
+      "narrative",
+      "classic",
+      "cohesive"
+    ]
+  },
+  {
+    "id": 291,
+    "term": "certified",
+    "definition": "Authenticated as the real thing; a person, product, or record that has proven itself genuine.",
+    "origin": "RIAA certification for sales, but in hip-hop slang means authenticity.",
+    "region": "Universal",
+    "era": "90s",
+    "category": "General Slang",
+    "example_lines": [
+      "He's certified in these streets — been here since before the cameras"
+    ],
+    "related_terms": [
+      "legit",
+      "official",
+      "real",
+      "authentic"
+    ]
+  },
+  {
+    "id": 292,
+    "term": "OG status",
+    "definition": "The highest level of street or cultural credibility granted to someone who has been around longest and earned respect through experience.",
+    "origin": "OG (Original Gangster) concept from gang culture adopted by hip-hop.",
+    "region": "Universal",
+    "era": "90s",
+    "category": "General Slang",
+    "example_lines": [
+      "He's got OG status in this city — nobody questions his position"
+    ],
+    "related_terms": [
+      "OG",
+      "legend",
+      "veteran",
+      "certified"
+    ]
+  },
+  {
+    "id": 293,
+    "term": "Griselda",
+    "definition": "Griselda Records — Buffalo, NY underground rap collective known for dense wordplay, street narratives, and boom-bap aesthetics.",
+    "origin": "Buffalo, NY. Westside Gunn, Conway the Machine, Benny the Butcher.",
+    "region": "New York",
+    "era": "2010s",
+    "category": "Label History",
+    "example_lines": [
+      "Griselda brought grimy boom-bap back when everyone was going melodic"
+    ],
+    "related_terms": [
+      "boom bap",
+      "Buffalo",
+      "underground",
+      "Shady Records"
+    ]
+  },
+  {
+    "id": 294,
+    "term": "boom bap revival",
+    "definition": "The early 2020s resurgence of interest in 90s-style hip-hop production — hard drums, jazz samples, lyric-focused.",
+    "origin": "Cultural reaction to melodic/mumble rap dominance.",
+    "region": "Universal",
+    "era": "2020s",
+    "category": "Production",
+    "example_lines": [
+      "The boom bap revival proved there's always hunger for real lyrics"
+    ],
+    "related_terms": [
+      "boom bap",
+      "underground",
+      "Griselda",
+      "90s hip-hop"
+    ]
+  },
+  {
+    "id": 295,
+    "term": "SoundCloud rap",
+    "definition": "Wave of artists who blew up via SoundCloud in the mid-2010s, characterized by face tattoos, melodic flows, and lo-fi production.",
+    "origin": "SoundCloud platform, 2015-2018. XXXTentacion, Lil Pump, Ski Mask the Slump God.",
+    "region": "Florida",
+    "era": "2010s",
+    "category": "Social/Internet Culture",
+    "example_lines": [
+      "SoundCloud rap changed the pipeline for how new artists got discovered"
+    ],
+    "related_terms": [
+      "emo rap",
+      "lo-fi",
+      "underground",
+      "streaming"
+    ]
+  },
+  {
+    "id": 296,
+    "term": "streaming numbers",
+    "definition": "Plays on Spotify, Apple Music, etc. — became the primary metric for commercial success after downloads replaced physical sales.",
+    "origin": "Music industry shift, 2010s.",
+    "region": "Universal",
+    "era": "2010s",
+    "category": "Social/Internet Culture",
+    "example_lines": [
+      "He doesn't care about streaming numbers — he tours and merchandise"
+    ],
+    "related_terms": [
+      "charts",
+      "sales",
+      "platinum",
+      "metrics"
+    ]
+  },
+  {
+    "id": 297,
+    "term": "TikTok rap",
+    "definition": "Songs designed or promoted primarily for TikTok virality — often short hooks, trending sounds, or challenge-worthy moments.",
+    "origin": "TikTok platform dominance, 2019-present.",
+    "region": "Universal",
+    "era": "2020s",
+    "category": "Social/Internet Culture",
+    "example_lines": [
+      "The TikTok rap era made catchiness more important than longevity"
+    ],
+    "related_terms": [
+      "viral",
+      "streaming",
+      "hooks",
+      "SoundCloud rap"
+    ]
+  },
+  {
+    "id": 298,
+    "term": "underground railroad",
+    "definition": "Slang for the network of underground venues, labels, and platforms that support non-commercial rap artists.",
+    "origin": "Hip-hop culture, metaphor from American history.",
+    "region": "Universal",
+    "era": "2000s",
+    "category": "General Slang",
+    "example_lines": [
+      "He moved through the underground railroad for a decade before mainstream noticed him"
+    ],
+    "related_terms": [
+      "underground",
+      "indie",
+      "DIY",
+      "grassroots"
+    ]
+  },
+  {
+    "id": 299,
+    "term": "bars on bars",
+    "definition": "Consecutive, relentless bars delivered without filler — sustained excellence throughout a verse or song.",
+    "origin": "Universal hip-hop expression.",
+    "region": "Universal",
+    "era": "2000s",
+    "category": "Technique",
+    "example_lines": [
+      "That freestyle was bars on bars — he didn't miss once"
+    ],
+    "related_terms": [
+      "bars",
+      "no filler",
+      "consistent",
+      "body the track"
+    ]
+  },
+  {
+    "id": 300,
+    "term": "penmanship",
+    "definition": "The craft of writing rap lyrics with precision and artistry — a rapper's writing skill and style on paper.",
+    "origin": "Classic hip-hop term emphasizing rap as a written art form.",
+    "region": "Universal",
+    "era": "90s",
+    "category": "Technique",
+    "example_lines": [
+      "His penmanship is unmatched — every line earns its place"
+    ],
+    "related_terms": [
+      "wordsmith",
+      "lyricist",
+      "craft",
+      "bars"
+    ]
+  },
+  {
+    "id": 301,
+    "term": "cipher",
+    "definition": "A freestyle rap session where artists take turns rapping in a circle, often competitive and improvisational.",
+    "origin": "Old school hip-hop practice, deeply tied to b-boy and early MC culture.",
+    "region": "New York",
+    "era": "80s",
+    "category": "Technique",
+    "example_lines": [
+      "The cipher outside the park was where reputations got made or destroyed"
+    ],
+    "related_terms": [
+      "freestyle",
+      "battle",
+      "spit",
+      "writtens"
+    ]
+  },
+  {
+    "id": 302,
+    "term": "writtens",
+    "definition": "Pre-written rap verses, as opposed to freestyles. A 'written' is a prepared and crafted verse.",
+    "origin": "Hip-hop distinction between improvised and composed rap.",
+    "region": "Universal",
+    "era": "90s",
+    "category": "Technique",
+    "example_lines": [
+      "He came with writtens to the freestyle battle — people caught on quick"
+    ],
+    "related_terms": [
+      "freestyle",
+      "bars",
+      "penmanship",
+      "cipher"
+    ]
+  },
+  {
+    "id": 303,
+    "term": "run the jewels",
+    "definition": "Classic robbery demand — 'hand over your jewelry.' Also refers to the crew/duo RTJ (El-P and Killer Mike), formed 2013.",
+    "origin": "90s New York robbery culture slang, reclaimed by Run the Jewels duo.",
+    "region": "New York",
+    "era": "90s",
+    "category": "NYC Slang",
+    "example_lines": [
+      "Run the jewels — that's the threat and the name at the same time"
+    ],
+    "related_terms": [
+      "stickup",
+      "robbery",
+      "jewels",
+      "ice"
+    ]
+  },
+  {
+    "id": 304,
+    "term": "stay strapped",
+    "definition": "To remain armed at all times; to always carry a weapon.",
+    "origin": "Street/gang culture, adopted into hip-hop vocabulary.",
+    "region": "Universal",
+    "era": "90s",
+    "category": "Violence/Street Terms",
+    "example_lines": [
+      "In his neighborhood you stay strapped or you stay humble"
+    ],
+    "related_terms": [
+      "strapped",
+      "iron",
+      "burner",
+      "ratchet"
+    ]
+  },
+  {
+    "id": 305,
+    "term": "hot boy",
+    "definition": "A Cash Money Records term originating from the Hot Boys group (Juvenile, Lil Wayne, B.G., Turk) — a young, flashy, street-active male.",
+    "origin": "Cash Money Records, New Orleans, late 90s.",
+    "region": "Southern",
+    "era": "90s",
+    "category": "Label History",
+    "example_lines": [
+      "He came up in an era when being a hot boy meant staying dangerous and fly simultaneously"
+    ],
+    "related_terms": [
+      "Cash Money",
+      "New Orleans",
+      "Juvenile",
+      "NOLA"
+    ]
+  },
+  {
+    "id": 306,
+    "term": "bling era",
+    "definition": "Late 90s to mid-2000s period characterized by extreme displays of jewelry, diamonds, and material wealth in hip-hop culture.",
+    "origin": "Popularized by Cash Money Records and B.G.'s 'Bling Bling' (1999).",
+    "region": "Southern",
+    "era": "2000s",
+    "category": "Fashion/Streetwear",
+    "example_lines": [
+      "The bling era produced some of the most over-the-top jewelry moments in rap history"
+    ],
+    "related_terms": [
+      "bling",
+      "ice",
+      "chains",
+      "flex"
+    ]
+  },
+  {
+    "id": 307,
+    "term": "crunk",
+    "definition": "A Southern hip-hop subgenre and lifestyle term meaning hyped up, wild, energetic — pioneered by Lil Jon in the early 2000s.",
+    "origin": "Atlanta, early 2000s. Lil Jon & the East Side Boyz defined the sound and term.",
+    "region": "Atlanta",
+    "era": "2000s",
+    "category": "Regional Terms",
+    "example_lines": [
+      "The crunk era made Atlanta clubs the center of the rap universe for a minute"
+    ],
+    "related_terms": [
+      "turnt",
+      "lit",
+      "hyphy",
+      "energy"
+    ]
+  },
+  {
+    "id": 308,
+    "term": "hyphy",
+    "definition": "Bay Area culture and music movement — hyperactive, wild, and free-spirited. Associated with ghost riding and going dumb.",
+    "origin": "Bay Area, California. E-40, Too $hort, Mistah F.A.B., mid-2000s.",
+    "region": "Bay Area",
+    "era": "2000s",
+    "category": "Regional Terms",
+    "example_lines": [
+      "The hyphy movement never got its full mainstream due, but it influenced everything"
+    ],
+    "related_terms": [
+      "go dumb",
+      "ghost ride",
+      "thizz",
+      "Bay Area"
+    ]
+  },
+  {
+    "id": 309,
+    "term": "go dumb",
+    "definition": "Bay Area term for going crazy on the dance floor or behaving wildly without inhibition.",
+    "origin": "Bay Area hyphy culture, mid-2000s.",
+    "region": "Bay Area",
+    "era": "2000s",
+    "category": "Regional Terms",
+    "example_lines": [
+      "When that beat drops, the whole crowd goes dumb"
+    ],
+    "related_terms": [
+      "hyphy",
+      "turnt",
+      "ghost ride",
+      "reckless"
+    ]
+  },
+  {
+    "id": 310,
+    "term": "chopped and screwed",
+    "definition": "A Houston production technique of slowing down music and adding stuttered effects — created by DJ Screw in the 90s.",
+    "origin": "Houston, Texas. DJ Screw originated the technique in Screwed Up Click parties.",
+    "region": "Houston",
+    "era": "90s",
+    "category": "Production",
+    "example_lines": [
+      "Hearing that album chopped and screwed is a completely different emotional experience"
+    ],
+    "related_terms": [
+      "lean",
+      "purple drank",
+      "DJ Screw",
+      "Houston"
+    ]
+  },
+  {
+    "id": 311,
+    "term": "street credibility",
+    "definition": "Authentic reputation earned through lived street experience — separate from fame or money, harder to fake.",
+    "origin": "Core concept in hip-hop culture separating authentic artists from pretenders.",
+    "region": "Universal",
+    "era": "80s",
+    "category": "General Slang",
+    "example_lines": [
+      "No amount of bars can manufacture street credibility you never earned"
+    ],
+    "related_terms": [
+      "realness",
+      "certified",
+      "OG",
+      "authentic"
+    ]
+  },
+  {
+    "id": 312,
+    "term": "mixtape era",
+    "definition": "2000s-2010s period when rappers distributed free mixtapes to build buzz before albums — an essential path to rap stardom.",
+    "origin": "New York origins, expanded nationally. DJ Drama's Gangsta Grillz was foundational.",
+    "region": "Universal",
+    "era": "2000s",
+    "category": "Label History",
+    "example_lines": [
+      "The mixtape era created careers that the label system wouldn't have allowed"
+    ],
+    "related_terms": [
+      "mixtape",
+      "DatPiff",
+      "DJ Drama",
+      "Gangsta Grillz"
+    ]
+  },
+  {
+    "id": 313,
+    "term": "DatPiff",
+    "definition": "The premier free mixtape hosting website of the 2000s-2010s — where countless careers launched or solidified.",
+    "origin": "Online platform that democratized rap distribution, 2005-onward.",
+    "region": "Universal",
+    "era": "2000s",
+    "category": "Social/Internet Culture",
+    "example_lines": [
+      "That DatPiff tape got a million downloads before he signed — leverage like that was new territory"
+    ],
+    "related_terms": [
+      "mixtape",
+      "mixtape era",
+      "Datpiff",
+      "free music"
+    ]
+  },
+  {
+    "id": 314,
+    "term": "Gangsta Grillz",
+    "definition": "DJ Drama's legendary mixtape series — hosting tapes for virtually every major rapper of the 2000s and elevating the mixtape to an art form.",
+    "origin": "DJ Drama, Atlanta, early 2000s. Career-making platform for countless artists.",
+    "region": "Universal",
+    "era": "2000s",
+    "category": "Label History",
+    "example_lines": [
+      "Getting a Gangsta Grillz co-sign from DJ Drama meant you were officially on the rise"
+    ],
+    "related_terms": [
+      "DJ Drama",
+      "mixtape",
+      "mixtape era",
+      "co-sign"
+    ]
+  },
+  {
+    "id": 315,
+    "term": "808s",
+    "definition": "The Roland TR-808 drum machine whose bass drum sound became foundational to hip-hop and trap production.",
+    "origin": "Roland TR-808 synthesizer/drum machine, widely used in hip-hop since the 80s.",
+    "region": "Universal",
+    "era": "80s",
+    "category": "Production",
+    "example_lines": [
+      "The 808s on that track hit so hard it felt like a physical impact"
+    ],
+    "related_terms": [
+      "bass drum",
+      "trap",
+      "bounce",
+      "hi-hats"
+    ]
+  },
+  {
+    "id": 316,
+    "term": "hi-hats",
+    "definition": "Rapid cymbal sounds in trap and hip-hop production — the triplet hi-hats (rolling hi-hats) are a defining sound of modern trap.",
+    "origin": "Drum production terminology, central to trap music sound.",
+    "region": "Universal",
+    "era": "2000s",
+    "category": "Production",
+    "example_lines": [
+      "The triplet hi-hats on that beat made it feel like it was sprinting"
+    ],
+    "related_terms": [
+      "808s",
+      "trap",
+      "snare",
+      "bounce"
+    ]
+  },
+  {
+    "id": 317,
+    "term": "triplet flow",
+    "definition": "A rhythmic technique where the rapper delivers three syllables per beat instead of two, creating a rolling, cascading cadence.",
+    "origin": "Popularized in trap era, though the technique has earlier roots.",
+    "region": "Universal",
+    "era": "2010s",
+    "category": "Technique",
+    "example_lines": [
+      "He switched to triplet flow mid-verse and the whole energy shifted"
+    ],
+    "related_terms": [
+      "flow",
+      "cadence",
+      "hi-hats",
+      "trap"
+    ]
+  },
+  {
+    "id": 318,
+    "term": "adlibs",
+    "definition": "Improvised vocal exclamations and interjections throughout a rap track — a rapper's signature sound markers.",
+    "origin": "Music term embedded in hip-hop culture, every major rapper has signature adlibs.",
+    "region": "Universal",
+    "era": "90s",
+    "category": "Technique",
+    "example_lines": [
+      "You can identify him in five seconds just from the adlibs"
+    ],
+    "related_terms": [
+      "signature",
+      "vocal",
+      "energy",
+      "hype"
+    ]
+  },
+  {
+    "id": 319,
+    "term": "auto-tune rap",
+    "definition": "Style of rapping that uses Auto-Tune pitch correction as an artistic effect rather than to hide pitch issues — creating a melodic, sometimes robotic sound.",
+    "origin": "T-Pain popularized deliberately artistic Auto-Tune in mid-2000s. Future and Travis Scott refined it.",
+    "region": "Universal",
+    "era": "2000s",
+    "category": "Technique",
+    "example_lines": [
+      "Auto-tune rap gets dismissed by purists but it takes real musicality to use it effectively"
+    ],
+    "related_terms": [
+      "melodic rap",
+      "trap",
+      "singing",
+      "pitch"
+    ]
+  },
+  {
+    "id": 320,
+    "term": "street poet",
+    "definition": "A rapper who elevates street narratives to literary art through vivid imagery, metaphor, and emotional depth.",
+    "origin": "Respect term in hip-hop for artists who transcend simple street reporting.",
+    "region": "Universal",
+    "era": "90s",
+    "category": "Technique",
+    "example_lines": [
+      "He's not just rapping about the hood — he's a street poet mapping the human cost of it"
+    ],
+    "related_terms": [
+      "lyricist",
+      "wordsmith",
+      "storyteller",
+      "vivid"
+    ]
   }
 ]
