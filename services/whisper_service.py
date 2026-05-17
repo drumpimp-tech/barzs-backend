@@ -48,6 +48,29 @@ async def transcribe_audio(file_bytes: bytes, filename: str) -> dict:
         os.unlink(tmp_path)
 
 
+def _build_genius_query(title: str) -> str:
+    import re
+    # If title has "Artist - Song" format, split and clean each part separately
+    if " - " in title:
+        parts = title.split(" - ", 1)
+        artist = parts[0].strip()
+        song = parts[1].strip()
+    else:
+        artist = ""
+        song = title.strip()
+
+    # Strip featured artists from song part ("Feat ...", "ft. ...", "with ...")
+    song = re.sub(r'\s+(feat\.?|ft\.?|featuring|with)\s+.+', '', song, flags=re.IGNORECASE)
+    # Strip trailing noise words outside parens ("dirty", "clean", "explicit", "audio", "video")
+    song = re.sub(r'\s+(dirty|clean|explicit|audio|video|official|live|acoustic|remix)$', '', song, flags=re.IGNORECASE)
+    # Strip anything in parentheses or brackets
+    song = re.sub(r'\s*[\(\[].*?[\)\]]', '', song).strip()
+
+    if artist:
+        return f"{artist} {song}".strip()
+    return song.strip()
+
+
 async def fetch_lyrics_from_youtube(url: str) -> dict:
     import re
     import httpx
@@ -65,23 +88,14 @@ async def fetch_lyrics_from_youtube(url: str) -> dict:
     title = data.get("title", "")
     uploader = data.get("author_name", "")
 
-    # Strip YouTube noise and translation markers before searching Genius.
-    # First pass: remove known English noise tags.
-    clean_title = re.sub(
-        r'\s*[\(\[]\s*(official\s*(video|audio|music\s*video|lyric\s*video)?|'
-        r'lyrics?|4k|hd|remaster(ed)?|ft\.?.*|feat\.?.*|prod\.?.*|dir\.?.*|'
-        r'explicit|clean)\s*[\)\]]\s*',
-        ' ', title, flags=re.IGNORECASE
-    ).strip()
-    # Second pass: strip any parenthetical containing a translation/language keyword
-    # (matches accented chars via [^\)]+ catch-all after the keyword).
-    clean_title = re.sub(
-        r'\s*[\(\[]\s*(?:traduct|translat|subtitl|paroles?|letra|testo|tekst|'
-        r'версия|перевод|перевод|แปล|翻译|翻訳)[^\)\]]*[\)\]]\s*',
-        ' ', clean_title, flags=re.IGNORECASE
-    ).strip()
+    search_query = _build_genius_query(title)
+    songs = await search_songs(search_query)
 
-    songs = await search_songs(clean_title)
+    # If no results, fall back to shorter query (just first two words of each part)
+    if not songs and " - " in title:
+        parts = title.split(" - ", 1)
+        fallback = f"{parts[0].strip()} {parts[1].split()[0] if parts[1].split() else ''}".strip()
+        songs = await search_songs(fallback)
 
     if songs:
         from services.genius_service import get_song_with_lyrics
