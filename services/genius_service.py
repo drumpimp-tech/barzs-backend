@@ -91,14 +91,14 @@ def _extract_year(date_str: str | None) -> int | None:
 
 async def get_artist_albums(artist_id: int) -> list[Album]:
     """
-    Genius /albums endpoint is restricted. Instead fetch songs sorted by
-    release_date and group them into pseudo-albums by cover art + date.
-    This surfaces the newest releases first. Only includes releases from 2000+.
+    Fetch songs and group them into albums by cover art URL.
+    Same art = same album/project. Falls back to year for art-less songs.
+    Fetches up to 30 pages (1,500 songs) and filters to 1980+.
     """
     all_songs: list[Song] = []
     page = 1
     async with httpx.AsyncClient() as client:
-        while page <= 20:  # up to 1,000 songs (20 pages × 50)
+        while page <= 30:
             r = await client.get(
                 f"{GENIUS_BASE}/artists/{artist_id}/songs",
                 headers=HEADERS,
@@ -113,7 +113,6 @@ async def get_artist_albums(artist_id: int) -> list[Album]:
             for s in batch:
                 release = s.get("release_date_for_display")
                 year = _extract_year(release)
-                # Skip anything clearly before 1980; keep songs with no date
                 if year is not None and year < 1980:
                     continue
                 all_songs.append(Song(
@@ -128,12 +127,6 @@ async def get_artist_albums(artist_id: int) -> list[Album]:
                 break
             page += 1
 
-    # Grouping strategy:
-    # 1. If the song has a specific release date (e.g. "May 15, 2026"), group by date —
-    #    new albums often get uploaded with different per-track artwork, so cover_url
-    #    alone splits one album into many fake albums.
-    # 2. Fall back to normalized cover_url for older songs that only have a year ("2019")
-    #    or no date at all, where date-grouping would merge unrelated songs.
     def _norm(url: str | None) -> str | None:
         if not url:
             return None
@@ -141,15 +134,17 @@ async def get_artist_albums(artist_id: int) -> list[Album]:
         return urlunparse(p._replace(query="", fragment=""))
 
     def _group_key(song: Song) -> str:
-        date = song.release_date or ""
-        # Specific date: "May 15, 2026" or "2026-05-15" — use date as key
-        if date and re.search(r"(\w+ \d{1,2},\s*\d{4}|\d{4}-\d{2}-\d{2})", date):
-            return f"date::{date}"
-        # Year-only or no date — fall back to cover art
-        return _norm(song.cover_url) or f"no_cover::{date or song.id}"
+        # Group by cover art — same art means same album/project.
+        # Fall back to year so undated/art-less songs cluster by era rather than
+        # each becoming their own entry.
+        art = _norm(song.cover_url)
+        if art:
+            return art
+        year = _extract_year(song.release_date)
+        return f"year::{year}" if year else f"single::{song.id}"
 
     groups: dict[str, list[Song]] = {}
-    group_order: list[str] = []  # tracks insertion order
+    group_order: list[str] = []
     for song in all_songs:
         key = _group_key(song)
         if key not in groups:
@@ -157,7 +152,7 @@ async def get_artist_albums(artist_id: int) -> list[Album]:
             group_order.append(key)
         groups[key].append(song)
 
-    # Build pseudo-Album objects in API order (newest first)
+    # Build pseudo-Album objects — newest first (API returns newest first)
     albums: list[Album] = []
     fake_id = 900_000_000
     for key in group_order:
