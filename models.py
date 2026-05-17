@@ -20,6 +20,7 @@ class Song(BaseModel):
     id: int
     title: str
     artist_name: str
+    artist_id: Optional[int] = None
     album_name: Optional[str] = None
     cover_url: Optional[str] = None
     release_date: Optional[str] = None
