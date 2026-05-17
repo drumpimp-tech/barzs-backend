@@ -1,4 +1,3 @@
-import whisper
 import tempfile
 import os
 from pathlib import Path
@@ -11,6 +10,7 @@ _model = None
 def get_model():
     global _model
     if _model is None:
+        import whisper
         _model = whisper.load_model("base")  # upgrade to "medium" for better accuracy
     return _model
 
@@ -64,9 +64,16 @@ async def fetch_lyrics_from_youtube(url: str) -> dict:
     title = info.get("title", "")
     uploader = info.get("uploader", "")
 
-    # Try to pull actual lyrics from Genius using the video title
-    query = title
-    songs = await search_songs(query)
+    # Strip common YouTube noise from the title before searching Genius
+    import re
+    clean_title = re.sub(
+        r'\s*[\(\[]\s*(official\s*(video|audio|music\s*video|lyric\s*video)?|'
+        r'lyrics?|4k|hd|remaster(ed)?|ft\.?.*|feat\.?.*|prod\.?.*|dir\.?.*|'
+        r'explicit|clean)\s*[\)\]]\s*',
+        ' ', title, flags=re.IGNORECASE
+    ).strip()
+
+    songs = await search_songs(clean_title)
 
     if songs:
         from services.genius_service import get_song_with_lyrics

@@ -1,4 +1,4 @@
-from fastapi import APIRouter, HTTPException
+from fastapi import APIRouter, HTTPException, Query
 from models import Song, Artist, Album
 from services import genius_service
 
@@ -23,10 +23,19 @@ async def get_artist(name: str):
         raise HTTPException(status_code=404, detail=str(e))
 
 
-@router.get("/albums/{artist_id}", response_model=list[Album])
-async def get_albums(artist_id: int):
+@router.get("/artist/{artist_id}/latest", response_model=list[Song])
+async def get_artist_latest(artist_id: int):
+    """Fast endpoint — returns flat list of latest songs directly by artist ID."""
     try:
-        return await genius_service.get_artist_albums(artist_id)
+        return await genius_service.get_artist_latest_songs(artist_id)
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
+
+
+@router.get("/albums/{artist_id}", response_model=list[Album])
+async def get_albums(artist_id: int, max_pages: int = Query(default=3, ge=1, le=10)):
+    try:
+        return await genius_service.get_artist_albums(artist_id, max_pages=max_pages)
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
 

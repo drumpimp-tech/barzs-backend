@@ -33,10 +33,12 @@ async def search_songs(query: str) -> list[Song]:
     songs = []
     for hit in hits[:10]:
         result = hit.get("result", {})
+        primary_artist = result.get("primary_artist", {})
         songs.append(Song(
             id=result.get("id", 0),
             title=result.get("title", ""),
-            artist_name=result.get("primary_artist", {}).get("name", ""),
+            artist_name=primary_artist.get("name", ""),
+            artist_id=primary_artist.get("id"),
             album_name=result.get("album", {}).get("name") if result.get("album") else None,
             cover_url=result.get("song_art_image_url"),
             release_date=result.get("release_date"),
@@ -89,20 +91,19 @@ def _extract_year(date_str: str | None) -> int | None:
     return int(m.group()) if m else None
 
 
-async def get_artist_albums(artist_id: int) -> list[Album]:
+async def get_artist_latest_songs(artist_id: int, max_pages: int = 3) -> list[Song]:
     """
-    Fetch songs and group them into albums by cover art URL.
-    Same art = same album/project. Falls back to year for art-less songs.
-    Fetches up to 30 pages (1,500 songs) and filters to 1980+.
+    Fast path: return a flat list of the artist's most recent songs (newest first).
+    Max 3 pages × 50 = 150 songs. No album grouping overhead.
     """
-    all_songs: list[Song] = []
-    page = 1
-    async with httpx.AsyncClient() as client:
-        while page <= 30:
+    songs: list[Song] = []
+    seen_ids: set[int] = set()
+    async with httpx.AsyncClient(timeout=15) as client:
+        for page in range(1, max_pages + 1):
             r = await client.get(
                 f"{GENIUS_BASE}/artists/{artist_id}/songs",
                 headers=HEADERS,
-                params={"sort": "release_date", "per_page": 50, "page": page},
+                params={"sort": "popularity", "per_page": 50, "page": page},
             )
             if r.status_code != 200:
                 break
@@ -111,12 +112,60 @@ async def get_artist_albums(artist_id: int) -> list[Album]:
             if not batch:
                 break
             for s in batch:
+                song_id = s.get("id", 0)
+                if song_id in seen_ids:
+                    continue
+                seen_ids.add(song_id)
+                primary_artist = s.get("primary_artist", {})
+                songs.append(Song(
+                    id=song_id,
+                    title=s.get("title", ""),
+                    artist_name=primary_artist.get("name", ""),
+                    artist_id=primary_artist.get("id"),
+                    cover_url=s.get("song_art_image_url"),
+                    release_date=s.get("release_date_for_display"),
+                    genius_url=s.get("url"),
+                ))
+            if not data.get("next_page"):
+                break
+
+    # Re-sort newest-first: dated songs by year desc, undated by Genius ID desc
+    # (Genius only supports popularity sort via API; date sort must be done client-side)
+    songs.sort(key=lambda s: (-(_extract_year(s.release_date) or 0), -s.id))
+    return songs
+
+
+async def get_artist_albums(artist_id: int, max_pages: int = 3) -> list[Album]:
+    """
+    Fetch songs, deduplicate, sort newest-first, then group into albums by cover art.
+    Uses popularity sort (only valid Genius sort) then re-sorts by release_date ourselves.
+    """
+    all_songs: list[Song] = []
+    seen_ids: set[int] = set()
+    async with httpx.AsyncClient(timeout=15) as client:
+        for page in range(1, max_pages + 1):
+            r = await client.get(
+                f"{GENIUS_BASE}/artists/{artist_id}/songs",
+                headers=HEADERS,
+                params={"sort": "popularity", "per_page": 50, "page": page},
+            )
+            if r.status_code != 200:
+                break
+            data = r.json()["response"]
+            batch = data.get("songs", [])
+            if not batch:
+                break
+            for s in batch:
+                song_id = s.get("id", 0)
+                if song_id in seen_ids:
+                    continue
+                seen_ids.add(song_id)
                 release = s.get("release_date_for_display")
                 year = _extract_year(release)
                 if year is not None and year < 1980:
                     continue
                 all_songs.append(Song(
-                    id=s.get("id", 0),
+                    id=song_id,
                     title=s.get("title", ""),
                     artist_name=s.get("primary_artist", {}).get("name", ""),
                     cover_url=s.get("song_art_image_url"),
@@ -125,7 +174,14 @@ async def get_artist_albums(artist_id: int) -> list[Album]:
                 ))
             if not data.get("next_page"):
                 break
-            page += 1
+
+    # Sort newest-first: dated songs by year desc, undated songs by Genius ID desc
+    # (higher Genius ID = more recently added to Genius = likely newer release)
+    def _sort_key(song: Song) -> tuple:
+        year = _extract_year(song.release_date)
+        return (-(year or 0), -song.id)
+
+    all_songs.sort(key=_sort_key)
 
     def _norm(url: str | None) -> str | None:
         if not url:
