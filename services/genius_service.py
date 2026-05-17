@@ -81,16 +81,24 @@ async def get_artist_by_id(artist_id: int) -> Artist:
     )
 
 
+def _extract_year(date_str: str | None) -> int | None:
+    """Pull a 4-digit year out of any Genius date string, or return None."""
+    if not date_str:
+        return None
+    m = re.search(r"\b(19|20)\d{2}\b", date_str)
+    return int(m.group()) if m else None
+
+
 async def get_artist_albums(artist_id: int) -> list[Album]:
     """
     Genius /albums endpoint is restricted. Instead fetch songs sorted by
     release_date and group them into pseudo-albums by cover art + date.
-    This surfaces the newest releases first.
+    This surfaces the newest releases first. Only includes releases from 2000+.
     """
     all_songs: list[Song] = []
     page = 1
     async with httpx.AsyncClient() as client:
-        while page <= 20:  # up to 1,000 songs (20 pages × 50) — covers 10-15 yrs
+        while page <= 20:  # up to 1,000 songs (20 pages × 50)
             r = await client.get(
                 f"{GENIUS_BASE}/artists/{artist_id}/songs",
                 headers=HEADERS,
@@ -102,16 +110,23 @@ async def get_artist_albums(artist_id: int) -> list[Album]:
             batch = data.get("songs", [])
             if not batch:
                 break
+            stop_early = False
             for s in batch:
+                release = s.get("release_date_for_display")
+                year = _extract_year(release)
+                # Stop paginating once we hit songs clearly before 2000
+                if year is not None and year < 2000:
+                    stop_early = True
+                    continue
                 all_songs.append(Song(
                     id=s.get("id", 0),
                     title=s.get("title", ""),
                     artist_name=s.get("primary_artist", {}).get("name", ""),
                     cover_url=s.get("song_art_image_url"),
-                    release_date=s.get("release_date_for_display"),
+                    release_date=release,
                     genius_url=s.get("url"),
                 ))
-            if not data.get("next_page"):
+            if stop_early or not data.get("next_page"):
                 break
             page += 1
 
