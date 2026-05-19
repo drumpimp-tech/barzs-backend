@@ -200,6 +200,7 @@ Return ONLY valid JSON matching this exact structure:
 
 DEPTH_CONFIGS = {
     "quick": {
+        "model": "claude-sonnet-4-6",
         "max_tokens": 2048,
         "instructions": """QUICK MODE — 30-second speed decode. Be punchy and surgical.
 RULES:
@@ -211,6 +212,7 @@ RULES:
 - Do NOT pad. If there's only one interesting bar, only quote one.""",
     },
     "standard": {
+        "model": "claude-sonnet-4-6",
         "max_tokens": 4096,
         "instructions": """STANDARD MODE — The complete breakdown most listeners need.
 RULES:
@@ -222,6 +224,7 @@ RULES:
 - Don't over-explain simple bars. Save the depth for bars that actually need it.""",
     },
     "deep": {
+        "model": "claude-opus-4-7",
         "max_tokens": 8096,
         "instructions": """DEEP MODE — Forensic hip-hop scholarship. Pull out everything.
 RULES:
@@ -261,7 +264,7 @@ async def analyze_lyrics(
 Return JSON only."""
 
     message = await client.messages.create(
-        model="claude-opus-4-7",
+        model=config["model"],
         max_tokens=config["max_tokens"],
         system=SYSTEM_PROMPT,
         messages=[{"role": "user", "content": user_prompt}],
@@ -280,7 +283,7 @@ Return JSON only."""
     except json.JSONDecodeError:
         # Retry once with explicit JSON-only instruction
         retry = await client.messages.create(
-            model="claude-opus-4-7",
+            model=config["model"],
             max_tokens=config["max_tokens"],
             system=SYSTEM_PROMPT,
             messages=[
