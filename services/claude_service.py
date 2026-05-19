@@ -213,15 +213,14 @@ RULES:
     },
     "standard": {
         "model": "claude-sonnet-4-6",
-        "max_tokens": 4096,
-        "instructions": """STANDARD MODE — The complete breakdown most listeners need.
+        "max_tokens": 2500,
+        "instructions": """STANDARD MODE — Sharp, focused decode. Be efficient.
 RULES:
-- Quote 3-4 bars that carry the most weight. Skip truly obvious lines.
-- 3-4 analysis layers: cover wordplay, the key cultural/historical reference, and beef context if relevant.
-- Include slang terms that would confuse a casual listener (4-6 terms).
-- Summary: 2 sentences — first the big picture, then what makes it technically interesting.
-- Be specific: name the reference, the year, the person — no vague gestures at "the culture."
-- Don't over-explain simple bars. Save the depth for bars that actually need it.""",
+- Quote MAX 3 bars. Only the ones that actually need explaining.
+- MAX 3 analysis layers. Lead with the most interesting one.
+- MAX 4 terms. Only slang a casual listener would miss.
+- Summary: 1-2 sentences max.
+- No padding. If a bar is obvious, skip it.""",
     },
     "deep": {
         "model": "claude-opus-4-7",
