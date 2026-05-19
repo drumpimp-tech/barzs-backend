@@ -200,7 +200,7 @@ Return ONLY valid JSON matching this exact structure:
 
 DEPTH_CONFIGS = {
     "quick": {
-        "max_tokens": 1024,
+        "max_tokens": 2048,
         "instructions": """QUICK MODE — 30-second speed decode. Be punchy and surgical.
 RULES:
 - Pick ONLY 1-2 bars max. Skip anything self-explanatory or straightforward.
@@ -211,7 +211,7 @@ RULES:
 - Do NOT pad. If there's only one interesting bar, only quote one.""",
     },
     "standard": {
-        "max_tokens": 2048,
+        "max_tokens": 4096,
         "instructions": """STANDARD MODE — The complete breakdown most listeners need.
 RULES:
 - Quote 3-4 bars that carry the most weight. Skip truly obvious lines.
@@ -222,7 +222,7 @@ RULES:
 - Don't over-explain simple bars. Save the depth for bars that actually need it.""",
     },
     "deep": {
-        "max_tokens": 4096,
+        "max_tokens": 8096,
         "instructions": """DEEP MODE — Forensic hip-hop scholarship. Pull out everything.
 RULES:
 - Quote EVERY bar that has ANY layer of meaning, no matter how subtle. If a line seems simple, check twice.
