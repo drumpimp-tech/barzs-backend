@@ -267,15 +267,29 @@ Return JSON only."""
         messages=[{"role": "user", "content": user_prompt}],
     )
 
-    raw = message.content[0].text.strip()
-    # Strip markdown code fences if present
-    if raw.startswith("```"):
-        raw = raw.split("```")[1]
-        if raw.startswith("json"):
-            raw = raw[4:]
-    raw = raw.strip()
+    def _extract_json(text: str) -> dict:
+        raw = text.strip()
+        if raw.startswith("```"):
+            raw = raw.split("```")[1]
+            if raw.startswith("json"):
+                raw = raw[4:]
+        return json.loads(raw.strip())
 
-    data = json.loads(raw)
+    try:
+        data = _extract_json(message.content[0].text)
+    except json.JSONDecodeError:
+        # Retry once with explicit JSON-only instruction
+        retry = await client.messages.create(
+            model="claude-opus-4-7",
+            max_tokens=config["max_tokens"],
+            system=SYSTEM_PROMPT,
+            messages=[
+                {"role": "user", "content": user_prompt},
+                {"role": "assistant", "content": message.content[0].text},
+                {"role": "user", "content": "Your response was not valid JSON. Return ONLY the JSON object, no markdown, no explanation."},
+            ],
+        )
+        data = _extract_json(retry.content[0].text)
 
     layers = [
         AnalysisLayer(
