@@ -4721,5 +4721,1150 @@
       "storyteller",
       "vivid"
     ]
+  },
+  {
+    "term": "skit",
+    "definition": "A short comedic or narrative interlude on an album — not a full song. Skits set the mood, add storytelling, or give the artist's crew a moment. Golden era albums used them heavily between tracks.",
+    "origin": "Theater/comedy term brought into hip-hop albums in the early 90s to add texture and personality between songs.",
+    "region": "Universal",
+    "era": "90s",
+    "category": "style",
+    "example_lines": [
+      "The skit had the whole crew laughing before the next track dropped"
+    ],
+    "related_terms": [
+      "interlude",
+      "album",
+      "concept album"
+    ],
+    "id": "e12f3a1b-60e1-48a6-a0d3-3bf944a418f6"
+  },
+  {
+    "term": "interlude",
+    "definition": "A short transitional track on an album — usually under two minutes — used to bridge themes, moods, or storylines between full songs.",
+    "origin": "Classical music term adopted by hip-hop and R&B for album sequencing and narrative flow.",
+    "region": "Universal",
+    "era": "90s",
+    "category": "style",
+    "example_lines": [
+      "That interlude set up the next song perfectly"
+    ],
+    "related_terms": [
+      "skit",
+      "album",
+      "outro",
+      "intro"
+    ],
+    "id": "bc14de5b-5484-4f2f-9fe1-67e8d297c44b"
+  },
+  {
+    "term": "outro",
+    "definition": "The closing section of a song or album. An outro can be an extended last verse, a fading monologue, or an instrumental wind-down. Often where rappers leave their most raw, unguarded thoughts.",
+    "origin": "Opposite of intro. Became common in hip-hop as artists started treating albums as complete works with deliberate endings.",
+    "region": "Universal",
+    "era": "90s",
+    "category": "style",
+    "example_lines": [
+      "He bodied the outro harder than the whole song",
+      "The outro hit different after you hear the whole album"
+    ],
+    "related_terms": [
+      "intro",
+      "interlude",
+      "verse",
+      "album"
+    ],
+    "id": "19439c6d-c2b5-4af6-b629-5e48fa9db9a7"
+  },
+  {
+    "term": "crate digging",
+    "definition": "Physically searching through bins of vinyl records looking for obscure samples, rare grooves, or forgotten classics. The foundation of hip-hop production — the best beats came from producers who dug deepest.",
+    "origin": "Refers to the literal milk crates used to store vinyl in used record stores. A core practice since hip-hop's founding.",
+    "region": "Universal",
+    "era": "80s",
+    "category": "production",
+    "example_lines": [
+      "He spent all Saturday crate digging and found the perfect sample",
+      "Real producers crate dig — they don't just use drum kits"
+    ],
+    "related_terms": [
+      "sample",
+      "loop",
+      "flip",
+      "boom bap revival"
+    ],
+    "id": "1acc31f9-6f8b-4678-91eb-a875fac699da"
+  },
+  {
+    "term": "punch in",
+    "definition": "A recording technique where the artist records in short bursts — a few bars at a time — rather than one full take. Common in the trap era. Critics say it breaks flow; defenders say it produces sharper delivery.",
+    "origin": "Studio engineering term. Became widespread in the 2010s as DAW recording replaced booth-style takes.",
+    "region": "Universal",
+    "era": "2010s",
+    "category": "style",
+    "example_lines": [
+      "He punches in every 4 bars — never does full takes",
+      "You can tell he punched in on that verse"
+    ],
+    "related_terms": [
+      "flow",
+      "cadence",
+      "writtens",
+      "off the dome"
+    ],
+    "id": "c2f1a9e9-c99b-4810-a23e-bcf3156e502f"
+  },
+  {
+    "term": "acapella",
+    "definition": "Rapping with no beat — voice only. Used in ciphers, showcases, and as a test of pure skill. If you can hold a crowd acapella, your pen and delivery are undeniable.",
+    "origin": "Italian for 'in the manner of the chapel' — choral singing without instruments. Adopted by hip-hop for unaccompanied rap performances.",
+    "region": "Universal",
+    "era": "80s",
+    "category": "style",
+    "example_lines": [
+      "He rocked the whole park acapella and the crowd still went crazy"
+    ],
+    "related_terms": [
+      "cipher",
+      "freestyle",
+      "off the dome",
+      "pen game"
+    ],
+    "id": "4b62f514-20ad-4991-a83b-04f75db18780"
+  },
+  {
+    "term": "flip",
+    "definition": "1. To reinterpret a sample — chop it, pitch it, and rebuild it into something new. 2. To turn a small investment into a larger profit. Both meanings involve transforming something raw into something valuable.",
+    "origin": "Dual street and music term. In production, flipping a sample is the art of making it unrecognizable from its source.",
+    "region": "Universal",
+    "era": "90s",
+    "category": "production",
+    "example_lines": [
+      "He flipped that old soul record into something completely different",
+      "Put $500 in, flipped it to five racks"
+    ],
+    "related_terms": [
+      "sample",
+      "chop",
+      "loop",
+      "crate digging",
+      "hustle"
+    ],
+    "id": "ecb66598-6a08-4dd5-ae72-cfd06df6b1ae"
+  },
+  {
+    "term": "chop",
+    "definition": "To cut a sample into small pieces and rearrange them rhythmically — a production technique that transforms a recognizable loop into something entirely new. Chopping is a core skill in Southern and sample-based production.",
+    "origin": "Production technique refined in Houston's chopped and screwed culture and in broader hip-hop sampling.",
+    "region": "South",
+    "era": "90s",
+    "category": "production",
+    "example_lines": [
+      "He chopped that vocal sample so hard you can't even tell what song it's from"
+    ],
+    "related_terms": [
+      "sample",
+      "flip",
+      "loop",
+      "chopped and screwed"
+    ],
+    "id": "be59ea9c-7135-46aa-bd01-79c66a1b7361"
+  },
+  {
+    "term": "loop",
+    "definition": "A repeated musical phrase — usually 2 or 4 bars of a sample — that forms the foundation of a beat. Early hip-hop was almost entirely loop-based. A great loop can carry a whole song.",
+    "origin": "Tape loop technique from early sampling. DJs used two copies of a record to extend the best 8 bars indefinitely.",
+    "region": "Universal",
+    "era": "80s",
+    "category": "production",
+    "example_lines": [
+      "That loop is so hard it doesn't even need drums",
+      "He let the loop breathe and it hit harder for it"
+    ],
+    "related_terms": [
+      "sample",
+      "flip",
+      "chop",
+      "crate digging",
+      "boom bap revival"
+    ],
+    "id": "3b451d88-2594-4700-a36e-f650451c7505"
+  },
+  {
+    "term": "snare",
+    "definition": "The sharp, cracking drum hit — usually on beats 2 and 4 — that drives the rhythm of a rap beat. In trap, the snare is often layered, reverbed, or delayed for a rolling effect. The snare tells you where the pocket is.",
+    "origin": "Acoustic drum term. Central to hip-hop production since the genre's founding.",
+    "region": "Universal",
+    "era": "80s",
+    "category": "production",
+    "example_lines": [
+      "That snare is cracking like a gunshot",
+      "The snare roll at the end of every bar is the whole vibe"
+    ],
+    "related_terms": [
+      "808",
+      "hi-hats",
+      "kick",
+      "triplet flow",
+      "pocket"
+    ],
+    "id": "0d9f5b71-f2ef-4a1a-b2a2-fcc164c99486"
+  },
+  {
+    "term": "kick",
+    "definition": "The bass drum hit in a beat — deep, punchy, and felt as much as heard. Works together with the 808 in trap. In boom bap, the kick and snare combo is everything.",
+    "origin": "Acoustic drum term. The kick pattern defines the groove of a hip-hop beat.",
+    "region": "Universal",
+    "era": "80s",
+    "category": "production",
+    "example_lines": [
+      "That kick is knocking so hard I can feel it in my chest"
+    ],
+    "related_terms": [
+      "808",
+      "snare",
+      "hi-hats",
+      "pocket",
+      "boom bap revival"
+    ],
+    "id": "a0fe977b-e605-48f0-bb12-a2191587d1ca"
+  },
+  {
+    "term": "angle",
+    "definition": "A specific approach or strategy in a battle rap — attacking an opponent's appearance, reputation, personal life, or past bars. Choosing the right angle can win or lose a battle before you even start rapping.",
+    "origin": "Battle rap strategy term. The best battlers research opponents and build devastating angles.",
+    "region": "Universal",
+    "era": "2000s",
+    "category": "style",
+    "example_lines": [
+      "He had the wrong angle — came with gun bars when he should've gone personal",
+      "Find the right angle and you win before you even open your mouth"
+    ],
+    "related_terms": [
+      "diss track",
+      "bodied",
+      "punchline",
+      "cipher",
+      "ethered"
+    ],
+    "id": "e8530ec5-f986-4d35-a560-d8605951fe12"
+  },
+  {
+    "term": "choke",
+    "definition": "Forgetting your lyrics under pressure — the worst thing that can happen in a battle or live performance. One choke can end a career in battle rap. Even elite rappers have choked under pressure.",
+    "origin": "Sports term applied to performance pressure. In battle rap, choking is catastrophic and opponents never let you forget it.",
+    "region": "Universal",
+    "era": "90s",
+    "category": "style",
+    "example_lines": [
+      "He choked in the third round and never recovered",
+      "Don't choke when the crowd is watching"
+    ],
+    "related_terms": [
+      "freestyle",
+      "off the dome",
+      "bodied",
+      "cipher",
+      "writtens"
+    ],
+    "id": "0707e687-2178-4e43-9f1a-091731380b84"
+  },
+  {
+    "term": "haymaker",
+    "definition": "An especially powerful, devastating punchline — the kind that ends the conversation. A haymaker doesn't just score points, it puts the opponent on the floor. The crowd goes silent before the reaction.",
+    "origin": "Boxing term for a wild, devastating punch. Applied to battle rap for lines that are impossible to recover from.",
+    "region": "Universal",
+    "era": "90s",
+    "category": "punchline",
+    "example_lines": [
+      "He hit a haymaker in the second bar and it was over",
+      "Save the haymaker for the last line — make them feel it"
+    ],
+    "related_terms": [
+      "punchline",
+      "bodied",
+      "ethered",
+      "angle",
+      "diss track"
+    ],
+    "id": "fc513523-6de8-4d86-b4c8-588e51e00320"
+  },
+  {
+    "term": "rebuttal",
+    "definition": "Directly responding to your opponent's specific lines in a battle — flipping their words back on them or disproving their claims. The best rebuttals turn an opponent's strength into a weakness.",
+    "origin": "Legal/debate term brought into battle rap. Rebuttals show adaptability and quick thinking.",
+    "region": "Universal",
+    "era": "2000s",
+    "category": "style",
+    "example_lines": [
+      "His rebuttal was better than the original bar",
+      "You can't win a battle without a strong rebuttal"
+    ],
+    "related_terms": [
+      "diss track",
+      "response track",
+      "angle",
+      "bodied",
+      "cipher"
+    ],
+    "id": "2435da1c-294e-422d-901b-6bb89c8d05e5"
+  },
+  {
+    "term": "body bag",
+    "definition": "A verse, round, or song so devastating that it metaphorically kills the opponent. If someone says you got put in a body bag, your career might be over. Used in battles and in describing lopsided features.",
+    "origin": "Military/medical term for transporting the deceased. Applied to rap battles for complete, irreversible defeats.",
+    "region": "Universal",
+    "era": "2000s",
+    "category": "beef",
+    "example_lines": [
+      "That feature put three rappers in body bags",
+      "He handed out body bags all night"
+    ],
+    "related_terms": [
+      "bodied",
+      "ethered",
+      "haymaker",
+      "murked",
+      "diss track"
+    ],
+    "id": "71b15ef2-f8ea-4c57-af4b-a24e37722ef4"
+  },
+  {
+    "term": "bet",
+    "definition": "An affirmation meaning 'agreed,' 'understood,' or 'that works.' A one-word confirmation that became universal slang. Can close a deal, accept a challenge, or simply acknowledge what someone said.",
+    "origin": "Emerged from Southern and New York slang in the early 2000s. Now used across hip-hop culture globally.",
+    "region": "Universal",
+    "era": "2000s",
+    "category": "slang",
+    "example_lines": [
+      "Bet, I'll be there at 8",
+      "You dropping a tape? Bet."
+    ],
+    "related_terms": [
+      "say less",
+      "word",
+      "deadass",
+      "no cap",
+      "frfr"
+    ],
+    "id": "e55f29d1-f4fa-47bb-a51c-62f5ed5f4ff3"
+  },
+  {
+    "term": "say less",
+    "definition": "I understand — no more explanation needed. Used to cut short unnecessary back-and-forth when the message is already clear. Shows confidence and decisiveness.",
+    "origin": "Emerged in trap culture as a way to communicate efficiency. The opposite of over-explaining.",
+    "region": "Universal",
+    "era": "2010s",
+    "category": "slang",
+    "example_lines": [
+      "You need me to pull up? Say less.",
+      "Say less, I already know what it is"
+    ],
+    "related_terms": [
+      "bet",
+      "word",
+      "on sight",
+      "lowkey",
+      "keep it 100"
+    ],
+    "id": "53883a33-d14f-4b42-bcef-2298c46bdf46"
+  },
+  {
+    "term": "big facts",
+    "definition": "Absolute truth — not just facts, but undeniable, unquestionable truth. Used to validate a statement so strong it needs no debate.",
+    "origin": "Southern slang that spread nationwide through social media and rap culture in the 2010s.",
+    "region": "South",
+    "era": "2010s",
+    "category": "slang",
+    "example_lines": [
+      "He's the hardest MC alive, big facts",
+      "Big facts — that album changed everything"
+    ],
+    "related_terms": [
+      "no cap",
+      "keep it 100",
+      "deadass",
+      "word",
+      "frfr"
+    ],
+    "id": "e9ca1615-0c09-4bf3-bad3-159cca1216d4"
+  },
+  {
+    "term": "frfr",
+    "definition": "For real for real — extreme emphasis on sincerity. More serious than just 'for real.' Used to make clear that what you're saying is 100% genuine with no exaggeration.",
+    "origin": "Text/social media abbreviation that entered spoken hip-hop vernacular in the 2010s.",
+    "region": "Universal",
+    "era": "2010s",
+    "category": "slang",
+    "example_lines": [
+      "That was the hardest verse I've ever heard, frfr",
+      "I'm done playing games, frfr"
+    ],
+    "related_terms": [
+      "no cap",
+      "deadass",
+      "big facts",
+      "keep it 100",
+      "word"
+    ],
+    "id": "cc1d0779-4a7e-4400-b9f3-29f9be67f11b"
+  },
+  {
+    "term": "off top",
+    "definition": "Immediately, off the top, or without thinking. Can mean something is obvious or it can describe rapping without preparation — straight from the mind with no written reference.",
+    "origin": "Variation of 'off the top of the head.' Core to freestyle culture where rhyming unprepared is a mark of skill.",
+    "region": "Universal",
+    "era": "90s",
+    "category": "slang",
+    "example_lines": [
+      "Off top, that's the best verse on the album",
+      "He wrote that off top in five minutes"
+    ],
+    "related_terms": [
+      "off the dome",
+      "freestyle",
+      "no cap",
+      "say less"
+    ],
+    "id": "a6479c46-93a2-4896-ad06-3d347259657a"
+  },
+  {
+    "term": "word is bond",
+    "definition": "My word is my oath — a sworn promise in hip-hop culture. More serious than a handshake, it means your reputation is on the line. Rooted in Five Percenter ideology where spoken word has binding power.",
+    "origin": "Five Percent Nation teaching where the spoken word is a binding contract. Became foundational in New York hip-hop.",
+    "region": "New York",
+    "era": "80s",
+    "category": "culture",
+    "example_lines": [
+      "Word is bond, I'll be there",
+      "He said word is bond and everybody knew he meant it"
+    ],
+    "related_terms": [
+      "five percenter",
+      "keep it 100",
+      "deadass",
+      "real one",
+      "son"
+    ],
+    "id": "a12fb933-b824-4810-a700-6609c2d70d38"
+  },
+  {
+    "term": "real one",
+    "definition": "Someone genuinely authentic — a person who keeps it real in all circumstances, doesn't switch up, and can be trusted completely. The highest form of character endorsement in street culture.",
+    "origin": "Emerged from street culture as a way to distinguish genuine loyalty from performative allegiance.",
+    "region": "Universal",
+    "era": "2000s",
+    "category": "culture",
+    "example_lines": [
+      "He's a real one — never switched up even when things got hard",
+      "Real ones are rare, hold onto them"
+    ],
+    "related_terms": [
+      "day one",
+      "solid",
+      "keep it 100",
+      "rider",
+      "snake"
+    ],
+    "id": "56b923d5-782d-4a1d-9fb0-b558d39d87eb"
+  },
+  {
+    "term": "down bad",
+    "definition": "In a desperate, compromised, or embarrassing situation — financially broke, romantically rejected, or morally compromised. Can be self-aware or an insult.",
+    "origin": "Spread through social media and hip-hop in the late 2010s to describe being in a pitiful state.",
+    "region": "Universal",
+    "era": "2010s",
+    "category": "slang",
+    "example_lines": [
+      "He's down bad — begging online for money",
+      "Don't let them see you down bad"
+    ],
+    "related_terms": [
+      "glow up",
+      "secure the bag",
+      "clout",
+      "L",
+      "caught lacking"
+    ],
+    "id": "6fa689e4-4e44-4b02-8207-6175f9fd168e"
+  },
+  {
+    "term": "rider",
+    "definition": "Someone completely loyal — they'll ride with you through anything, good times and bad. A rider doesn't abandon you when it gets hard. Having a real rider is rarer than money.",
+    "origin": "Street culture term rooted in the idea of riding with your crew through any situation.",
+    "region": "Universal",
+    "era": "90s",
+    "category": "culture",
+    "example_lines": [
+      "She's been a rider since day one",
+      "I need riders around me, not fans"
+    ],
+    "related_terms": [
+      "real one",
+      "day one",
+      "solid",
+      "clique",
+      "snake"
+    ],
+    "id": "d55b491b-6837-422b-8a4c-1915083f09c5"
+  },
+  {
+    "term": "solid",
+    "definition": "Trustworthy, reliable, and principled — someone who won't crack under pressure or sell you out. 'He's solid' is one of the highest endorsements in street culture.",
+    "origin": "Street slang for someone with unshakeable integrity. Used to vet people before including them in serious matters.",
+    "region": "Universal",
+    "era": "90s",
+    "category": "culture",
+    "example_lines": [
+      "He's solid — never said a word even when they pressured him",
+      "Before you move with anybody, make sure they solid"
+    ],
+    "related_terms": [
+      "real one",
+      "rider",
+      "keep it 100",
+      "day one",
+      "G-code"
+    ],
+    "id": "1fc6bac6-5810-4001-94d3-a781f969495f"
+  },
+  {
+    "term": "pull up",
+    "definition": "To arrive somewhere — often with an implied threat or challenge. 'Pull up' in a beef context means confrontation is coming. In a casual context it just means showing up.",
+    "origin": "Driving slang — pulling a car up to a location. Evolved to mean arriving with intent.",
+    "region": "Universal",
+    "era": "2000s",
+    "category": "slang",
+    "example_lines": [
+      "Pull up to the session if you want smoke",
+      "He pulled up and the whole energy shifted"
+    ],
+    "related_terms": [
+      "on sight",
+      "slide",
+      "spin the block",
+      "steppa",
+      "beef"
+    ],
+    "id": "96d0c6b0-f16b-4eb5-bf63-38144f8f9a80"
+  },
+  {
+    "term": "dip",
+    "definition": "To leave quickly and without fanfare. Dipping is exiting a situation — usually because something is about to go wrong or because you're simply done.",
+    "origin": "Street slang for a quick exit. The speed of a 'dip' implies urgency or cool detachment.",
+    "region": "Universal",
+    "era": "90s",
+    "category": "slang",
+    "example_lines": [
+      "Once the opps showed up, everybody dipped",
+      "I'm about to dip — this ain't my scene"
+    ],
+    "related_terms": [
+      "ghost",
+      "lowkey",
+      "slide",
+      "mob"
+    ],
+    "id": "a5140f3b-bcdc-4d26-a90b-cbbcd4224b2d"
+  },
+  {
+    "term": "bread",
+    "definition": "Money — specifically reliable, earned income. 'Getting bread' means getting paid. Bread implies consistency, not just a one-time score.",
+    "origin": "Old slang rooted in bread as a necessity of life. If you have bread, you're taken care of.",
+    "region": "Universal",
+    "era": "80s",
+    "category": "slang",
+    "example_lines": [
+      "He's been getting bread since he was 16",
+      "Secure the bread before anything else"
+    ],
+    "related_terms": [
+      "racks",
+      "bands",
+      "guap",
+      "secure the bag",
+      "hustle"
+    ],
+    "id": "f6e9d47a-e7b5-461a-929b-9d6eda729149"
+  },
+  {
+    "term": "paper",
+    "definition": "Money — particularly cash. 'Chasing paper' means single-minded focus on making money. Paper implies hustle and pursuit.",
+    "origin": "Old American slang for currency. Central to hip-hop's money vernacular since the genre's beginning.",
+    "region": "Universal",
+    "era": "80s",
+    "category": "slang",
+    "example_lines": [
+      "He was chasing paper before anybody believed in him",
+      "Get your paper right before you worry about anything else"
+    ],
+    "related_terms": [
+      "bread",
+      "racks",
+      "bands",
+      "guap",
+      "commas"
+    ],
+    "id": "d5f41088-5c09-43bf-b438-163f900ebb95"
+  },
+  {
+    "term": "hustle",
+    "definition": "The relentless pursuit of money and success through any means available. Hustle is a mentality, not just an action — it's showing up consistently when others won't. Deeply embedded in hip-hop's core values.",
+    "origin": "Pool hall slang for deception that evolved into a broader celebration of street entrepreneurship in hip-hop.",
+    "region": "Universal",
+    "era": "80s",
+    "category": "culture",
+    "example_lines": [
+      "The hustle never stops",
+      "He came from nothing — all hustle, no help"
+    ],
+    "related_terms": [
+      "grind",
+      "secure the bag",
+      "generational wealth",
+      "plug",
+      "re-up"
+    ],
+    "id": "72855366-d125-45f8-9e26-249bc67c3e49"
+  },
+  {
+    "term": "grind",
+    "definition": "The sustained, unglamorous work of building something from nothing. While hustle has an element of cleverness, grind is pure relentless effort. You grind when nobody is watching.",
+    "origin": "Physical labor metaphor adopted by hip-hop to describe the daily work of building a career or income.",
+    "region": "Universal",
+    "era": "90s",
+    "category": "culture",
+    "example_lines": [
+      "He was on the grind for years before anyone noticed",
+      "Trust the grind even when it doesn't feel like it's working"
+    ],
+    "related_terms": [
+      "hustle",
+      "secure the bag",
+      "day one",
+      "generational wealth"
+    ],
+    "id": "784f49c9-1eca-4225-9eb9-0aec2d2dcaf1"
+  },
+  {
+    "term": "on the come up",
+    "definition": "In the process of rising — building reputation, money, or status from a low position. It's a state of momentum, not arrival. Being on the come up means the work is paying off but you're not done yet.",
+    "origin": "Street slang for upward mobility — referencing someone who is ascending in status.",
+    "region": "Universal",
+    "era": "90s",
+    "category": "culture",
+    "example_lines": [
+      "He's on the come up — don't sleep on him",
+      "Everybody wants to be your friend once you're on the come up"
+    ],
+    "related_terms": [
+      "glow up",
+      "hustle",
+      "grind",
+      "co-sign",
+      "slept on"
+    ],
+    "id": "4ce61fd4-74e6-4be4-98ef-a59beefe5041"
+  },
+  {
+    "term": "set",
+    "definition": "A crew, gang, or neighborhood affiliation. Your set is your identity in street culture — who you represent and who will represent you. Sets have colors, signs, and territories.",
+    "origin": "Gang culture terminology. A set is a local chapter of a larger gang or an independent neighborhood crew.",
+    "region": "West Coast",
+    "era": "80s",
+    "category": "street",
+    "example_lines": [
+      "He repped his set from day one",
+      "What set you from?"
+    ],
+    "related_terms": [
+      "clique",
+      "the hood",
+      "the block",
+      "G-code",
+      "steppa"
+    ],
+    "id": "577124bd-8d85-468e-8404-ee8792a93634"
+  },
+  {
+    "term": "corner",
+    "definition": "The street corner where business is conducted, where crews post up, and where neighborhood life happens. The corner is both a physical place and a symbol of street life.",
+    "origin": "Urban geography. The corner is the intersection of commerce and community in impoverished neighborhoods.",
+    "region": "Universal",
+    "era": "80s",
+    "category": "street",
+    "example_lines": [
+      "He grew up on the corner and knew every face",
+      "The corner was where everything started"
+    ],
+    "related_terms": [
+      "the block",
+      "trap house",
+      "bando",
+      "the hood",
+      "serve"
+    ],
+    "id": "24a9176f-fbee-4cd5-a8f5-64085d336fcc"
+  },
+  {
+    "term": "work",
+    "definition": "Product being sold on the street — drugs. When someone says they have work, they're in business. 'Moving work' means actively selling.",
+    "origin": "Street euphemism for drugs as inventory. Treating illegal product as a business commodity.",
+    "region": "Universal",
+    "era": "80s",
+    "category": "street",
+    "example_lines": [
+      "He always had work when nobody else could find it",
+      "Moving work is all he knew growing up"
+    ],
+    "related_terms": [
+      "pack",
+      "plug",
+      "re-up",
+      "bando",
+      "trap house",
+      "serve"
+    ],
+    "id": "7ff9d081-19e8-4643-95dc-509e5abfe0c0"
+  },
+  {
+    "term": "weight",
+    "definition": "A large quantity of drugs — moving weight means operating at a wholesale level, not hand-to-hand retail. Rappers use it to signal serious street status.",
+    "origin": "Drug trade terminology for quantity. Moving weight means you're a supplier, not just a street-level dealer.",
+    "region": "Universal",
+    "era": "80s",
+    "category": "street",
+    "example_lines": [
+      "He went from the corner to moving weight",
+      "Moving weight is a different level of risk"
+    ],
+    "related_terms": [
+      "pack",
+      "plug",
+      "work",
+      "re-up",
+      "connect"
+    ],
+    "id": "cf49a452-a4ed-4257-be86-4a4abd69bcb6"
+  },
+  {
+    "term": "connect",
+    "definition": "The supplier — the person above the plug who has direct access to the source. Having a connect means you can get product before it's been marked up multiple times.",
+    "origin": "Drug supply chain terminology. The connect is a coveted and closely guarded relationship.",
+    "region": "Universal",
+    "era": "90s",
+    "category": "street",
+    "example_lines": [
+      "He had a direct connect so the prices were different",
+      "Everybody needs a connect eventually"
+    ],
+    "related_terms": [
+      "plug",
+      "pack",
+      "weight",
+      "work",
+      "re-up"
+    ],
+    "id": "c12c0abc-16d7-4b56-930a-45f155556591"
+  },
+  {
+    "term": "jewels",
+    "definition": "Wisdom, knowledge, and valuable information — not jewelry. When someone drops jewels, they're sharing insight that took years to acquire. Rooted in Five Percenter philosophy where knowledge is treated as precious.",
+    "origin": "Five Percent Nation teaching. Knowledge and wisdom are called jewels because they are rare, valuable, and must be protected.",
+    "region": "New York",
+    "era": "80s",
+    "category": "culture",
+    "example_lines": [
+      "He dropped jewels on that track — real knowledge",
+      "Listen carefully, he's dropping jewels right now"
+    ],
+    "related_terms": [
+      "five percenter",
+      "word is bond",
+      "pen game",
+      "cipher",
+      "wisdom"
+    ],
+    "id": "cf3513eb-7d9e-4b8a-b592-94459740aaad"
+  },
+  {
+    "term": "slick",
+    "definition": "Clever, smooth, and slightly shady — slick talk is charming but manipulative. A slick rapper finds clever ways to say insulting things without being direct. Slick can be a compliment or a warning.",
+    "origin": "Old American slang for someone who uses cleverness rather than force to get what they want.",
+    "region": "Universal",
+    "era": "80s",
+    "category": "style",
+    "example_lines": [
+      "That bar was slick — said everything without saying anything",
+      "Don't let the slick talk fool you"
+    ],
+    "related_terms": [
+      "subliminal",
+      "double entendre",
+      "wordplay",
+      "finesse",
+      "cold"
+    ],
+    "id": "b3b5a770-3de1-42e9-b3c5-63c52cd65b0f"
+  },
+  {
+    "term": "cold",
+    "definition": "Ruthlessly impressive — cold means excellent with an edge of heartlessness. A cold verse doesn't care about your feelings. Cold is reserved for things that are so good they shock you.",
+    "origin": "Slang that conveys excellence through emotional detachment. If something is cold, it hits without warmth — pure precision.",
+    "region": "Universal",
+    "era": "90s",
+    "category": "slang",
+    "example_lines": [
+      "That bar was cold — I had to pause the song",
+      "He's been cold since the jump"
+    ],
+    "related_terms": [
+      "ice",
+      "dope",
+      "fye",
+      "snapped",
+      "bodied"
+    ],
+    "id": "29c4c190-5c6b-49dd-b5d8-c418afd56d5c"
+  },
+  {
+    "term": "raw",
+    "definition": "Unpolished, unfiltered, and authentic. Raw means nothing has been softened or commercialized. It can describe music, a person, or a situation. A raw rapper doesn't care about radio — they care about truth.",
+    "origin": "Slang for unprocessed, natural, or uncensored. In hip-hop it signifies genuine street authenticity.",
+    "region": "Universal",
+    "era": "80s",
+    "category": "style",
+    "example_lines": [
+      "His delivery is raw — no auto-tune, no tricks, just bars",
+      "That tape was too raw for a label"
+    ],
+    "related_terms": [
+      "grimey",
+      "authentic",
+      "street credibility",
+      "underground railroad",
+      "ill"
+    ],
+    "id": "2b5213a9-ea69-471d-983b-58103af6462f"
+  },
+  {
+    "term": "stamped",
+    "definition": "Officially authenticated or approved — to be stamped by someone respected means your credibility is verified. Getting stamped by a legend opens doors that money can't buy.",
+    "origin": "Bureaucratic approval metaphor. In hip-hop, a stamp from the right person is a seal of authenticity.",
+    "region": "Universal",
+    "era": "2000s",
+    "category": "culture",
+    "example_lines": [
+      "He got stamped by veterans — now nobody can question him",
+      "You need to get stamped before you step into this lane"
+    ],
+    "related_terms": [
+      "co-sign",
+      "certified",
+      "OG",
+      "real one",
+      "street credibility"
+    ],
+    "id": "f7f4403a-7483-417f-8bd2-c5f03652ad54"
+  },
+  {
+    "term": "gang gang",
+    "definition": "An exclamation of crew solidarity — reinforcing loyalty and shared identity. Used to punctuate a statement or show that your entire crew agrees. Also used as a general affirmative response.",
+    "origin": "Gang and crew culture verbal signal of collective identity. Spread through trap music in the 2010s.",
+    "region": "South",
+    "era": "2010s",
+    "category": "slang",
+    "example_lines": [
+      "Gang gang, we all eating now",
+      "Dropped a new song — gang gang"
+    ],
+    "related_terms": [
+      "clique",
+      "slime",
+      "on bro",
+      "set",
+      "solid"
+    ],
+    "id": "2352c9a5-ca54-465d-a453-0bc15d297bf6"
+  },
+  {
+    "term": "skrrt",
+    "definition": "Onomatopoeia for the sound of a car speeding away — tires screeching. Used as an ad lib or interjection to signal fast money, quick exits, or high energy. Associated with trap music's car culture.",
+    "origin": "Phonetic spelling of tire screech. Became a ubiquitous ad lib in trap music and street vernacular.",
+    "region": "South",
+    "era": "2010s",
+    "category": "slang",
+    "example_lines": [
+      "Pulled up in the foreign, skrrt skrrt",
+      "Skrrt on the opps"
+    ],
+    "related_terms": [
+      "ad lib",
+      "foreign",
+      "whip",
+      "drip",
+      "trap"
+    ],
+    "id": "e4d6511b-fad1-4a74-98a1-fbd9a1fa4821"
+  },
+  {
+    "term": "tax",
+    "definition": "To overcharge someone or take an unfair cut. If someone is taxing you, they're taking advantage of their position in the supply chain or relationship. Can also mean making someone pay for disrespect.",
+    "origin": "Financial term applied to street economics and interpersonal dynamics.",
+    "region": "Universal",
+    "era": "2000s",
+    "category": "street",
+    "example_lines": [
+      "He's taxing everybody on the block — prices are ridiculous",
+      "You disrespect me and I'm taxing you for it"
+    ],
+    "related_terms": [
+      "plug",
+      "finesse",
+      "jugg",
+      "lick",
+      "connect"
+    ],
+    "id": "06a716cf-ea99-4794-b95d-31448affc3cd"
+  },
+  {
+    "term": "stunting",
+    "definition": "Conspicuously displaying wealth and status — expensive clothes, jewelry, cars, and lifestyle. Stunting is performative flexing; it's making sure people see what you have.",
+    "origin": "Emerged from New Orleans bounce culture. Stunting = performing, showing off. Popularized nationally through Southern rap.",
+    "region": "South",
+    "era": "2000s",
+    "category": "culture",
+    "example_lines": [
+      "He pulled up stunting — full outfit, chain, foreign car",
+      "Stunting on 'em is the only response"
+    ],
+    "related_terms": [
+      "drip",
+      "ice",
+      "flex",
+      "swag",
+      "wrist"
+    ],
+    "id": "f0c0fb84-2f31-40d4-9a50-a00ecd44ac99"
+  },
+  {
+    "term": "flex",
+    "definition": "To display wealth, talent, or power — showing off what you have earned. Flexing is both an art and a statement. In hip-hop, the flex is often the point of the record.",
+    "origin": "Physical flexing of muscles as a show of strength. Applied to displaying any form of power or achievement.",
+    "region": "Universal",
+    "era": "90s",
+    "category": "slang",
+    "example_lines": [
+      "The whole song is just a flex and it's perfect",
+      "He flexed on everybody who doubted him"
+    ],
+    "related_terms": [
+      "stunting",
+      "drip",
+      "swag",
+      "ice",
+      "bag secured"
+    ],
+    "id": "935c9814-7662-4aef-bdb3-e5335b5612d0"
+  },
+  {
+    "term": "dripped out",
+    "definition": "Head-to-toe in the best clothes, jewelry, and accessories — the full drip activated. When you're dripped out, every element of the outfit is intentional and expensive.",
+    "origin": "Extension of 'drip' — the fashion embodiment of being fully loaded with style.",
+    "region": "Universal",
+    "era": "2010s",
+    "category": "fashion",
+    "example_lines": [
+      "Walked in dripped out — everybody's head turned",
+      "Dripped out from the shoes to the chain"
+    ],
+    "related_terms": [
+      "drip",
+      "fit",
+      "steeze",
+      "stunting",
+      "swag"
+    ],
+    "id": "c05543e2-e156-4568-b8d6-cd1014b6394b"
+  },
+  {
+    "term": "stay ready",
+    "definition": "Always prepared — the discipline of maintaining your skills, finances, and position so you never have to scramble. 'Stay ready so you don't have to get ready' is the full saying.",
+    "origin": "Military and street preparedness philosophy embedded in hip-hop culture.",
+    "region": "Universal",
+    "era": "90s",
+    "category": "culture",
+    "example_lines": [
+      "Stay ready — opportunities don't come back",
+      "He stayed ready while everybody else was sleeping"
+    ],
+    "related_terms": [
+      "solid",
+      "G-code",
+      "hustle",
+      "grind",
+      "day one"
+    ],
+    "id": "9510eaf5-cd05-499f-a89d-0bf3abe8f308"
+  },
+  {
+    "term": "pen",
+    "definition": "A rapper's writing ability — their pen game. A sharp pen produces elite bars. When someone says an artist has 'pen,' it's one of the highest compliments in rap.",
+    "origin": "The actual pen used to write lyrics became a symbol of lyrical ability. Having pen means your writing is undeniable.",
+    "region": "Universal",
+    "era": "80s",
+    "category": "style",
+    "example_lines": [
+      "The pen is unmatched — every bar is intentional",
+      "You can't question his pen"
+    ],
+    "related_terms": [
+      "pen game",
+      "penmanship",
+      "wordplay",
+      "bars",
+      "ghostwriter"
+    ],
+    "id": "3b86bb09-de84-4bdd-808e-93db2902d737"
+  },
+  {
+    "term": "static",
+    "definition": "Conflict, tension, or problems — unwanted interference between people or groups. If there's static between two crews, beef is either happening or building.",
+    "origin": "Radio/communication interference metaphor. Static disrupts the signal — in street terms, it disrupts the peace.",
+    "region": "Universal",
+    "era": "90s",
+    "category": "beef",
+    "example_lines": [
+      "There's been static between those two blocks for years",
+      "He doesn't want any static, he just wants his money"
+    ],
+    "related_terms": [
+      "beef",
+      "smoke",
+      "opps",
+      "diss track",
+      "on sight"
+    ],
+    "id": "0e3c6f3a-d8df-47f0-9609-d20b1eb7a716"
+  },
+  {
+    "term": "smoke",
+    "definition": "Conflict or beef — wanting smoke means you're looking for a fight or confrontation. Giving smoke means bringing the aggression. Can be physical or lyrical.",
+    "origin": "Fire/combat metaphor. Where there's smoke there's fire — and where there's smoke in hip-hop, there's beef.",
+    "region": "Universal",
+    "era": "2000s",
+    "category": "beef",
+    "example_lines": [
+      "He wants smoke with everybody right now",
+      "Pull up if you want smoke — we're right here"
+    ],
+    "related_terms": [
+      "beef",
+      "static",
+      "on sight",
+      "opps",
+      "diss track"
+    ],
+    "id": "3a360cb2-bc77-4a9c-8f7d-5ae718608a36"
+  },
+  {
+    "term": "ghost",
+    "definition": "To disappear without explanation — cutting off contact completely. Ghosting someone means they simply no longer exist in your world. Can describe a person leaving a relationship or a rapper going dark.",
+    "origin": "Paranormal metaphor — ghosts are invisible and untouchable. Applied to social disappearance.",
+    "region": "Universal",
+    "era": "2000s",
+    "category": "slang",
+    "example_lines": [
+      "He ghosted after the deal fell through — never heard from him again",
+      "Once the money was gone, they all ghosted"
+    ],
+    "related_terms": [
+      "dip",
+      "lowkey",
+      "snake",
+      "real one",
+      "day one"
+    ],
+    "id": "5e60bb51-7939-45b4-80fe-1bab6d0cc37c"
+  },
+  {
+    "term": "wisdom",
+    "definition": "Knowledge that has been tested by experience — deeper than facts alone. In hip-hop and Five Percenter philosophy, wisdom is the second step after knowledge: you must be able to apply what you know.",
+    "origin": "Five Percent Nation teaching. Wisdom is 'the wise words, ways, and actions of the original man.' Embedded in hip-hop's philosophical tradition.",
+    "region": "New York",
+    "era": "80s",
+    "category": "culture",
+    "example_lines": [
+      "He speaks with wisdom — everything he says has weight behind it",
+      "Knowledge plus experience equals wisdom"
+    ],
+    "related_terms": [
+      "five percenter",
+      "jewels",
+      "word is bond",
+      "cipher",
+      "OG"
+    ],
+    "id": "c8316e3e-f24c-4988-9721-e43f6943181d"
+  },
+  {
+    "term": "vibe check",
+    "definition": "Assessing the energy or mood of a person or room. A vibe check determines if the situation is right — safe, authentic, or worth being in. Failed vibe checks get people cut off.",
+    "origin": "Social media slang from the late 2010s that entered mainstream hip-hop vocabulary.",
+    "region": "Universal",
+    "era": "2010s",
+    "category": "slang",
+    "example_lines": [
+      "Vibe check before you bring anybody around the crew",
+      "He failed the vibe check the moment he walked in"
+    ],
+    "related_terms": [
+      "vibe",
+      "real one",
+      "energy",
+      "lowkey",
+      "solid"
+    ],
+    "id": "5fe3ca9f-d1ef-4a4b-ad84-f7729b80ec14"
+  },
+  {
+    "term": "energy",
+    "definition": "The unspoken force a person or place carries — positive or negative. Hip-hop is deeply attuned to energy: who you bring around you, what spaces you occupy, and what you attract.",
+    "origin": "Spiritual and physical concept embedded in hip-hop's Five Percenter and street philosophy roots.",
+    "region": "Universal",
+    "era": "90s",
+    "category": "culture",
+    "example_lines": [
+      "His energy is different — the whole room shifted when he walked in",
+      "Protect your energy from people who drain it"
+    ],
+    "related_terms": [
+      "vibe",
+      "aura",
+      "real one",
+      "clique",
+      "solid"
+    ],
+    "id": "b3fb4e9c-3563-4fe8-a432-0677ceadc10e"
+  },
+  {
+    "term": "bag talk",
+    "definition": "Conversation exclusively about making money — not small talk, not gossip, just business and finance. Bag talk means the discussion has purpose and potential.",
+    "origin": "Extension of 'the bag' — securing money. If you're only on bag talk, you're focused and purposeful.",
+    "region": "Universal",
+    "era": "2010s",
+    "category": "culture",
+    "example_lines": [
+      "I only do bag talk — don't call me for anything else",
+      "The meeting was straight bag talk from the jump"
+    ],
+    "related_terms": [
+      "secure the bag",
+      "check the bag",
+      "bread",
+      "paper",
+      "hustle"
+    ],
+    "id": "aa28ed54-e847-43bd-b7a6-370e58695b49"
   }
 ]
