@@ -39,7 +39,7 @@
     "id": "00000000-0000-0000-0000-000000000003",
     "term": "punchline",
     "definition": "The payoff line in a rap — the funny, clever, or devastating line that closes a setup. A great punchline rewards the listener for paying attention.",
-    "origin": "Comedy term brought into hip-hop. Rakim is widely credited with elevating punchlines to an art form.",
+    "origin": "Comedy term brought into hip-hop. a pioneering MC is widely credited with elevating punchlines to an art form.",
     "region": "Universal",
     "era": "80s",
     "category": "punchline",
@@ -130,8 +130,8 @@
   {
     "id": "00000000-0000-0000-0000-000000000008",
     "term": "multisyllabic rhyme",
-    "definition": "Rhyming multiple syllables instead of just the last word. The most technically demanding form of rap lyricism — used by Big Pun, Eminem, and others at the elite level.",
-    "origin": "Rakim pioneered this in the late 80s. Big L, Big Pun, and Eminem took it to extremes.",
+    "definition": "Rhyming multiple syllables instead of just the last word. The most technically demanding form of rap lyricism — used by a Bronx MC, a Detroit rapper, and others at the elite level.",
+    "origin": "a pioneering MC pioneered this in the late 80s. Big L, a Bronx MC, and a Detroit rapper took it to extremes.",
     "region": "Universal",
     "era": "90s",
     "category": "punchline",
@@ -167,7 +167,7 @@
     "id": "00000000-0000-0000-0000-000000000010",
     "term": "ad lib",
     "definition": "The spontaneous-sounding phrases or words a rapper says in the background while the main vocals play — 'yeah,' 'uh,' 'let's go,' etc. Often become a rapper's signature.",
-    "origin": "From Latin 'ad libitum' meaning at one's pleasure. In hip-hop, ad libs are a signature element — think Gucci's 'Burrr' or Lil Uzi's screams.",
+    "origin": "From Latin 'ad libitum' meaning at one's pleasure. In hip-hop, ad libs are a signature element — think a luxury fashion brand's 'Burrr' or a Philadelphia rapper's screams.",
     "region": "Universal",
     "era": "2000s",
     "category": "style",
@@ -184,7 +184,7 @@
     "id": "00000000-0000-0000-0000-000000000011",
     "term": "drip",
     "definition": "Style, fashion, or the way someone carries themselves aesthetically. High drip = looking extremely good. Can also refer to jewelry.",
-    "origin": "Atlanta, early 2010s. Popularized by Young Thug and the ATL trap scene.",
+    "origin": "Atlanta, early 2010s. Popularized by an Atlanta rapper and the ATL trap scene.",
     "region": "ATL",
     "era": "2010s",
     "category": "flex",
@@ -203,7 +203,7 @@
     "id": "00000000-0000-0000-0000-000000000012",
     "term": "sauce",
     "definition": "Style, charisma, confidence — the intangible quality that makes someone cool. Similar to drip but more about personality than clothing.",
-    "origin": "Atlanta/Southern rap. Popularized by Gucci Mane and Young Dolph.",
+    "origin": "Atlanta/Southern rap. Popularized by an Atlanta rapper and Young Dolph.",
     "region": "ATL",
     "era": "2010s",
     "category": "flex",
@@ -258,7 +258,7 @@
     "id": "00000000-0000-0000-0000-000000000015",
     "term": "trap",
     "definition": "1. A trap house — a location where drugs are sold. 2. A genre of rap music that originated in Atlanta characterized by hi-hat rolls, 808 drums, and dark subject matter about street life.",
-    "origin": "Atlanta, Georgia. T.I. popularized the term with 'Trap Muzik' (2003). Gucci Mane and Young Jeezy built the sound.",
+    "origin": "Atlanta, Georgia. an Atlanta rapper popularized the term with 'Trap Muzik' (2003). an Atlanta rapper and Young an Atlanta rapper built the sound.",
     "region": "ATL",
     "era": "2000s",
     "category": "street",
@@ -296,7 +296,7 @@
     "id": "00000000-0000-0000-0000-000000000017",
     "term": "ice",
     "definition": "Diamond jewelry. Specifically refers to diamonds set in chains, rings, watches, and grills. The 'ice' is the sparkle and shine of the diamonds.",
-    "origin": "New York, late 90s. Popularized by Raekwon ('Iced Out'), then exploded with the bling era (Birdman, Lil Wayne).",
+    "origin": "New York, late 90s. Popularized by Raekwon ('Iced Out'), then exploded with the bling era (Birdman, a New Orleans rapper).",
     "region": "Universal",
     "era": "90s",
     "category": "flex",
@@ -317,7 +317,7 @@
     "id": "00000000-0000-0000-0000-000000000018",
     "term": "VVS",
     "definition": "VVS stands for 'Very Very Slightly Included' — a diamond clarity grade just below flawless. In rap, VVS = the highest-quality diamonds you can get.",
-    "origin": "Jewelry industry terminology adopted by hip-hop. 2 Chainz and Migos helped bring it into mainstream use.",
+    "origin": "Jewelry industry terminology adopted by hip-hop. 2 Chainz and an Atlanta rap group helped bring it into mainstream use.",
     "region": "Universal",
     "era": "2010s",
     "category": "flex",
@@ -330,63 +330,6 @@
       "diamonds",
       "flawless",
       "clarity"
-    ]
-  },
-  {
-    "id": "00000000-0000-0000-0000-000000000019",
-    "term": "AP",
-    "definition": "Audemars Piguet — a Swiss luxury watch brand. In rap, wearing an AP (usually the Royal Oak model) signals extreme wealth and status.",
-    "origin": "Audemars Piguet was founded in 1875. Became a hip-hop status symbol in the 2010s, heavily referenced by Drake, Future, and Migos.",
-    "region": "Universal",
-    "era": "2010s",
-    "category": "flex",
-    "example_lines": [
-      "AP on my wrist, it's like a disco ball",
-      "She only date you if you got the AP"
-    ],
-    "related_terms": [
-      "Rollie",
-      "Patek",
-      "watch",
-      "wrist",
-      "Richard Mille"
-    ]
-  },
-  {
-    "id": "00000000-0000-0000-0000-000000000020",
-    "term": "Rollie",
-    "definition": "Rolex — the iconic Swiss luxury watch. A Rolex is the most recognizable luxury watch in hip-hop and has been referenced in rap since the 80s.",
-    "origin": "Rolex has been in rap since Run-DMC. 'Rollie' as a nickname became widespread in the 2000s-2010s.",
-    "region": "Universal",
-    "era": "80s",
-    "category": "flex",
-    "example_lines": [
-      "Rollie on the wrist — tell time twice",
-      "She only want a man with a Rollie"
-    ],
-    "related_terms": [
-      "AP",
-      "Patek",
-      "watch",
-      "presidential"
-    ]
-  },
-  {
-    "id": "00000000-0000-0000-0000-000000000021",
-    "term": "Patek",
-    "definition": "Patek Philippe — considered by many the most prestigious watch brand in the world, above Rolex. In rap, saying you wear a Patek signals ultra-luxury status.",
-    "origin": "Patek Philippe founded 1839. Jay-Z's 'Patek Philippe on my wrist' helped cement it in hip-hop vocabulary.",
-    "region": "Universal",
-    "era": "2000s",
-    "category": "flex",
-    "example_lines": [
-      "Patek on the wrist, f*** a Rolex"
-    ],
-    "related_terms": [
-      "AP",
-      "Rollie",
-      "Richard Mille",
-      "watch"
     ]
   },
   {
@@ -418,7 +361,7 @@
     "category": "beef",
     "example_lines": [
       "They say he uses a ghostwriter — that finished his credibility",
-      "Meek Mill exposed his ghostwriter"
+      "a Philadelphia rapper exposed his ghostwriter"
     ],
     "related_terms": [
       "pen game",
@@ -467,7 +410,7 @@
     "id": "00000000-0000-0000-0000-000000000026",
     "term": "cipher",
     "definition": "A circle of rappers who take turns freestyling or spitting verses — usually unplanned, raw, and competitive. Ciphers test your skills without studio production.",
-    "origin": "From '5 Percenter' Nation of Gods and Earths culture, adopted into hip-hop. BET Hip Hop Awards made ciphers famous to mainstream audiences.",
+    "origin": "From '5 Percenter' Nation of Gods and Earths culture, adopted into hip-hop. a hip-hop TV network Hip Hop Awards made ciphers famous to mainstream audiences.",
     "region": "NY",
     "era": "80s",
     "category": "style",
@@ -485,13 +428,13 @@
     "id": "00000000-0000-0000-0000-000000000027",
     "term": "808",
     "definition": "The Roland TR-808 — a drum machine from 1980 whose bass drum sound became the foundation of hip-hop, trap, and R&B. When you feel that deep, rumbling bass kick, that's the 808.",
-    "origin": "Roland Corporation, 1980. Afrika Bambaataa used it on 'Planet Rock.' It defines modern trap music.",
+    "origin": "Roland Corporation, 1980. a founding figure of hip-hop used it on 'Planet Rock.' It defines modern trap music.",
     "region": "Universal",
     "era": "80s",
     "category": "producer",
     "example_lines": [
       "That 808 knocked the whole block",
-      "Kanye's 808s & Heartbreak changed music forever"
+      "a Chicago producer-rapper's 808s & Heartbreak changed music forever"
     ],
     "related_terms": [
       "kick",
@@ -505,7 +448,7 @@
     "id": "00000000-0000-0000-0000-000000000028",
     "term": "sample",
     "definition": "Taking a portion of an existing song — usually a melody, drum pattern, or vocal line — and incorporating it into a new track. Sampling is foundational to hip-hop.",
-    "origin": "Hip-hop's core production technique since the Bronx block parties. DJ Kool Herc invented looping breakbeats.",
+    "origin": "Hip-hop's core production technique since the Bronx block parties. DJ a founding DJ of hip-hop invented looping breakbeats.",
     "region": "Universal",
     "era": "80s",
     "category": "producer",
@@ -548,7 +491,7 @@
     "era": "90s",
     "category": "beef",
     "example_lines": [
-      "Kendrick bodied that verse",
+      "a West Coast MC bodied that verse",
       "He bodied everyone in that cipher"
     ],
     "related_terms": [
@@ -562,7 +505,7 @@
     "id": "00000000-0000-0000-0000-000000000031",
     "term": "double entendre",
     "definition": "A phrase with two meanings — one obvious, one hidden. The hidden meaning is usually more clever, dark, or explicit. One of the highest-value tools in a rapper's lyrical arsenal.",
-    "origin": "French term for 'double meaning.' Jay-Z, Lil Wayne, and Kendrick are masters of double entendres.",
+    "origin": "French term for 'double meaning.' a pioneering New York rapper, a New Orleans rapper, and a West Coast MC are masters of double entendres.",
     "region": "Universal",
     "era": "90s",
     "category": "punchline",
@@ -616,8 +559,8 @@
   {
     "id": "00000000-0000-0000-0000-000000000034",
     "term": "woo",
-    "definition": "A term associated with Brooklyn rap crew linked to Pop Smoke and the Woo gang. Also used as a general exclamation in NYC drill.",
-    "origin": "Brooklyn, New York. Popularized by Pop Smoke and his Brooklyn drill crew in 2019-2020.",
+    "definition": "A term associated with Brooklyn rap crew linked to a Brooklyn drill rapper and the Woo gang. Also used as a general exclamation in NYC drill.",
+    "origin": "Brooklyn, New York. Popularized by a Brooklyn drill rapper and his Brooklyn drill crew in 2019-2020.",
     "region": "NY",
     "era": "2010s",
     "category": "slang",
@@ -670,8 +613,8 @@
   {
     "id": "00000000-0000-0000-0000-000000000037",
     "term": "goat",
-    "definition": "Greatest Of All Time. The ultimate compliment in hip-hop — declaring someone the undisputed best ever. Biggie, Tupac, Jay-Z, Eminem, Nas, Kendrick all have GOAT claims.",
-    "origin": "Sports term (especially boxing/Muhammad Ali) adopted by hip-hop. LL Cool J popularized it in rap.",
+    "definition": "Greatest Of All Time. The ultimate compliment in hip-hop — declaring someone the undisputed best ever. a Brooklyn MC, a West Coast MC, a pioneering New York rapper, a Detroit rapper, a Queensbridge MC, a West Coast MC all have GOAT claims.",
+    "origin": "Sports term (especially boxing/Muhammad Ali) adopted by hip-hop. a New York rapper popularized it in rap.",
     "region": "Universal",
     "era": "90s",
     "category": "general",
@@ -684,24 +627,6 @@
       "king",
       "OG",
       "greatest"
-    ]
-  },
-  {
-    "id": "00000000-0000-0000-0000-000000000038",
-    "term": "Verzuz",
-    "definition": "A live battle event (started on Instagram Live) where two artists play their hits back-to-back, letting fans judge who has the better catalog. Created by Timbaland and Swizz Beatz in 2020.",
-    "origin": "Created during COVID-19 quarantine in 2020. Became a massive cultural event — Gucci vs. Jeezy drew millions.",
-    "region": "Universal",
-    "era": "2020s",
-    "category": "reference",
-    "example_lines": [
-      "Their Verzuz was the most-watched one ever"
-    ],
-    "related_terms": [
-      "catalog",
-      "battle",
-      "hits",
-      "legacy"
     ]
   },
   {
@@ -740,110 +665,6 @@
       "knocks",
       "fire",
       "hard"
-    ]
-  },
-  {
-    "id": "00000000-0000-0000-0000-000000000041",
-    "term": "Kendrick Lamar",
-    "definition": "Compton rapper (born 1987) widely considered the greatest rapper of his generation. Known for conceptual albums (GKMC, TPAB, DAMN.), technical complexity, and his 2024 feud with Drake. Winner of the Pulitzer Prize for DAMN. (2018).",
-    "origin": "Compton, CA. Signed to TDE. Rose to prominence with Section.80 (2011). Feuded with Drake in 2024.",
-    "region": "LA",
-    "era": "2010s",
-    "category": "reference",
-    "example_lines": [
-      "Kendrick dropped 'Not Like Us' and it was over",
-      "They call him K-Dot in Compton"
-    ],
-    "related_terms": [
-      "TDE",
-      "Drake beef",
-      "GKMC",
-      "DAMN",
-      "Not Like Us",
-      "Compton"
-    ]
-  },
-  {
-    "id": "00000000-0000-0000-0000-000000000042",
-    "term": "Drake",
-    "definition": "Toronto rapper (born 1986), real name Aubrey Drake Graham. One of the best-selling artists ever. Known for melodic delivery, blending rap and R&B, and controversy — including ghostwriting accusations from Meek Mill (2015) and a 2024 feud with Kendrick Lamar.",
-    "origin": "Toronto, Canada. First known as Jimmy Brooks on 'Degrassi.' Signed to Young Money. Co-founded OVO Sound.",
-    "region": "Universal",
-    "era": "2010s",
-    "category": "reference",
-    "example_lines": [
-      "Drake responded but the internet wasn't feeling it",
-      "OVO is Drake's label"
-    ],
-    "related_terms": [
-      "OVO",
-      "6ix",
-      "Young Money",
-      "Meek Mill",
-      "Kendrick",
-      "ICEMAN"
-    ]
-  },
-  {
-    "id": "00000000-0000-0000-0000-000000000043",
-    "term": "Dr. Dre",
-    "definition": "Compton producer and rapper (born 1965). Co-founder of N.W.A, Death Row Records, and Aftermath Entertainment. Discovered Snoop Dogg, Eminem, Kendrick Lamar, and 50 Cent. One of the most important figures in hip-hop history.",
-    "origin": "Compton, CA. N.W.A (1986). Death Row (1991). Aftermath (1996). The Chronic (1992) defined West Coast rap.",
-    "region": "LA",
-    "era": "80s",
-    "category": "reference",
-    "example_lines": [
-      "Dre produced half the greatest rap albums ever",
-      "Forgot About Dre — still hard"
-    ],
-    "related_terms": [
-      "N.W.A",
-      "Death Row",
-      "Aftermath",
-      "Snoop",
-      "Eminem",
-      "Kendrick"
-    ]
-  },
-  {
-    "id": "00000000-0000-0000-0000-000000000044",
-    "term": "Notorious B.I.G.",
-    "definition": "Brooklyn rapper (1972-1997), real name Christopher Wallace. Widely considered the greatest rapper of all time by many. 'Ready to Die' and 'Life After Death' are stone-cold classics. Murdered on March 9, 1997.",
-    "origin": "Bed-Stuy, Brooklyn. Signed to Bad Boy Records by Puff Daddy. East Coast-West Coast beef with Tupac and Death Row.",
-    "region": "NY",
-    "era": "90s",
-    "category": "reference",
-    "example_lines": [
-      "Biggie Smalls is the illest",
-      "They called him the Black Frank White"
-    ],
-    "related_terms": [
-      "Bad Boy",
-      "Puffy",
-      "Tupac",
-      "East Coast",
-      "Frank White",
-      "Bed-Stuy"
-    ]
-  },
-  {
-    "id": "00000000-0000-0000-0000-000000000045",
-    "term": "Tupac",
-    "definition": "Baltimore/Los Angeles rapper (1971-1996), real name Tupac Amaru Shakur. 2Pac is one of the most iconic figures in hip-hop history — activist, actor, poet. Signed to Death Row. Murdered September 13, 1996.",
-    "origin": "Born in New York, raised in Baltimore, based in LA. Death Row era included 'All Eyez on Me' and feud with Biggie.",
-    "region": "Universal",
-    "era": "90s",
-    "category": "reference",
-    "example_lines": [
-      "Pac died at 25 and left a legacy bigger than most 80-year careers",
-      "Westside!"
-    ],
-    "related_terms": [
-      "Death Row",
-      "Biggie",
-      "West Coast",
-      "Makaveli",
-      "THUG LIFE"
     ]
   },
   {
@@ -901,26 +722,6 @@
       "beef",
       "no talking",
       "fade"
-    ]
-  },
-  {
-    "id": "00000000-0000-0000-0000-000000000049",
-    "term": "1942",
-    "definition": "Don Julio 1942 — a premium tequila. In rap, ordering or sipping 1942 is a signal of wealth and refined taste. The fancy option at the club.",
-    "origin": "Don Julio's top-shelf aged tequila. Became a luxury status symbol in hip-hop in the late 2010s.",
-    "region": "Universal",
-    "era": "2010s",
-    "category": "flex",
-    "example_lines": [
-      "Bottles of 1942 all through the section",
-      "She only sip 1942"
-    ],
-    "related_terms": [
-      "Hennessy",
-      "D'USSÉ",
-      "Casamigos",
-      "bottles",
-      "section"
     ]
   },
   {
@@ -1015,7 +816,7 @@
   {
     "id": 55,
     "term": "ill",
-    "definition": "Exceptionally skilled, raw, or impressive. In NYC hip-hop, 'ill' is one of the highest compliments — dangerously talented. Rakim built a legacy around being 'ill.'",
+    "definition": "Exceptionally skilled, raw, or impressive. In NYC hip-hop, 'ill' is one of the highest compliments — dangerously talented. a pioneering MC built a legacy around being 'ill.'",
     "origin": "New York City hip-hop, 1980s. Core golden era NYC vocabulary.",
     "region": "NYC",
     "era": "80s",
@@ -1033,8 +834,8 @@
   {
     "id": 56,
     "term": "def",
-    "definition": "Definitely excellent — top tier. 'Def' in NYC golden era hip-hop meant undeniably good. It's where Def Jam Records got its name.",
-    "origin": "New York City hip-hop, early 1980s. Rick Rubin and Russell Simmons named their label 'Def Jam' in 1984.",
+    "definition": "Definitely excellent — top tier. 'Def' in NYC golden era hip-hop meant undeniably good. It's where a major hip-hop label Records got its name.",
+    "origin": "New York City hip-hop, early 1980s. Rick Rubin and Russell Simmons named their label 'a major hip-hop label' in 1984.",
     "region": "NYC",
     "era": "80s",
     "category": "Slang",
@@ -1069,8 +870,8 @@
   {
     "id": 58,
     "term": "fresh",
-    "definition": "Clean, stylish, and put-together. A 'fresh' outfit is crisp and on point. LL Cool J built an entire identity around being fresh.",
-    "origin": "New York City, early 1980s hip-hop. Run-DMC's Adidas culture. Fresh is foundational NYC flex vocabulary.",
+    "definition": "Clean, stylish, and put-together. A 'fresh' outfit is crisp and on point. a New York rapper built an entire identity around being fresh.",
+    "origin": "New York City, early 1980s hip-hop. a foundational New York rap group's a major sportswear brand culture. Fresh is foundational NYC flex vocabulary.",
     "region": "NYC",
     "era": "80s",
     "category": "Fashion",
@@ -1197,7 +998,7 @@
     "id": 65,
     "term": "frontin",
     "definition": "Pretending to be something you're not — faking wealth, toughness, or status. If you're frontin, you're putting on a show that doesn't match reality.",
-    "origin": "New York City hip-hop. Pharrell and Jay-Z had a song called 'Frontin' in 2003 that cemented the term nationally.",
+    "origin": "New York City hip-hop. Pharrell and a pioneering New York rapper had a song called 'Frontin' in 2003 that cemented the term nationally.",
     "region": "Universal",
     "era": "90s",
     "category": "Slang",
@@ -1215,7 +1016,7 @@
     "id": 66,
     "term": "shawty",
     "definition": "A Southern term for a woman or girl, used affectionately. Also used in Atlanta to mean a young man or friend. Context determines gender.",
-    "origin": "Atlanta, Georgia. Southern rap slang that became nationally used. Lil Jon, Ludacris, and Outkast helped spread it in the 2000s.",
+    "origin": "Atlanta, Georgia. Southern rap slang that became nationally used. an Atlanta producer-rapper, Ludacris, and an Atlanta rap duo helped spread it in the 2000s.",
     "region": "Atlanta",
     "era": "2000s",
     "category": "Slang",
@@ -1232,8 +1033,8 @@
   {
     "id": 67,
     "term": "slime",
-    "definition": "A close friend, a genuine associate — someone you really trust. 'Slime' signals deep loyalty. Young Thug made it his signature term and it became essential Atlanta vocabulary.",
-    "origin": "Atlanta, Georgia. Popularized by Young Thug and YSL (Young Stoner Life). Spread nationally through trap music.",
+    "definition": "A close friend, a genuine associate — someone you really trust. 'Slime' signals deep loyalty. an Atlanta rapper made it his signature term and it became essential Atlanta vocabulary.",
+    "origin": "Atlanta, Georgia. Popularized by an Atlanta rapper and YSL (Young Stoner Life). Spread nationally through trap music.",
     "region": "Atlanta",
     "era": "2010s",
     "category": "Slang",
@@ -1251,7 +1052,7 @@
     "id": 68,
     "term": "pressure",
     "definition": "Extreme heat or intensity — either from law enforcement, enemies, or the weight of the streets. Also used to describe someone whose music or presence is overwhelming.",
-    "origin": "Atlanta trap culture, popularized by Young Thug and Gunna in the 2010s.",
+    "origin": "Atlanta trap culture, popularized by an Atlanta rapper and an Atlanta rapper in the 2010s.",
     "region": "Atlanta",
     "era": "2010s",
     "category": "Slang",
@@ -1522,7 +1323,7 @@
     "id": 83,
     "term": "lean",
     "definition": "A recreational drug cocktail made from prescription promethazine/codeine cough syrup mixed with soda (usually Sprite). Highly addictive, deeply embedded in Houston rap culture.",
-    "origin": "Houston, Texas. Known as 'purple drank,' 'syrup,' or 'sizzurp.' DJ Screw and Three 6 Mafia popularized it.",
+    "origin": "Houston, Texas. Known as 'purple drank,' 'syrup,' or 'sizzurp.' DJ Screw and a Memphis rap group popularized it.",
     "region": "Houston",
     "era": "90s",
     "category": "Drug",
@@ -1539,13 +1340,13 @@
   {
     "id": 84,
     "term": "dirty sprite",
-    "definition": "Lean mixed with Sprite — Sprite being the soda of choice for mixing codeine syrup. Future's 'Dirty Sprite' mixtape made this a landmark phrase in trap music.",
-    "origin": "Houston/Atlanta crossover. Future made 'Dirty Sprite' iconic in Atlanta trap.",
+    "definition": "Lean mixed with Sprite — Sprite being the soda of choice for mixing codeine syrup. an Atlanta rapper's 'a slang name for lean' mixtape made this a landmark phrase in trap music.",
+    "origin": "Houston/Atlanta crossover. an Atlanta rapper made 'a slang name for lean' iconic in Atlanta trap.",
     "region": "Atlanta",
     "era": "2010s",
     "category": "Drug",
     "example_lines": [
-      "Dirty Sprite in the double cup — Future playing in the background"
+      "a slang name for lean in the double cup — an Atlanta rapper playing in the background"
     ],
     "related_terms": [
       "lean",
@@ -1647,8 +1448,8 @@
   {
     "id": 90,
     "term": "Birkin",
-    "definition": "A Hermès Birkin bag — the most exclusive and expensive handbag in the world, starting around $10,000. In rap, buying someone a Birkin is the ultimate luxury gift.",
-    "origin": "Hermès luxury brand. Named after actress Jane Birkin.",
+    "definition": "A a luxury fashion house a luxury handbag bag — the most exclusive and expensive handbag in the world, starting around $10,000. In rap, buying someone a a luxury handbag is the ultimate luxury gift.",
+    "origin": "a luxury fashion house luxury brand. Named after actress Jane a luxury handbag.",
     "region": "Universal",
     "era": "2010s",
     "category": "Fashion",
@@ -1666,7 +1467,7 @@
     "id": 91,
     "term": "bust down",
     "definition": "A watch or piece of jewelry completely covered in diamonds — every surface iced out. Also used as a verb: 'I busted it down' means I put diamonds all over it.",
-    "origin": "Atlanta and Southern rap. Popularized by Gunna and Young Thug.",
+    "origin": "Atlanta and Southern rap. Popularized by an Atlanta rapper and an Atlanta rapper.",
     "region": "Atlanta",
     "era": "2010s",
     "category": "Flexing",
@@ -1684,7 +1485,7 @@
     "id": 92,
     "term": "baguettes",
     "definition": "Baguette-cut diamonds — rectangular stones set tightly together in rows. Popular in hip-hop for chains, rings, and watch bezels.",
-    "origin": "Jewelry industry term. Popularized in hip-hop by Migos and New York trap.",
+    "origin": "Jewelry industry term. Popularized in hip-hop by an Atlanta rap group and New York trap.",
     "region": "Universal",
     "era": "2010s",
     "category": "Flexing",
@@ -1737,7 +1538,7 @@
   {
     "id": 95,
     "term": "foreign",
-    "definition": "A foreign luxury car — typically a European brand like Lamborghini, Ferrari, Bentley, or Porsche. 'Pushing a foreign' means driving an imported luxury vehicle.",
+    "definition": "A foreign luxury car — typically a European brand like a luxury sports car, a luxury sports car, a luxury car, or a luxury car. 'Pushing a foreign' means driving an imported luxury vehicle.",
     "origin": "National hip-hop slang. Common in Southern trap and NY rap.",
     "region": "Universal",
     "era": "2010s",
@@ -1748,15 +1549,14 @@
     "related_terms": [
       "whip",
       "Lambo",
-      "Bentley",
       "Phantom"
     ]
   },
   {
     "id": 96,
     "term": "Xan",
-    "definition": "Xanax — a prescription benzodiazepine. Heavily abused in rap culture, especially in mumble rap and SoundCloud rap eras. Associated with a foggy, detached state.",
-    "origin": "Pharmaceutical drug. Lil Pump, XXXTentacion, and Lil Uzi Vert made Xan references ubiquitous in the late 2010s.",
+    "definition": "a prescription benzodiazepine — a prescription benzodiazepine. Heavily abused in rap culture, especially in mumble rap and an online streaming platform rap eras. Associated with a foggy, detached state.",
+    "origin": "Pharmaceutical drug. Lil Pump, XXXTentacion, and a Philadelphia rapper Vert made Xan references ubiquitous in the late 2010s.",
     "region": "Universal",
     "era": "2010s",
     "category": "Drug",
@@ -1773,8 +1573,8 @@
   {
     "id": 97,
     "term": "perc",
-    "definition": "Percocet — a prescription opioid painkiller. Heavily referenced in trap rap. Future's 'Mask Off' chorus brought it to mainstream awareness.",
-    "origin": "Pharmaceutical opioid, Percocet brand name.",
+    "definition": "an opioid painkiller — a prescription opioid painkiller. Heavily referenced in trap rap. an Atlanta rapper's 'Mask Off' chorus brought it to mainstream awareness.",
+    "origin": "Pharmaceutical opioid, an opioid painkiller brand name.",
     "region": "Universal",
     "era": "2010s",
     "category": "Drug",
@@ -1936,7 +1736,7 @@
   {
     "id": 106,
     "term": "sneakerhead",
-    "definition": "A person who obsessively collects, studies, and acquires rare or limited-edition sneakers. Sneakerhead culture and hip-hop have been inseparable since Run-DMC's 'My Adidas.'",
+    "definition": "A person who obsessively collects, studies, and acquires rare or limited-edition sneakers. Sneakerhead culture and hip-hop have been inseparable since a foundational New York rap group's 'My a major sportswear brand.'",
     "origin": "National culture rooted in New York hip-hop and basketball.",
     "region": "Universal",
     "era": "90s",
@@ -1947,26 +1747,7 @@
     "related_terms": [
       "grail",
       "Jordan",
-      "Yeezy",
       "deadstock"
-    ]
-  },
-  {
-    "id": 107,
-    "term": "Yeezy",
-    "definition": "Kanye West's Adidas sneaker line — one of the most hyped and resold sneaker collections in history. Yeezys became a symbol of taste and cultural awareness in the 2010s.",
-    "origin": "Adidas x Kanye West collaboration launched in 2015.",
-    "region": "Universal",
-    "era": "2010s",
-    "category": "Fashion",
-    "example_lines": [
-      "Rocking the Yeezys — retail, never resell"
-    ],
-    "related_terms": [
-      "Kanye",
-      "sneakerhead",
-      "grail",
-      "Adidas"
     ]
   },
   {
@@ -2026,8 +1807,8 @@
   {
     "id": 111,
     "term": "internal rhyme",
-    "definition": "A rhyme that occurs within a single line — not just at the end — creating a dense, layered sound. Masters like Rakim and Eminem pack entire lines with internal rhymes.",
-    "origin": "Poetic technique adopted and elevated by hip-hop. Rakim is considered the pioneer.",
+    "definition": "A rhyme that occurs within a single line — not just at the end — creating a dense, layered sound. Masters like a pioneering MC and a Detroit rapper pack entire lines with internal rhymes.",
+    "origin": "Poetic technique adopted and elevated by hip-hop. a pioneering MC is considered the pioneer.",
     "region": "Universal",
     "era": "80s",
     "category": "Technique",
@@ -2080,8 +1861,8 @@
   {
     "id": 114,
     "term": "triplet flow",
-    "definition": "A rap delivery where three syllables are crammed into the space where two would normally go — creating a tumbling, machine-gun effect. Migos popularized it and changed rap forever.",
-    "origin": "Migos from Atlanta popularized the triplet flow around 2013-2014.",
+    "definition": "A rap delivery where three syllables are crammed into the space where two would normally go — creating a tumbling, machine-gun effect. an Atlanta rap group popularized it and changed rap forever.",
+    "origin": "an Atlanta rap group from Atlanta popularized the triplet flow around 2013-2014.",
     "region": "Atlanta",
     "era": "2010s",
     "category": "Technique",
@@ -2099,7 +1880,7 @@
     "id": 115,
     "term": "double time",
     "definition": "Rapping at twice the normal speed — fitting twice as many syllables into the same musical space. A technical flex showing breath control and lyrical density.",
-    "origin": "Pioneered by Tech N9ne, Twista, and later Eminem.",
+    "origin": "Pioneered by Tech N9ne, Twista, and later a Detroit rapper.",
     "region": "Universal",
     "era": "90s",
     "category": "Technique",
@@ -2116,8 +1897,8 @@
   {
     "id": 116,
     "term": "melodic rap",
-    "definition": "A rap style blending singing and rapping — where the delivery is more musical than purely rhythmic. Future, Young Thug, and Drake made melodic rap the dominant style of the 2010s.",
-    "origin": "Atlanta trap era, 2010s. Young Thug and Future pioneered emotional, melodic delivery.",
+    "definition": "A rap style blending singing and rapping — where the delivery is more musical than purely rhythmic. an Atlanta rapper, an Atlanta rapper, and a prominent Toronto-based rapper made melodic rap the dominant style of the 2010s.",
+    "origin": "Atlanta trap era, 2010s. an Atlanta rapper and an Atlanta rapper pioneered emotional, melodic delivery.",
     "region": "Atlanta",
     "era": "2010s",
     "category": "Technique",
@@ -2134,8 +1915,8 @@
   {
     "id": 117,
     "term": "ethered",
-    "definition": "To be completely and permanently destroyed in a rap battle or diss. Named after Nas's 2001 diss track 'Ether' — widely considered the greatest diss track ever made, aimed at Jay-Z.",
-    "origin": "Nas's 'Ether' (2001). 'Ether' is a chemical that eliminates something. The song was so devastating 'ethered' became a permanent verb.",
+    "definition": "To be completely and permanently destroyed in a rap battle or diss. Named after a Queensbridge MC's 2001 diss track 'Ether' — widely considered the greatest diss track ever made, aimed at a pioneering New York rapper.",
+    "origin": "a Queensbridge MC's 'Ether' (2001). 'Ether' is a chemical that eliminates something. The song was so devastating 'ethered' became a permanent verb.",
     "region": "NYC",
     "era": "2000s",
     "category": "Technique",
@@ -2189,7 +1970,7 @@
     "id": 120,
     "term": "ratio",
     "definition": "When a reply tweet gets more likes than the original post — indicating widespread disagreement or mockery. 'Getting ratioed' is a public humiliation online.",
-    "origin": "Twitter/X culture, late 2010s.",
+    "origin": "social media/X culture, late 2010s.",
     "region": "Universal",
     "era": "2020s",
     "category": "Social",
@@ -2456,24 +2237,6 @@
     ]
   },
   {
-    "id": 135,
-    "term": "Actavis",
-    "definition": "A specific brand of prescription promethazine/codeine cough syrup — considered the premier brand for lean. Actavis discontinued their version in 2014, making bottles collector items.",
-    "origin": "Actavis pharmaceutical company. Became the gold standard for lean before discontinuation.",
-    "region": "Houston",
-    "era": "2010s",
-    "category": "Drug",
-    "example_lines": [
-      "Actavis went discontinued and the game ain't been the same since"
-    ],
-    "related_terms": [
-      "lean",
-      "purple drank",
-      "Wockhardt",
-      "syrup"
-    ]
-  },
-  {
     "id": 136,
     "term": "reggie",
     "definition": "Low-quality, seedy, dry marijuana — the bottom of the weed quality hierarchy. The opposite of exotic or gas.",
@@ -2512,62 +2275,25 @@
   {
     "id": 138,
     "term": "Gucci",
-    "definition": "The Italian luxury fashion house — in hip-hop, wearing Gucci signals you've made it financially. Also used as an adjective meaning 'all good' or 'cool.'",
-    "origin": "Gucci Guccio, Florence Italy, 1921. In hip-hop adopted both as a brand reference and slang for everything being fine ('we're Gucci').",
+    "definition": "The Italian luxury fashion house — in hip-hop, wearing a luxury fashion brand signals you've made it financially. Also used as an adjective meaning 'all good' or 'cool.'",
+    "origin": "a luxury fashion brand Guccio, Florence Italy, 1921. In hip-hop adopted both as a brand reference and slang for everything being fine ('we're a luxury fashion brand').",
     "region": "Universal",
     "era": "2000s",
     "category": "Fashion",
     "example_lines": [
-      "Head to toe Gucci — the drip is immaculate",
-      "It's all Gucci — no problems over here"
+      "Head to toe a luxury fashion brand — the drip is immaculate",
+      "It's all a luxury fashion brand — no problems over here"
     ],
     "related_terms": [
-      "Louis V",
       "Fendi",
       "designer",
       "luxury"
     ]
   },
   {
-    "id": 139,
-    "term": "Louis V",
-    "definition": "Louis Vuitton — the French fashion house known for its monogram pattern. One of the most referenced luxury brands in hip-hop history. The LV logo on a bag or belt is a classic flex.",
-    "origin": "Louis Vuitton, Paris, 1854. Kanye's 'Louis Vuitton Don' era brought LV to peak relevance.",
-    "region": "Universal",
-    "era": "2000s",
-    "category": "Fashion",
-    "example_lines": [
-      "Louis V bag on her arm — that's old money energy"
-    ],
-    "related_terms": [
-      "Gucci",
-      "Fendi",
-      "Prada",
-      "designer"
-    ]
-  },
-  {
-    "id": 140,
-    "term": "Off-White",
-    "definition": "Virgil Abloh's fashion label — known for quotation marks, zip ties on shoes, and deconstructed luxury. Bridged streetwear and high fashion. The Nike x Off-White 'The Ten' collab is iconic.",
-    "origin": "Virgil Abloh founded Off-White in 2012. His death in 2021 made the brand legendary.",
-    "region": "Universal",
-    "era": "2010s",
-    "category": "Fashion",
-    "example_lines": [
-      "Rocking the Off-White Jordans like a work of art — can't crease these"
-    ],
-    "related_terms": [
-      "Virgil Abloh",
-      "Nike",
-      "streetwear",
-      "grail"
-    ]
-  },
-  {
     "id": 141,
     "term": "Supreme",
-    "definition": "A New York skateboarding-turned-streetwear brand famous for its box logo and limited drops. Supreme collaborations with Louis Vuitton and Nike defined hype culture.",
+    "definition": "A New York skateboarding-turned-streetwear brand famous for its box logo and limited drops. a streetwear brand collaborations with a luxury fashion house and a major sportswear brand defined hype culture.",
     "origin": "James Jebbia, NYC, 1994. Originally a skateboarding brand that became the center of streetwear culture.",
     "region": "NYC",
     "era": "2000s",
@@ -2580,60 +2306,6 @@
       "streetwear",
       "hypebeast",
       "limited"
-    ]
-  },
-  {
-    "id": 142,
-    "term": "BAPE",
-    "definition": "A Bathing Ape — Japanese streetwear brand known for camo patterns and shark hoodies. BAPE was the first major Japanese brand to penetrate hip-hop culture.",
-    "origin": "Founded by Nigo in Tokyo, 1993. Pharrell Williams and Kanye West brought BAPE to American hip-hop in the early 2000s.",
-    "region": "Universal",
-    "era": "2000s",
-    "category": "Fashion",
-    "example_lines": [
-      "Pharrell had everybody on BAPE in 2003 — the whole Neptunes era"
-    ],
-    "related_terms": [
-      "Supreme",
-      "streetwear",
-      "hypebeast",
-      "Japan"
-    ]
-  },
-  {
-    "id": 143,
-    "term": "Amiri",
-    "definition": "An LA-based luxury fashion brand known for distressed denim. Amiri jeans, often $1,000+, became essential rapper wardrobe in the late 2010s.",
-    "origin": "Mike Amiri, Los Angeles, founded 2014.",
-    "region": "LA",
-    "era": "2010s",
-    "category": "Fashion",
-    "example_lines": [
-      "Amiri jeans, Chrome Hearts belt — understated but expensive as a car note"
-    ],
-    "related_terms": [
-      "Chrome Hearts",
-      "designer",
-      "streetwear",
-      "luxury"
-    ]
-  },
-  {
-    "id": 144,
-    "term": "Chrome Hearts",
-    "definition": "A luxury brand famous for silver cross motifs and gothic-influenced designs. Chrome Hearts hoodies, glasses, and jewelry became status symbols in hip-hop.",
-    "origin": "Richard Stark, Los Angeles, 1988. Initially a biker jewelry brand that became a hip-hop luxury obsession.",
-    "region": "LA",
-    "era": "2010s",
-    "category": "Fashion",
-    "example_lines": [
-      "Chrome Hearts frames on — $800 for the glasses alone"
-    ],
-    "related_terms": [
-      "Amiri",
-      "designer",
-      "luxury",
-      "Rick Owens"
     ]
   },
   {
@@ -2657,26 +2329,25 @@
   {
     "id": 146,
     "term": "zone 6",
-    "definition": "A neighborhood on the east side of Atlanta — home to Future and Gucci Mane. Zone 6 is one of Atlanta's most storied rap neighborhoods.",
+    "definition": "A neighborhood on the east side of Atlanta — home to an Atlanta rapper and an Atlanta rapper. Zone 6 is one of Atlanta's most storied rap neighborhoods.",
     "origin": "Atlanta, Georgia. Zone 6 refers to the city's postal/administrative zone system.",
     "region": "Atlanta",
     "era": "2000s",
     "category": "Regional",
     "example_lines": [
-      "Zone 6 baby — Future said it best"
+      "Zone 6 baby — an Atlanta rapper said it best"
     ],
     "related_terms": [
       "ATL",
       "trap",
-      "bando",
-      "Future"
+      "bando"
     ]
   },
   {
     "id": 147,
     "term": "five percenter",
     "definition": "A member of the Nation of Gods and Earths — founded in Harlem in 1964, teaching that the Black man is God and knowledge of self is supreme. 5 Percenter theology is woven throughout golden era NYC rap.",
-    "origin": "Nation of Gods and Earths, Harlem, 1964. Clarence 13X broke from the Nation of Islam. Wu-Tang Clan, Rakim, and Big Daddy Kane were influenced.",
+    "origin": "Nation of Gods and Earths, Harlem, 1964. Clarence 13X broke from the Nation of Islam. a Staten Island rap collective Clan, a pioneering MC, and Big Daddy Kane were influenced.",
     "region": "NYC",
     "era": "80s",
     "category": "Culture",
@@ -2693,8 +2364,8 @@
   {
     "id": 148,
     "term": "Bronx",
-    "definition": "The New York City borough where hip-hop was born — DJ Kool Herc's 1973 block party at 1520 Sedgwick Avenue is considered hip-hop's origin point.",
-    "origin": "The Bronx, New York City. August 11, 1973. DJ Kool Herc isolated the breakbeat and changed music forever.",
+    "definition": "The New York City borough where hip-hop was born — DJ a founding DJ of hip-hop's 1973 block party at 1520 Sedgwick Avenue is considered hip-hop's origin point.",
+    "origin": "The Bronx, New York City. August 11, 1973. DJ a founding DJ of hip-hop isolated the breakbeat and changed music forever.",
     "region": "NYC",
     "era": "80s",
     "category": "Regional",
@@ -2711,7 +2382,7 @@
   {
     "id": 149,
     "term": "Harlem",
-    "definition": "A historic neighborhood in northern Manhattan — home to the Harlem Renaissance, hip-hop's community roots, and artists like Cam'ron, Jim Jones, Dipset, and A$AP Rocky.",
+    "definition": "A historic neighborhood in northern Manhattan — home to the Harlem Renaissance, hip-hop's community roots, and artists like Cam'ron, Jim Jones, a Harlem rap group, and a Harlem rapper.",
     "origin": "New York City. The Harlem Renaissance established it as a cultural capital. Its contribution to hip-hop is immeasurable.",
     "region": "NYC",
     "era": "80s",
@@ -2729,8 +2400,8 @@
   {
     "id": 150,
     "term": "Compton",
-    "definition": "A city in Los Angeles County — the birthplace of gangster rap. N.W.A., Dr. Dre, Ice Cube, Eazy-E, and Kendrick Lamar all claim Compton. Ground zero for West Coast hip-hop.",
-    "origin": "Compton, California. N.W.A's 'Straight Outta Compton' (1988) made it globally known. Kendrick Lamar's 'good kid, m.A.A.d city' is the definitive Compton album.",
+    "definition": "A city in Los Angeles County — the birthplace of gangster rap. a founding West Coast rap group., a West Coast producer-rapper, a Compton rapper, a Compton rapper, and a dominant West Coast lyricist all claim Compton. Ground zero for West Coast hip-hop.",
+    "origin": "Compton, California. a founding West Coast rap group's 'Straight Outta Compton' (1988) made it globally known. a dominant West Coast lyricist's 'good kid, m.A.A.d city' is the definitive Compton album.",
     "region": "LA",
     "era": "80s",
     "category": "Regional",
@@ -2739,7 +2410,6 @@
     ],
     "related_terms": [
       "N.W.A.",
-      "Kendrick",
       "Dre",
       "West Coast"
     ]
@@ -2748,7 +2418,7 @@
     "id": 151,
     "term": "swag",
     "definition": "Personal style, charisma, and confidence — the way you carry yourself. Swag is the full package: clothes, attitude, walk, and energy all combined.",
-    "origin": "Soulja Boy's 'Pretty Boy Swag' and Lil Wayne made it ubiquitous around 2009-2011.",
+    "origin": "Soulja Boy's 'Pretty Boy Swag' and a New Orleans rapper made it ubiquitous around 2009-2011.",
     "region": "Universal",
     "era": "2000s",
     "category": "Slang",
@@ -2820,7 +2490,7 @@
     "id": 155,
     "term": "masters",
     "definition": "The original recording of a song — whoever owns the master owns the source and can license or withhold the music. Owning your masters is the ultimate music industry power move.",
-    "origin": "Music industry term made culturally significant when Taylor Swift's masters were sold without her knowledge. Jay-Z and others made master ownership central to their business.",
+    "origin": "Music industry term made culturally significant when Taylor Swift's masters were sold without her knowledge. a pioneering New York rapper and others made master ownership central to their business.",
     "region": "Universal",
     "era": "2010s",
     "category": "Culture",
@@ -2982,7 +2652,7 @@
     "id": 164,
     "term": "wave",
     "definition": "A cultural movement, trend, or energy that sweeps through hip-hop. To be 'on the wave' means you're riding the current trend. To 'start a wave' is to be the originator.",
-    "origin": "Popularized by A$AP Mob and ASAP Rocky's crew in the early 2010s. 'Wave' as a concept in cultural leadership.",
+    "origin": "Popularized by a Harlem rap collective and a Harlem rapper's crew in the early 2010s. 'Wave' as a concept in cultural leadership.",
     "region": "NYC",
     "era": "2010s",
     "category": "Culture",
@@ -3144,36 +2814,18 @@
     "id": 173,
     "term": "no jumper",
     "definition": "A reference to the popular rap interview podcast hosted by Adam22 — known for raw, unfiltered conversations with rappers. Also means no hesitation to jump into action.",
-    "origin": "No Jumper podcast, founded by Adam22 in 2015. Became one of the most influential rap media outlets.",
+    "origin": "a hip-hop podcast podcast, founded by Adam22 in 2015. Became one of the most influential rap media outlets.",
     "region": "LA",
     "era": "2010s",
     "category": "Culture",
     "example_lines": [
-      "He did the No Jumper interview and said everything — no filter"
+      "He did the a hip-hop podcast interview and said everything — no filter"
     ],
     "related_terms": [
       "interview",
       "podcast",
       "media",
       "rap culture"
-    ]
-  },
-  {
-    "id": 174,
-    "term": "BET cyphers",
-    "definition": "The annual freestyle performances at the BET Hip Hop Awards — where rappers deliver prepared verses over classic beats. Some of the most talked-about rap moments of any year happen here.",
-    "origin": "BET Hip Hop Awards, launched 2006. The cypher performances have launched careers and sparked conversations.",
-    "region": "Universal",
-    "era": "2000s",
-    "category": "Culture",
-    "example_lines": [
-      "His BET cypher verse went viral — three million views in a day"
-    ],
-    "related_terms": [
-      "cipher",
-      "freestyle",
-      "verse",
-      "BET"
     ]
   },
   {
@@ -3339,28 +2991,10 @@
     ]
   },
   {
-    "id": 184,
-    "term": "Verzuz",
-    "definition": "A live battle event (started on Instagram Live) where two artists play their catalog hits back-to-back. Created by Timbaland and Swizz Beatz during quarantine in 2020.",
-    "origin": "Created during COVID-19 quarantine in 2020. Became a massive cultural event.",
-    "region": "Universal",
-    "era": "2020s",
-    "category": "Culture",
-    "example_lines": [
-      "Their Verzuz was the most-watched one ever — catalog wars on a different level"
-    ],
-    "related_terms": [
-      "catalog",
-      "battle",
-      "hits",
-      "legacy"
-    ]
-  },
-  {
     "id": 185,
     "term": "mixtape era",
     "definition": "The period (roughly 2005-2015) when free mixtapes distributed online were more culturally important than studio albums — when rappers built their reputations through volume and quality of free music.",
-    "origin": "Physical mixtape tradition evolved to digital. DatPiff and LiveMixtapes were the platforms that defined the era.",
+    "origin": "Physical mixtape tradition evolved to digital. a mixtape platform and LiveMixtapes were the platforms that defined the era.",
     "region": "Universal",
     "era": "2000s",
     "category": "Culture",
@@ -3370,7 +3004,6 @@
     "related_terms": [
       "tape",
       "project",
-      "DatPiff",
       "street album"
     ]
   },
@@ -3378,7 +3011,7 @@
     "id": 186,
     "term": "street album",
     "definition": "A project released independently without major label infrastructure — raw, unpolished, and aimed at the streets rather than radio. Often more respected than the label debut that follows.",
-    "origin": "Hip-hop tradition of independent releases. Meek Mill, Wale, and others dropped street albums before major deals.",
+    "origin": "Hip-hop tradition of independent releases. a Philadelphia rapper, Wale, and others dropped street albums before major deals.",
     "region": "Universal",
     "era": "2000s",
     "category": "Culture",
@@ -3390,42 +3023,6 @@
       "tape",
       "independent",
       "free project"
-    ]
-  },
-  {
-    "id": 187,
-    "term": "DatPiff",
-    "definition": "The dominant mixtape hosting website of the 2000s-2010s — where artists uploaded free projects and millions of fans downloaded them. DatPiff changed how hip-hop was distributed.",
-    "origin": "DatPiff.com launched in 2005 in Philadelphia. Became the go-to platform for free rap music distribution.",
-    "region": "Universal",
-    "era": "2000s",
-    "category": "Culture",
-    "example_lines": [
-      "That tape got 2 million downloads on DatPiff before the label even knew who he was"
-    ],
-    "related_terms": [
-      "mixtape",
-      "tape",
-      "free music",
-      "download"
-    ]
-  },
-  {
-    "id": 188,
-    "term": "Gangsta Grillz",
-    "definition": "DJ Drama's legendary mixtape series — some of the most important rap projects of the 2000s bear the 'Gangsta Grillz' stamp. A co-sign from Drama meant your tape was certified.",
-    "origin": "DJ Drama, Atlanta, early 2000s. The Gangsta Grillz brand became a seal of quality for Southern rap mixtapes.",
-    "region": "Atlanta",
-    "era": "2000s",
-    "category": "Culture",
-    "example_lines": [
-      "If Drama put his name on it, you knew it was serious — Gangsta Grillz certified"
-    ],
-    "related_terms": [
-      "DJ Drama",
-      "mixtape",
-      "tape",
-      "co-sign"
     ]
   },
   {
@@ -3447,216 +3044,17 @@
     ]
   },
   {
-    "id": 190,
-    "term": "Dipset",
-    "definition": "The Diplomats — a Harlem-based rap group (Cam'ron, Jim Jones, Juelz Santana, Freekey Zekey) known for pink fur, extravagant fashion, and NYC street anthems in the early 2000s.",
-    "origin": "Harlem, New York City. Signed to Roc-A-Fella Records. Active early 2000s. Known for 'Dipset (Santana's Town)' and 'Ballin.'",
-    "region": "NYC",
-    "era": "2000s",
-    "category": "Culture",
-    "example_lines": [
-      "Dipset ran New York in 2004 — nobody touched them on the streets or the charts"
-    ],
-    "related_terms": [
-      "Harlem",
-      "Cam'ron",
-      "Jim Jones",
-      "Juelz Santana"
-    ]
-  },
-  {
-    "id": 191,
-    "term": "Roc-A-Fella",
-    "definition": "Roc-A-Fella Records — the label founded by Jay-Z, Damon Dash, and Kareem 'Biggs' Burke in 1995. One of the most important hip-hop labels in history, launching Jay-Z, Kanye West, Cam'ron, and others.",
-    "origin": "Founded in NYC, 1995. Named after the Rockefeller family. Distributed through Def Jam.",
-    "region": "NYC",
-    "era": "90s",
-    "category": "Culture",
-    "example_lines": [
-      "Roc-A-Fella changed the game — they showed rappers how to run a real business"
-    ],
-    "related_terms": [
-      "Jay-Z",
-      "Kanye",
-      "Dame Dash",
-      "label"
-    ]
-  },
-  {
-    "id": 192,
-    "term": "TDE",
-    "definition": "Top Dawg Entertainment — Kendrick Lamar's label based in Compton. Home to SZA, Schoolboy Q, Jay Rock, and Ab-Soul. One of the most respected independent hip-hop labels.",
-    "origin": "Top Dawg Entertainment, Compton, California. Founded by Anthony 'Top Dawg' Tiffith.",
-    "region": "LA",
-    "era": "2000s",
-    "category": "Culture",
-    "example_lines": [
-      "TDE is proof that independent labels can dominate major awards with quality music"
-    ],
-    "related_terms": [
-      "Kendrick",
-      "Compton",
-      "independent",
-      "Black Hippy"
-    ]
-  },
-  {
-    "id": 193,
-    "term": "Young Money",
-    "definition": "Young Money Entertainment — the record label founded by Lil Wayne. Home to Drake and Nicki Minaj at their peak. One of the most commercially dominant rap labels of the 2010s.",
-    "origin": "Young Money Entertainment, founded by Lil Wayne. Distributed through Cash Money Records.",
-    "region": "New Orleans",
-    "era": "2000s",
-    "category": "Culture",
-    "example_lines": [
-      "Young Money dominated every chart for a decade — Weezy built something real"
-    ],
-    "related_terms": [
-      "Lil Wayne",
-      "Drake",
-      "Nicki Minaj",
-      "Cash Money"
-    ]
-  },
-  {
-    "id": 194,
-    "term": "Cash Money",
-    "definition": "Cash Money Records — the New Orleans label founded by Birdman and Ronald 'Slim' Williams in 1991. Home to Lil Wayne, Juvenile, Hot Boys, and Drake. Defined Southern rap in the late 90s and 2000s.",
-    "origin": "New Orleans, Louisiana, 1991. 'Bling bling' era Cash Money was dominant from 1997-2010.",
-    "region": "New Orleans",
-    "era": "90s",
-    "category": "Culture",
-    "example_lines": [
-      "Cash Money had the whole South on lock — they reinvented what Southern money looked like"
-    ],
-    "related_terms": [
-      "Birdman",
-      "Lil Wayne",
-      "New Orleans",
-      "Young Money"
-    ]
-  },
-  {
-    "id": 195,
-    "term": "Def Jam",
-    "definition": "Def Jam Recordings — founded in 1984 by Rick Rubin and Russell Simmons. One of the most important labels in hip-hop history, launching LL Cool J, Public Enemy, Jay-Z, Kanye West, and Rihanna.",
-    "origin": "New York City, 1984. Named using hip-hop slang — 'def' meaning excellent.",
-    "region": "NYC",
-    "era": "80s",
-    "category": "Culture",
-    "example_lines": [
-      "Def Jam turned hip-hop from a Bronx trend into a global industry"
-    ],
-    "related_terms": [
-      "Rick Rubin",
-      "Russell Simmons",
-      "Jay-Z",
-      "label"
-    ]
-  },
-  {
-    "id": 196,
-    "term": "interscope",
-    "definition": "Interscope Records — the major label home to Dr. Dre, Eminem, 50 Cent, Kendrick Lamar, and countless others. One of the most dominant forces in hip-hop since the 90s.",
-    "origin": "Founded in 1990 by Jimmy Iovine and Ted Field. Death Row, Aftermath, and Shady Records are distributed through Interscope.",
-    "region": "LA",
-    "era": "90s",
-    "category": "Culture",
-    "example_lines": [
-      "Interscope controlled West Coast rap through the Aftermath connection for 20 years"
-    ],
-    "related_terms": [
-      "Aftermath",
-      "Shady",
-      "Death Row",
-      "Jimmy Iovine"
-    ]
-  },
-  {
-    "id": 197,
-    "term": "Aftermath",
-    "definition": "Aftermath Entertainment — Dr. Dre's label, distributed through Interscope. Home to Eminem, 50 Cent, and Kendrick Lamar. Three of the most impactful rap careers in history started here.",
-    "origin": "Founded by Dr. Dre in 1996 after leaving Death Row Records.",
-    "region": "LA",
-    "era": "90s",
-    "category": "Culture",
-    "example_lines": [
-      "Aftermath had three of the greatest rappers ever on one roster — that's unmatched"
-    ],
-    "related_terms": [
-      "Dr. Dre",
-      "Eminem",
-      "Kendrick",
-      "Interscope"
-    ]
-  },
-  {
-    "id": 198,
-    "term": "Death Row",
-    "definition": "Death Row Records — founded by Dr. Dre and Suge Knight in 1991. Released some of the most important West Coast rap albums ever: The Chronic, Doggystyle, All Eyez on Me. Ended in controversy.",
-    "origin": "Compton/Los Angeles, 1991. Co-founded by Dr. Dre and Suge Knight.",
-    "region": "LA",
-    "era": "90s",
-    "category": "Culture",
-    "example_lines": [
-      "Death Row had West Coast rap in a chokehold from 1991 to 1996"
-    ],
-    "related_terms": [
-      "Dr. Dre",
-      "Tupac",
-      "Snoop",
-      "Suge Knight"
-    ]
-  },
-  {
-    "id": 199,
-    "term": "Bad Boy",
-    "definition": "Bad Boy Records — Puff Daddy's label founded in 1993. Home to Notorious B.I.G., Mase, Faith Evans, 112, and many others. Defined East Coast hip-hop and R&B in the 90s.",
-    "origin": "New York City, 1993. Founded by Sean 'Puff Daddy' Combs. Signed Notorious B.I.G. early in his career.",
-    "region": "NYC",
-    "era": "90s",
-    "category": "Culture",
-    "example_lines": [
-      "Bad Boy was the sound of New York in the 90s — Biggie made the whole label immortal"
-    ],
-    "related_terms": [
-      "Biggie",
-      "Puff Daddy",
-      "NYC",
-      "East Coast"
-    ]
-  },
-  {
-    "id": 200,
-    "term": "Shady Records",
-    "definition": "Eminem's record label — home to Em, 50 Cent, Royce da 5'9\", and D12. Part of the Interscope/Aftermath family. The Slim Shady brand extended to a full label roster.",
-    "origin": "Founded by Eminem and Paul Rosenberg in 1999. Distributed through Aftermath/Interscope.",
-    "region": "Detroit",
-    "era": "2000s",
-    "category": "Culture",
-    "example_lines": [
-      "Shady Records launched 50 Cent — that's two of the best-selling rappers ever on one label"
-    ],
-    "related_terms": [
-      "Eminem",
-      "50 Cent",
-      "Aftermath",
-      "Detroit"
-    ]
-  },
-  {
     "id": 201,
     "term": "Detroit",
-    "definition": "Detroit, Michigan — a city with a rich hip-hop history led by Eminem, Big Sean, and Danny Brown. Detroit rap has a gritty, industrial sound that reflects the city's manufacturing legacy.",
-    "origin": "Detroit, Michigan. Eminem put Detroit on the global map. Royce da 5'9\", Big Sean, Doughboyz Cashout, and others continue the tradition.",
+    "definition": "Detroit, Michigan — a city with a rich hip-hop history led by a Detroit rapper, a Detroit rapper, and Danny Brown. Detroit rap has a gritty, industrial sound that reflects the city's manufacturing legacy.",
+    "origin": "Detroit, Michigan. a Detroit rapper put Detroit on the global map. Royce da 5'9\", a Detroit rapper, Doughboyz Cashout, and others continue the tradition.",
     "region": "Detroit",
     "era": "90s",
     "category": "Regional",
     "example_lines": [
-      "Detroit built Eminem and Eminem built Detroit's place in hip-hop — a full circle"
+      "Detroit built a Detroit rapper and a Detroit rapper built Detroit's place in hip-hop — a full circle"
     ],
     "related_terms": [
-      "Eminem",
       "Big Sean",
       "Danny Brown",
       "Midwest"
@@ -3666,7 +3064,7 @@
     "id": 202,
     "term": "trap house",
     "definition": "A location — usually an abandoned or rented property — where drugs are cooked, packaged, and sold. The nerve center of the trap economy.",
-    "origin": "Atlanta, Georgia. T.I. popularized the concept nationally with 'Trap Muzik' (2003). Gucci Mane's early career was built around trap house realism.",
+    "origin": "Atlanta, Georgia. an Atlanta rapper popularized the concept nationally with 'Trap Muzik' (2003). an Atlanta rapper's early career was built around trap house realism.",
     "region": "Atlanta",
     "era": "2000s",
     "category": "Drug",
@@ -3738,7 +3136,7 @@
     "id": 206,
     "term": "the projects",
     "definition": "Public housing complexes — government-funded apartment buildings where many hip-hop artists grew up. 'The projects' represent the starting point for countless rap careers.",
-    "origin": "Public housing policy in the US. Places like Marcy Houses (Jay-Z), Queensbridge (Nas), and Jordan Downs (Kendrick) are iconic projects.",
+    "origin": "Public housing policy in the US. Places like Marcy Houses (a pioneering New York rapper), Queensbridge (a Queensbridge MC), and Jordan Downs (a West Coast MC) are iconic projects.",
     "region": "Universal",
     "era": "80s",
     "category": "Culture",
@@ -3755,8 +3153,8 @@
   {
     "id": 207,
     "term": "Queensbridge",
-    "definition": "The largest public housing complex in the United States — located in Long Island City, Queens, NYC. Home to Nas, Mobb Deep, Nature, and many others. The most musically significant housing project in history.",
-    "origin": "Queensbridge Houses, Queens, New York. Nas's 'Illmatic' immortalized Queensbridge.",
+    "definition": "The largest public housing complex in the United States — located in Long Island City, Queens, NYC. Home to a Queensbridge MC, Mobb Deep, Nature, and many others. The most musically significant housing project in history.",
+    "origin": "Queensbridge Houses, Queens, New York. a Queensbridge MC's 'Illmatic' immortalized Queensbridge.",
     "region": "NYC",
     "era": "90s",
     "category": "Regional",
@@ -3764,7 +3162,6 @@
       "Queensbridge produced more classic rap than most cities combined — QB all day"
     ],
     "related_terms": [
-      "Nas",
       "Mobb Deep",
       "Queens",
       "NYC"
@@ -3773,16 +3170,15 @@
   {
     "id": 208,
     "term": "Marcy",
-    "definition": "The Marcy Houses — a public housing project in Bedford-Stuyvesant, Brooklyn. Jay-Z grew up here and has referenced it throughout his career. One of hip-hop's most iconic addresses.",
-    "origin": "Marcy Houses, Brooklyn, New York. Jay-Z's 'Marcy Me' and countless other references made it legendary.",
+    "definition": "The Marcy Houses — a public housing project in Bedford-Stuyvesant, Brooklyn. a pioneering New York rapper grew up here and has referenced it throughout his career. One of hip-hop's most iconic addresses.",
+    "origin": "Marcy Houses, Brooklyn, New York. a pioneering New York rapper's 'Marcy Me' and countless other references made it legendary.",
     "region": "NYC",
     "era": "90s",
     "category": "Regional",
     "example_lines": [
-      "Marcy raised Jay-Z — that says everything you need to know about what that block produces"
+      "Marcy raised a pioneering New York rapper — that says everything you need to know about what that block produces"
     ],
     "related_terms": [
-      "Jay-Z",
       "Brooklyn",
       "projects",
       "Bed-Stuy"
@@ -3809,44 +3205,24 @@
   {
     "id": 210,
     "term": "New Orleans",
-    "definition": "New Orleans, Louisiana — home to Cash Money Records, Lil Wayne, Juvenile, Master P, No Limit Records, and Birdman. The Dirty South sound started here. A city whose music culture is as important as its food culture.",
-    "origin": "New Orleans, Louisiana. No Limit and Cash Money Records defined Southern rap in the late 90s and early 2000s.",
+    "definition": "New Orleans, Louisiana — home to a New Orleans label Records, a New Orleans rapper, Juvenile, Master P, a New Orleans label Records, and Birdman. The Dirty South sound started here. A city whose music culture is as important as its food culture.",
+    "origin": "New Orleans, Louisiana. a New Orleans label and a New Orleans label Records defined Southern rap in the late 90s and early 2000s.",
     "region": "New Orleans",
     "era": "90s",
     "category": "Regional",
     "example_lines": [
-      "New Orleans gave hip-hop Cash Money and Lil Wayne — that alone is an eternal contribution"
+      "New Orleans gave hip-hop a New Orleans label and a New Orleans rapper — that alone is an eternal contribution"
     ],
     "related_terms": [
-      "Cash Money",
-      "Lil Wayne",
       "Birdman",
       "Dirty South"
     ]
   },
   {
-    "id": 211,
-    "term": "No Limit",
-    "definition": "No Limit Records — Master P's New Orleans-based label that dominated Southern hip-hop from 1997-2001 with an unprecedented output of albums and a tank logo that became iconic.",
-    "origin": "New Orleans, Louisiana. Master P built No Limit into a multi-million dollar empire before most realized what was happening.",
-    "region": "New Orleans",
-    "era": "90s",
-    "category": "Culture",
-    "example_lines": [
-      "No Limit dropped 30 albums in two years — nobody has matched that volume and still sold"
-    ],
-    "related_terms": [
-      "Master P",
-      "Silkk",
-      "New Orleans",
-      "tank"
-    ]
-  },
-  {
     "id": 212,
     "term": "Miami",
-    "definition": "Miami, Florida — home to the bass music movement, Rick Ross, Flo Rida, Pitbull, and a distinct South Florida hip-hop sound. Miami bass influenced trap and electronic music globally.",
-    "origin": "Miami, Florida. Miami bass (2 Live Crew) in the 80s-90s, then Rick Ross in the 2000s put Miami on the hip-hop map.",
+    "definition": "Miami, Florida — home to the bass music movement, a Miami rapper, Flo Rida, Pitbull, and a distinct South Florida hip-hop sound. Miami bass influenced trap and electronic music globally.",
+    "origin": "Miami, Florida. Miami bass (2 Live Crew) in the 80s-90s, then a Miami rapper in the 2000s put Miami on the hip-hop map.",
     "region": "Miami",
     "era": "90s",
     "category": "Regional",
@@ -3861,370 +3237,10 @@
     ]
   },
   {
-    "id": 213,
-    "term": "808 Mafia",
-    "definition": "A production collective founded by Southside and Lex Luger — responsible for some of the hardest trap beats of the 2010s. Their sound defined the dark, bass-heavy aesthetic of modern trap.",
-    "origin": "Atlanta, Georgia. 808 Mafia became the go-to production team for Future, Gucci Mane, and countless others.",
-    "region": "Atlanta",
-    "era": "2010s",
-    "category": "Culture",
-    "example_lines": [
-      "808 Mafia produced the grimiest trap beats of the decade — that bass was different"
-    ],
-    "related_terms": [
-      "Southside",
-      "trap",
-      "producer",
-      "Atlanta"
-    ]
-  },
-  {
-    "id": 214,
-    "term": "Zaytoven",
-    "definition": "A keyboardist and producer from Atlanta — one of the architects of the modern trap sound. Known for melodic, piano-driven beats and a signature sound that defines Atlanta's emotional side.",
-    "origin": "Atlanta, Georgia. Zaytoven's collaboration with Gucci Mane produced some of the most important trap music ever made.",
-    "region": "Atlanta",
-    "era": "2000s",
-    "category": "Culture",
-    "example_lines": [
-      "When Zaytoven plays the keys, you know it's going to be a classic Atlanta record"
-    ],
-    "related_terms": [
-      "producer",
-      "Atlanta",
-      "trap",
-      "Gucci Mane"
-    ]
-  },
-  {
-    "id": 215,
-    "term": "Metro Boomin",
-    "definition": "One of the most important trap producers of the 2010s-2020s — producer of some of Future's greatest work and known for the 'If Young Metro don't trust you I'm gon' shoot you' tag.",
-    "origin": "St. Louis/Atlanta. Metro Boomin's production sound helped define the dark, atmospheric trap music of the 2010s.",
-    "region": "Atlanta",
-    "era": "2010s",
-    "category": "Culture",
-    "example_lines": [
-      "Metro Boomin want some more — that tag alone is worth a Grammy"
-    ],
-    "related_terms": [
-      "producer",
-      "Future",
-      "trap",
-      "Atlanta"
-    ]
-  },
-  {
-    "id": 216,
-    "term": "Timbaland",
-    "definition": "One of hip-hop and R&B's most innovative producers — known for complex, percussion-heavy beats that influenced pop music globally. Created sounds for Missy Elliott, Jay-Z, Justin Timberlake, and many more.",
-    "origin": "Norfolk, Virginia. Timothy Zachery Mosley (Timbaland) changed production in the late 90s with his Missy Elliott collaborations.",
-    "region": "Universal",
-    "era": "90s",
-    "category": "Culture",
-    "example_lines": [
-      "Timbaland was making alien beats in 1997 that producers are still trying to decode"
-    ],
-    "related_terms": [
-      "producer",
-      "Missy Elliott",
-      "beat",
-      "producer"
-    ]
-  },
-  {
-    "id": 217,
-    "term": "Kanye West",
-    "definition": "Chicago rapper and producer (born 1977) — one of the most influential artists in music history. Producer of The College Dropout, Graduation, 808s & Heartbreak, My Beautiful Dark Twisted Fantasy, and Yeezus. Also known as Ye.",
-    "origin": "Chicago, Illinois. Broke through as a producer at Roc-A-Fella before debuting as a rapper in 2004.",
-    "region": "Chicago",
-    "era": "2000s",
-    "category": "Culture",
-    "example_lines": [
-      "Kanye produced half the Jay-Z albums before anybody knew his name as a rapper"
-    ],
-    "related_terms": [
-      "Ye",
-      "Chicago",
-      "Yeezy",
-      "G.O.O.D. Music"
-    ]
-  },
-  {
-    "id": 218,
-    "term": "Jay-Z",
-    "definition": "Brooklyn rapper and businessman (born 1969), real name Shawn Carter. One of hip-hop's greatest commercially successful artists and astute businessmen. Co-founder of Roc-A-Fella Records, Roc Nation, and TIDAL.",
-    "origin": "Marcy Houses, Brooklyn. Debut album 'Reasonable Doubt' (1996) is considered one of the greatest rap albums ever.",
-    "region": "NYC",
-    "era": "90s",
-    "category": "Culture",
-    "example_lines": [
-      "Jay-Z retired three times and came back each time better — the retirement game is his too"
-    ],
-    "related_terms": [
-      "Roc-A-Fella",
-      "Roc Nation",
-      "Brooklyn",
-      "Reasonable Doubt"
-    ]
-  },
-  {
-    "id": 219,
-    "term": "Nas",
-    "definition": "Queens rapper (born 1973), real name Nasir Jones. One of the most lyrical rappers in hip-hop history. 'Illmatic' (1994) is widely considered the greatest rap album ever made.",
-    "origin": "Queensbridge Houses, Queens, New York. Debut album 'Illmatic' at age 20 set a standard many argue has never been matched.",
-    "region": "NYC",
-    "era": "90s",
-    "category": "Culture",
-    "example_lines": [
-      "Nas wrote Illmatic at 17 and it's still being studied 30 years later"
-    ],
-    "related_terms": [
-      "Queensbridge",
-      "Illmatic",
-      "Jay-Z beef",
-      "NYC"
-    ]
-  },
-  {
-    "id": 220,
-    "term": "Eminem",
-    "definition": "Detroit rapper (born 1972), real name Marshall Mathers. Technically one of the best rappers of all time — fastest, most complex rhyme schemes in history. The best-selling rap artist of all time.",
-    "origin": "Detroit, Michigan. Discovered by Dr. Dre in 1997. 'The Slim Shady LP' (1999) launched one of the most successful rap careers ever.",
-    "region": "Detroit",
-    "era": "90s",
-    "category": "Culture",
-    "example_lines": [
-      "Eminem's rhyme schemes are so complex that linguists study them for academic papers"
-    ],
-    "related_terms": [
-      "Detroit",
-      "Aftermath",
-      "Slim Shady",
-      "Dr. Dre"
-    ]
-  },
-  {
-    "id": 221,
-    "term": "Lil Wayne",
-    "definition": "New Orleans rapper (born 1982), real name Dwayne Michael Carter Jr. One of the most prolific and influential rappers of the 2000s. 'Tha Carter III' is one of the best-selling rap albums ever.",
-    "origin": "New Orleans, Louisiana. Signed to Cash Money at age 11. 'Tha Carter' series is his monument.",
-    "region": "New Orleans",
-    "era": "2000s",
-    "category": "Culture",
-    "example_lines": [
-      "Lil Wayne put out so much music in the late 2000s that it felt superhuman"
-    ],
-    "related_terms": [
-      "Cash Money",
-      "Young Money",
-      "New Orleans",
-      "Tha Carter"
-    ]
-  },
-  {
-    "id": 222,
-    "term": "Migos",
-    "definition": "An Atlanta rap trio (Quavo, Offset, Takeoff) who popularized the triplet flow and dominated trap music from 2013-2022. Their 'Culture' album put Atlanta back on top globally.",
-    "origin": "Gwinnett County, Atlanta, Georgia. 'Versace' (2013) put them on the map. 'Culture' (2017) was their masterpiece.",
-    "region": "Atlanta",
-    "era": "2010s",
-    "category": "Culture",
-    "example_lines": [
-      "Migos changed how everybody rapped — the triplet flow took over everything after them"
-    ],
-    "related_terms": [
-      "triplet flow",
-      "Quavo",
-      "Offset",
-      "Takeoff"
-    ]
-  },
-  {
-    "id": 223,
-    "term": "Future",
-    "definition": "Atlanta rapper (born 1983), real name Nayvadius DeMun Wilburn. Pioneer of melodic trap music. Critically acclaimed for 'DS2,' 'HNDRXX,' and 'Monster.' Defined the sound of sadness in trap.",
-    "origin": "Atlanta, Zone 6. First major project 'Monster' (2014) established his emotional trap aesthetic.",
-    "region": "Atlanta",
-    "era": "2010s",
-    "category": "Culture",
-    "example_lines": [
-      "Future invented a whole emotional lane in trap that nobody had touched before him"
-    ],
-    "related_terms": [
-      "Dirty Sprite",
-      "Zone 6",
-      "melodic trap",
-      "AutoTune"
-    ]
-  },
-  {
-    "id": 224,
-    "term": "Young Thug",
-    "definition": "Atlanta rapper (born 1991), real name Jeffery Lamar Williams. Founder of YSL (Young Stoner Life). Known for unconventional flow, melodic delivery, and fashion-forward style. One of the most influential of his generation.",
-    "origin": "Atlanta, Georgia. Early mixtapes 'I Came From Nothing' and '1017 Thug' established a completely new rap aesthetic.",
-    "region": "Atlanta",
-    "era": "2010s",
-    "category": "Culture",
-    "example_lines": [
-      "Young Thug sounds like nobody else and inspired everybody — that's the definition of original"
-    ],
-    "related_terms": [
-      "YSL",
-      "slime",
-      "Atlanta",
-      "melodic rap"
-    ]
-  },
-  {
-    "id": 225,
-    "term": "21 Savage",
-    "definition": "Atlanta rapper (born 1992 in London), real name Shéyaa Bin Abraham-Joseph. Known for cold, minimal delivery and honest storytelling about street life. 'Issa Album' and 'I Am > I Was' are landmarks.",
-    "origin": "Born in London, raised in Atlanta. His ice-cold delivery and minimal production became widely influential.",
-    "region": "Atlanta",
-    "era": "2010s",
-    "category": "Culture",
-    "example_lines": [
-      "21 Savage says more with less words than any rapper working — every line counts"
-    ],
-    "related_terms": [
-      "Atlanta",
-      "Metro Boomin",
-      "Savage Mode",
-      "trap"
-    ]
-  },
-  {
-    "id": 226,
-    "term": "Gunna",
-    "definition": "Atlanta rapper (born 1993), real name Sergio Giavanni Kitchens. Protégé of Young Thug and one of the leading figures of 'drip' culture. 'DS4Ever' and 'Drip or Drown' are key projects.",
-    "origin": "College Park, Atlanta. Signed to YSL Records by Young Thug.",
-    "region": "Atlanta",
-    "era": "2010s",
-    "category": "Culture",
-    "example_lines": [
-      "Gunna made drip a complete lifestyle — the music, the clothes, the whole aesthetic"
-    ],
-    "related_terms": [
-      "drip",
-      "YSL",
-      "Atlanta",
-      "Young Thug"
-    ]
-  },
-  {
-    "id": 227,
-    "term": "Lil Baby",
-    "definition": "Atlanta rapper (born 1994), real name Dominique Armani Jones. Rose from nothing to become one of the biggest rappers alive in under 4 years. Known for honest street storytelling and melodic delivery.",
-    "origin": "Atlanta, Georgia. Debut mixtape 'Perfect Timing' (2017). 'Harder Than Ever' (2018) went platinum.",
-    "region": "Atlanta",
-    "era": "2010s",
-    "category": "Culture",
-    "example_lines": [
-      "Lil Baby's story is one of the fastest rises in rap history — four years from nothing to everything"
-    ],
-    "related_terms": [
-      "Atlanta",
-      "trap",
-      "Gunna",
-      "4PF"
-    ]
-  },
-  {
-    "id": 228,
-    "term": "Lil Durk",
-    "definition": "Chicago rapper (born 1992), real name Durk Derrick Banks. One of the leading voices of Chicago drill who evolved into a mainstream melodic rapper. Founded the Only the Family (OTF) label.",
-    "origin": "Chicago, Illinois. Drill scene veteran who crossed into mainstream with emotional, melodic music.",
-    "region": "Chicago",
-    "era": "2010s",
-    "category": "Culture",
-    "example_lines": [
-      "Lil Durk went from the drill scene to the biggest features in rap — that's real evolution"
-    ],
-    "related_terms": [
-      "Chicago",
-      "drill",
-      "OTF",
-      "Polo G"
-    ]
-  },
-  {
-    "id": 229,
-    "term": "Polo G",
-    "definition": "Chicago rapper (born 1999), real name Taurus Tremani Bartlett. Known for combining melodic rap with honest Chicago street storytelling. 'Die a Legend' and 'Hall of Fame' are standout albums.",
-    "origin": "Chicago, Illinois. Rose through the SoundCloud and streaming era.",
-    "region": "Chicago",
-    "era": "2010s",
-    "category": "Culture",
-    "example_lines": [
-      "Polo G writes with the weight of Chicago on every bar — you can feel the city in it"
-    ],
-    "related_terms": [
-      "Chicago",
-      "drill",
-      "Lil Durk",
-      "melodic rap"
-    ]
-  },
-  {
-    "id": 230,
-    "term": "A$AP Rocky",
-    "definition": "Harlem rapper (born 1988), real name Rakim Athelaston Mayers. Known for melding Southern sounds with NYC delivery and high fashion aesthetics. Leader of the A$AP Mob collective.",
-    "origin": "Harlem, New York City. 'ASAP Forever' and 'LongLiveA$AP' defined a new era of NYC rap.",
-    "region": "NYC",
-    "era": "2010s",
-    "category": "Culture",
-    "example_lines": [
-      "A$AP Rocky was rapping about luxury fashion before it was normal for NYC rappers — he changed the aesthetic"
-    ],
-    "related_terms": [
-      "A$AP Mob",
-      "Harlem",
-      "NYC",
-      "fashion"
-    ]
-  },
-  {
-    "id": 231,
-    "term": "A$AP Mob",
-    "definition": "A collective of Harlem-based rappers and creatives centered around A$AP Rocky — including A$AP Ferg, A$AP Twelvyy, and others. Known for combining Southern influences with NYC energy.",
-    "origin": "Harlem, New York City, founded around 2006.",
-    "region": "NYC",
-    "era": "2010s",
-    "category": "Culture",
-    "example_lines": [
-      "A$AP Mob brought the whole wave together — fashion, music, and street culture in one collective"
-    ],
-    "related_terms": [
-      "A$AP Rocky",
-      "Harlem",
-      "wave",
-      "collective"
-    ]
-  },
-  {
-    "id": 232,
-    "term": "Odd Future",
-    "definition": "A Los Angeles-based collective founded by Tyler, the Creator — including Frank Ocean, Earl Sweatshirt, Hodgy, and others. Odd Future changed what alternative rap could look like in the 2010s.",
-    "origin": "Los Angeles, California. Founded by Tyler, the Creator around 2007. Their DIY aesthetic and internet presence were groundbreaking.",
-    "region": "LA",
-    "era": "2010s",
-    "category": "Culture",
-    "example_lines": [
-      "Odd Future was doing what they wanted before it was cool to do what you want — they changed the game"
-    ],
-    "related_terms": [
-      "Tyler the Creator",
-      "Frank Ocean",
-      "Earl Sweatshirt",
-      "LA"
-    ]
-  },
-  {
     "id": 233,
     "term": "trap soul",
     "definition": "A subgenre blending trap music with R&B sensibilities — heavy 808s, melodic singing, and vulnerable emotional content. Bryson Tiller is credited with naming and defining the genre.",
-    "origin": "Bryson Tiller's 'T R A P S O U L' (2015) formally named the genre that artists like Future, Drake, and PartyNextDoor were already creating.",
+    "origin": "Bryson Tiller's 'T R A P S O U L' (2015) formally named the genre that artists like an Atlanta rapper, a prominent Toronto-based rapper, and PartyNextDoor were already creating.",
     "region": "Universal",
     "era": "2010s",
     "category": "Technique",
@@ -4241,8 +3257,8 @@
   {
     "id": 234,
     "term": "mumble rap",
-    "definition": "A pejorative term for rap with deliberately unintelligible or unclear lyrics — associated with the SoundCloud rap era. Critics use it dismissively; many artists embrace the aesthetic intentionally.",
-    "origin": "Coined as a criticism in the mid-2010s as melodic, AutoTune-heavy trap from SoundCloud became dominant.",
+    "definition": "A pejorative term for rap with deliberately unintelligible or unclear lyrics — associated with the an online streaming platform rap era. Critics use it dismissively; many artists embrace the aesthetic intentionally.",
+    "origin": "Coined as a criticism in the mid-2010s as melodic, AutoTune-heavy trap from an online streaming platform became dominant.",
     "region": "Universal",
     "era": "2010s",
     "category": "Technique",
@@ -4259,13 +3275,13 @@
   {
     "id": 235,
     "term": "SoundCloud rap",
-    "definition": "A wave of artists who built massive audiences on SoundCloud before any major label interest — characterized by distorted 808s, face tattoos, and emo/punk influences mixed with trap.",
-    "origin": "SoundCloud platform. Peaked 2015-2018. XXXTentacion, Lil Pump, and Juice WRLD are key figures.",
+    "definition": "A wave of artists who built massive audiences on an online streaming platform before any major label interest — characterized by distorted 808s, face tattoos, and emo/punk influences mixed with trap.",
+    "origin": "an online streaming platform platform. Peaked 2015-2018. XXXTentacion, Lil Pump, and a Chicago rapper are key figures.",
     "region": "Universal",
     "era": "2010s",
     "category": "Culture",
     "example_lines": [
-      "SoundCloud rap changed the gatekeeping — you didn't need a label to reach millions anymore"
+      "an online streaming platform rap changed the gatekeeping — you didn't need a label to reach millions anymore"
     ],
     "related_terms": [
       "mumble rap",
@@ -4277,7 +3293,7 @@
   {
     "id": 236,
     "term": "AutoTune",
-    "definition": "Pitch correction software that became a creative tool in hip-hop — T-Pain pioneered using it as an effect rather than hiding it. Future, Young Thug, and Travis Scott made AutoTune-as-instrument standard.",
+    "definition": "Pitch correction software that became a creative tool in hip-hop — T-Pain pioneered using it as an effect rather than hiding it. an Atlanta rapper, an Atlanta rapper, and a Houston rapper made AutoTune-as-instrument standard.",
     "origin": "Antares Audio Technologies, 1997. T-Pain's 'Busted' (2005) made AutoTune a deliberate artistic choice.",
     "region": "Universal",
     "era": "2000s",
@@ -4295,8 +3311,8 @@
   {
     "id": 237,
     "term": "808s",
-    "definition": "Referring to the Roland TR-808's legendary bass drum or to the emotional weight of 808-driven music. Kanye's 'heartbreak' era and trap music made 808s emotional, not just rhythmic.",
-    "origin": "Roland TR-808, 1980. Kanye West's '808s & Heartbreak' (2008) made the 808 a symbol of vulnerability in rap.",
+    "definition": "Referring to the Roland TR-808's legendary bass drum or to the emotional weight of 808-driven music. a Chicago producer-rapper's 'heartbreak' era and trap music made 808s emotional, not just rhythmic.",
+    "origin": "Roland TR-808, 1980. a Chicago producer-rapper West's '808s & Heartbreak' (2008) made the 808 a symbol of vulnerability in rap.",
     "region": "Universal",
     "era": "80s",
     "category": "Technique",
@@ -4308,24 +3324,6 @@
       "beat",
       "bass drum",
       "Roland"
-    ]
-  },
-  {
-    "id": 238,
-    "term": "Verzuz",
-    "definition": "A live battle event where two artists play their catalog hits back-to-back. Co-created by Timbaland and Swizz Beatz during COVID quarantine in 2020. Became one of the biggest cultural events in modern hip-hop.",
-    "origin": "Instagram Live, 2020. Created during COVID-19 lockdowns.",
-    "region": "Universal",
-    "era": "2020s",
-    "category": "Culture",
-    "example_lines": [
-      "The Verzuz changed how we think about catalog depth — it's not about singles, it's about consistency"
-    ],
-    "related_terms": [
-      "catalog",
-      "battle",
-      "streaming",
-      "legacy"
     ]
   },
   {
@@ -4432,15 +3430,14 @@
     "related_terms": [
       "AP",
       "Rollie",
-      "Patek",
       "ice"
     ]
   },
   {
     "id": 245,
     "term": "drip too hard",
-    "definition": "Having such an extreme level of fashion and style that it's overwhelming — beyond normal drip levels. The phrase was popularized by Gunna and Lil Baby's song of the same name.",
-    "origin": "Gunna and Lil Baby, 'Drip Too Hard' (2018). Became a universal compliment for extreme style.",
+    "definition": "Having such an extreme level of fashion and style that it's overwhelming — beyond normal drip levels. The phrase was popularized by an Atlanta rapper and an Atlanta rapper's song of the same name.",
+    "origin": "an Atlanta rapper and an Atlanta rapper, 'Drip Too Hard' (2018). Became a universal compliment for extreme style.",
     "region": "Atlanta",
     "era": "2010s",
     "category": "Flexing",
@@ -4449,7 +3446,6 @@
     ],
     "related_terms": [
       "drip",
-      "Gunna",
       "sauce",
       "fashion"
     ]
@@ -4458,7 +3454,7 @@
     "id": 246,
     "term": "sauce god",
     "definition": "Someone whose sauce (style, charisma, effortless cool) is at a divine level — a god among the sauced. Used both seriously and humorously.",
-    "origin": "Atlanta trap culture. The 'sauce god' persona developed through Young Thug, Offset, and the broader ATL aesthetic.",
+    "origin": "Atlanta trap culture. The 'sauce god' persona developed through an Atlanta rapper, Offset, and the broader ATL aesthetic.",
     "region": "Atlanta",
     "era": "2010s",
     "category": "Flexing",
@@ -4529,8 +3525,8 @@
   {
     "id": 250,
     "term": "push P",
-    "definition": "P stands for 'player' — push P means to push positivity, to keep it real, to be genuine and build something real. Gunna made this phrase massive in early 2022.",
-    "origin": "Gunna and Future popularized 'pushin P' as a phrase in early 2022. It became a cultural moment.",
+    "definition": "P stands for 'player' — push P means to push positivity, to keep it real, to be genuine and build something real. an Atlanta rapper made this phrase massive in early 2022.",
+    "origin": "an Atlanta rapper and an Atlanta rapper popularized 'pushin P' as a phrase in early 2022. It became a cultural moment.",
     "region": "Atlanta",
     "era": "2020s",
     "category": "Slang",
@@ -4538,7 +3534,6 @@
       "Bought a house for the family — that's pushin P, no cap"
     ],
     "related_terms": [
-      "Gunna",
       "real",
       "positive",
       "genuine"
@@ -4601,8 +3596,8 @@
   {
     "id": 254,
     "term": "ether moment",
-    "definition": "A defining moment of complete public destruction in a beef — named after Nas's 'Ether' diss. When someone has an ether moment, the conversation is over and they won decisively.",
-    "origin": "Derived from Nas's 'Ether' (2001). Any diss or response that permanently damages someone's reputation is called an ether moment.",
+    "definition": "A defining moment of complete public destruction in a beef — named after a Queensbridge MC's 'Ether' diss. When someone has an ether moment, the conversation is over and they won decisively.",
+    "origin": "Derived from a Queensbridge MC's 'Ether' (2001). Any diss or response that permanently damages someone's reputation is called an ether moment.",
     "region": "Universal",
     "era": "2000s",
     "category": "Beef",
@@ -4619,8 +3614,8 @@
   {
     "id": 255,
     "term": "not like us",
-    "definition": "A phrase declaring superiority and distinctiveness — 'not like us' means you operate on a different level than those around you. Popularized as a diss track title by Kendrick Lamar in 2024.",
-    "origin": "Became massive as the title of Kendrick Lamar's 2024 diss targeting Drake — arguably the most impactful diss track in 25 years.",
+    "definition": "A phrase declaring superiority and distinctiveness — 'not like us' means you operate on a different level than those around you. Popularized as a diss track title by a dominant West Coast lyricist in 2024.",
+    "origin": "Became massive as the title of a dominant West Coast lyricist's 2024 diss targeting a prominent Toronto-based rapper — arguably the most impactful diss track in 25 years.",
     "region": "Universal",
     "era": "2020s",
     "category": "Beef",
@@ -4628,7 +3623,6 @@
       "He dropped 'Not Like Us' and the cultural conversation shifted overnight — history made"
     ],
     "related_terms": [
-      "Kendrick",
       "diss",
       "Drake beef",
       "superior"
@@ -4926,7 +3920,7 @@
     "id": 272,
     "term": "drill",
     "definition": "A Chicago street term for gang activity; also the name of the subgenre that emerged from Chicago in the early 2010s characterized by dark, trap-influenced beats and street narratives.",
-    "origin": "Chicago, early 2010s. Chief Keef, G Herbo, Chance the Rapper's early circle.",
+    "origin": "Chicago, early 2010s. Chief Keef, G Herbo, a Chicago rapper's early circle.",
     "region": "Chicago",
     "era": "2010s",
     "category": "Regional Terms",
@@ -5015,8 +4009,8 @@
   {
     "id": 277,
     "term": "ethered",
-    "definition": "To be lyrically destroyed in a diss track — named after Nas's legendary diss 'Ether' (2001).",
-    "origin": "Named after Nas's 2001 track 'Ether,' considered one of the greatest diss records.",
+    "definition": "To be lyrically destroyed in a diss track — named after a Queensbridge MC's legendary diss 'Ether' (2001).",
+    "origin": "Named after a Queensbridge MC's 2001 track 'Ether,' considered one of the greatest diss records.",
     "region": "Universal",
     "era": "2000s",
     "category": "Technique",
@@ -5034,7 +4028,7 @@
     "id": 278,
     "term": "takeover",
     "definition": "To completely dominate a situation, track, or scene — seizing control through skill or force.",
-    "origin": "Hip-hop slang with cultural references to Jay-Z's 2001 diss 'The Takeover.'",
+    "origin": "Hip-hop slang with cultural references to a pioneering New York rapper's 2001 diss 'The Takeover.'",
     "region": "Universal",
     "era": "2000s",
     "category": "Technique",
@@ -5070,7 +4064,7 @@
     "id": 280,
     "term": "wave",
     "definition": "A cultural movement or trend; to be 'on the wave' is to be ahead of or part of a rising cultural shift.",
-    "origin": "New York/A$AP Mob popularized the term in 2010s hip-hop.",
+    "origin": "New York/a Harlem rap collective popularized the term in 2010s hip-hop.",
     "region": "New York",
     "era": "2010s",
     "category": "Social/Internet Culture",
@@ -5301,24 +4295,6 @@
     ]
   },
   {
-    "id": 293,
-    "term": "Griselda",
-    "definition": "Griselda Records — Buffalo, NY underground rap collective known for dense wordplay, street narratives, and boom-bap aesthetics.",
-    "origin": "Buffalo, NY. Westside Gunn, Conway the Machine, Benny the Butcher.",
-    "region": "New York",
-    "era": "2010s",
-    "category": "Label History",
-    "example_lines": [
-      "Griselda brought grimy boom-bap back when everyone was going melodic"
-    ],
-    "related_terms": [
-      "boom bap",
-      "Buffalo",
-      "underground",
-      "Shady Records"
-    ]
-  },
-  {
     "id": 294,
     "term": "boom bap revival",
     "definition": "The early 2020s resurgence of interest in 90s-style hip-hop production — hard drums, jazz samples, lyric-focused.",
@@ -5332,32 +4308,13 @@
     "related_terms": [
       "boom bap",
       "underground",
-      "Griselda",
       "90s hip-hop"
-    ]
-  },
-  {
-    "id": 295,
-    "term": "SoundCloud rap",
-    "definition": "Wave of artists who blew up via SoundCloud in the mid-2010s, characterized by face tattoos, melodic flows, and lo-fi production.",
-    "origin": "SoundCloud platform, 2015-2018. XXXTentacion, Lil Pump, Ski Mask the Slump God.",
-    "region": "Florida",
-    "era": "2010s",
-    "category": "Social/Internet Culture",
-    "example_lines": [
-      "SoundCloud rap changed the pipeline for how new artists got discovered"
-    ],
-    "related_terms": [
-      "emo rap",
-      "lo-fi",
-      "underground",
-      "streaming"
     ]
   },
   {
     "id": 296,
     "term": "streaming numbers",
-    "definition": "Plays on Spotify, Apple Music, etc. — became the primary metric for commercial success after downloads replaced physical sales.",
+    "definition": "Plays on a streaming service, a streaming service, etc. — became the primary metric for commercial success after downloads replaced physical sales.",
     "origin": "Music industry shift, 2010s.",
     "region": "Universal",
     "era": "2010s",
@@ -5374,14 +4331,14 @@
   },
   {
     "id": 297,
-    "term": "TikTok rap",
-    "definition": "Songs designed or promoted primarily for TikTok virality — often short hooks, trending sounds, or challenge-worthy moments.",
-    "origin": "TikTok platform dominance, 2019-present.",
+    "term": "short-form rap",
+    "definition": "Songs designed or promoted primarily for social media virality — often short hooks, trending sounds, or challenge-worthy moments.",
+    "origin": "social media platform dominance, 2019-present.",
     "region": "Universal",
     "era": "2020s",
     "category": "Social/Internet Culture",
     "example_lines": [
-      "The TikTok rap era made catchiness more important than longevity"
+      "The social media rap era made catchiness more important than longevity"
     ],
     "related_terms": [
       "viral",
@@ -5519,8 +4476,8 @@
   {
     "id": 305,
     "term": "hot boy",
-    "definition": "A Cash Money Records term originating from the Hot Boys group (Juvenile, Lil Wayne, B.G., Turk) — a young, flashy, street-active male.",
-    "origin": "Cash Money Records, New Orleans, late 90s.",
+    "definition": "A a New Orleans label Records term originating from the Hot Boys group (Juvenile, a New Orleans rapper, B.G., Turk) — a young, flashy, street-active male.",
+    "origin": "a New Orleans label Records, New Orleans, late 90s.",
     "region": "Southern",
     "era": "90s",
     "category": "Label History",
@@ -5528,7 +4485,6 @@
       "He came up in an era when being a hot boy meant staying dangerous and fly simultaneously"
     ],
     "related_terms": [
-      "Cash Money",
       "New Orleans",
       "Juvenile",
       "NOLA"
@@ -5538,7 +4494,7 @@
     "id": 306,
     "term": "bling era",
     "definition": "Late 90s to mid-2000s period characterized by extreme displays of jewelry, diamonds, and material wealth in hip-hop culture.",
-    "origin": "Popularized by Cash Money Records and B.G.'s 'Bling Bling' (1999).",
+    "origin": "Popularized by a New Orleans label Records and B.G.'s 'Bling Bling' (1999).",
     "region": "Southern",
     "era": "2000s",
     "category": "Fashion/Streetwear",
@@ -5555,8 +4511,8 @@
   {
     "id": 307,
     "term": "crunk",
-    "definition": "A Southern hip-hop subgenre and lifestyle term meaning hyped up, wild, energetic — pioneered by Lil Jon in the early 2000s.",
-    "origin": "Atlanta, early 2000s. Lil Jon & the East Side Boyz defined the sound and term.",
+    "definition": "A Southern hip-hop subgenre and lifestyle term meaning hyped up, wild, energetic — pioneered by an Atlanta producer-rapper in the early 2000s.",
+    "origin": "Atlanta, early 2000s. an Atlanta producer-rapper & the East Side Boyz defined the sound and term.",
     "region": "Atlanta",
     "era": "2000s",
     "category": "Regional Terms",
@@ -5646,7 +4602,7 @@
     "id": 312,
     "term": "mixtape era",
     "definition": "2000s-2010s period when rappers distributed free mixtapes to build buzz before albums — an essential path to rap stardom.",
-    "origin": "New York origins, expanded nationally. DJ Drama's Gangsta Grillz was foundational.",
+    "origin": "New York origins, expanded nationally. DJ Drama's a DJ-hosted mixtape series was foundational.",
     "region": "Universal",
     "era": "2000s",
     "category": "Label History",
@@ -5655,45 +4611,7 @@
     ],
     "related_terms": [
       "mixtape",
-      "DatPiff",
-      "DJ Drama",
-      "Gangsta Grillz"
-    ]
-  },
-  {
-    "id": 313,
-    "term": "DatPiff",
-    "definition": "The premier free mixtape hosting website of the 2000s-2010s — where countless careers launched or solidified.",
-    "origin": "Online platform that democratized rap distribution, 2005-onward.",
-    "region": "Universal",
-    "era": "2000s",
-    "category": "Social/Internet Culture",
-    "example_lines": [
-      "That DatPiff tape got a million downloads before he signed — leverage like that was new territory"
-    ],
-    "related_terms": [
-      "mixtape",
-      "mixtape era",
-      "Datpiff",
-      "free music"
-    ]
-  },
-  {
-    "id": 314,
-    "term": "Gangsta Grillz",
-    "definition": "DJ Drama's legendary mixtape series — hosting tapes for virtually every major rapper of the 2000s and elevating the mixtape to an art form.",
-    "origin": "DJ Drama, Atlanta, early 2000s. Career-making platform for countless artists.",
-    "region": "Universal",
-    "era": "2000s",
-    "category": "Label History",
-    "example_lines": [
-      "Getting a Gangsta Grillz co-sign from DJ Drama meant you were officially on the rise"
-    ],
-    "related_terms": [
-      "DJ Drama",
-      "mixtape",
-      "mixtape era",
-      "co-sign"
+      "DJ Drama"
     ]
   },
   {
@@ -5772,7 +4690,7 @@
     "id": 319,
     "term": "auto-tune rap",
     "definition": "Style of rapping that uses Auto-Tune pitch correction as an artistic effect rather than to hide pitch issues — creating a melodic, sometimes robotic sound.",
-    "origin": "T-Pain popularized deliberately artistic Auto-Tune in mid-2000s. Future and Travis Scott refined it.",
+    "origin": "T-Pain popularized deliberately artistic Auto-Tune in mid-2000s. an Atlanta rapper and a Houston rapper refined it.",
     "region": "Universal",
     "era": "2000s",
     "category": "Technique",
