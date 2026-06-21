@@ -85,7 +85,7 @@ class AnalysisRequest(BaseModel):
 
 
 class DictionaryTerm(BaseModel):
-    id: Any = Field(default_factory=uuid4)
+    id: str = Field(default_factory=lambda: str(uuid4()))
     term: str
     definition: str
     origin: Optional[str] = None
