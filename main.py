@@ -2,6 +2,7 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import HTMLResponse
 from dotenv import load_dotenv
+import os
 
 load_dotenv(override=True)
 
@@ -27,6 +28,64 @@ app.include_router(tts.router,        prefix="/tts",        tags=["TTS"])
 @app.get("/health")
 async def health():
     return {"status": "BARZS backend is live"}
+
+
+@app.get("/diagnostic")
+async def diagnostic():
+    """Tests every API key and reports which ones are working. Use to debug 401 errors."""
+    import httpx
+
+    results = {}
+
+    # Test Genius
+    genius_token = os.environ.get("GENIUS_ACCESS_TOKEN", "")
+    if not genius_token:
+        results["genius"] = {"status": "MISSING", "detail": "GENIUS_ACCESS_TOKEN not set in Railway environment variables"}
+    else:
+        try:
+            async with httpx.AsyncClient(timeout=8) as client:
+                r = await client.get(
+                    "https://api.genius.com/search",
+                    headers={"Authorization": f"Bearer {genius_token}"},
+                    params={"q": "test"},
+                )
+            if r.status_code == 200:
+                results["genius"] = {"status": "OK"}
+            else:
+                results["genius"] = {"status": "ERROR", "http_status": r.status_code, "detail": r.text[:200]}
+        except Exception as e:
+            results["genius"] = {"status": "ERROR", "detail": str(e)}
+
+    # Test Anthropic
+    anthropic_key = os.environ.get("ANTHROPIC_API_KEY", "")
+    if not anthropic_key:
+        results["anthropic"] = {"status": "MISSING", "detail": "ANTHROPIC_API_KEY not set in Railway environment variables"}
+    else:
+        try:
+            import anthropic as _anthropic
+            c = _anthropic.AsyncAnthropic(api_key=anthropic_key)
+            msg = await c.messages.create(
+                model="claude-haiku-4-5-20251001", max_tokens=10,
+                messages=[{"role": "user", "content": "ping"}],
+            )
+            results["anthropic"] = {"status": "OK"}
+        except Exception as e:
+            results["anthropic"] = {"status": "ERROR", "detail": str(e)[:200]}
+
+    # ElevenLabs (optional)
+    el_key = os.environ.get("ELEVENLABS_API_KEY", "")
+    if not el_key:
+        results["elevenlabs"] = {"status": "NOT_CONFIGURED", "detail": "Optional — app uses iOS voices if missing"}
+    else:
+        try:
+            async with httpx.AsyncClient(timeout=8) as client:
+                r = await client.get("https://api.elevenlabs.io/v1/voices", headers={"xi-api-key": el_key})
+            results["elevenlabs"] = {"status": "OK" if r.status_code == 200 else "ERROR", "http_status": r.status_code}
+        except Exception as e:
+            results["elevenlabs"] = {"status": "ERROR", "detail": str(e)}
+
+    all_ok = all(v["status"] in ("OK", "NOT_CONFIGURED") for v in results.values())
+    return {"overall": "OK" if all_ok else "DEGRADED", "keys": results}
 
 
 @app.get("/privacy", response_class=HTMLResponse)
