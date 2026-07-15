@@ -42,6 +42,7 @@
   .brand-icon { display: block; margin: 6px auto 14px; width: 96px; height: 96px;
     border-radius: 22px; object-fit: cover; box-shadow: 0 10px 34px rgba(0,0,0,.55); }
   .tag { color: var(--muted); font-size: 12.5px; margin: 2px 0 16px; }
+  .credit { color: var(--muted); font-size: 11px; text-align: center; margin: 26px 0 4px; opacity: .85; line-height: 1.5; }
 
   /* progress */
   .steps { display: flex; gap: 6px; margin-bottom: 18px; }
@@ -275,6 +276,7 @@
   var STATIC = !!CFG.static;
   var ICON = CFG.icon || (STATIC ? "./icon.png" : "./icon.png");
   function brandIconTag() { return '<img class="brand-icon" src="' + ICON + '" alt="TESTIFAI">'; }
+  function creditTag() { return '<div class="credit">Created and developed by Trevor Lawrence Jr. for TREVBEATS MULTIMEDIA LLC</div>'; }
   var MODEL = CFG.model || "claude-sonnet-5";
   var WPM = 140;
   var KKEY = "testifai_anthropic_key";
@@ -441,7 +443,7 @@
     var existing = getKey();
     screen.innerHTML =
       brandIconTag() +
-      '<h2 style="text-align:center">' + (firstRun ? 'Welcome to TESTIFAI' : 'Your Claude API key') + '</h2>' +
+      '<h2 style="text-align:center">' + (firstRun ? 'Welcome to TESTIF<span style="color:var(--blue)">AI</span>' : 'Your Claude API key') + '</h2>' +
       '<p class="sub">TESTIFAI writes your script with Claude. You use your own Anthropic API key. It is stored only on this device and sent straight to Anthropic, never to us.</p>' +
       '<div class="msg info" style="line-height:1.7">' +
         '<b style="color:var(--fg)">How to get a key</b><br>' +
@@ -452,7 +454,8 @@
       '<label>Anthropic API key</label>' +
       '<input id="keyInput" type="password" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="sk-ant-..." value="' + esc(existing) + '">' +
       '<div class="edit-hint">Stored on this device only. You can change or remove it anytime.</div>' +
-      (existing ? '<div style="margin-top:10px"><span class="link" id="removeKey">Remove key from this device</span></div>' : '');
+      (existing ? '<div style="margin-top:10px"><span class="link" id="removeKey">Remove key from this device</span></div>' : '') +
+      creditTag();
     document.getElementById("consoleLink").addEventListener("click", function () { window.open("https://console.anthropic.com/settings/keys", "_blank"); });
     var rm = document.getElementById("removeKey");
     if (rm) rm.addEventListener("click", function () { clearKey(); showKeyOnboarding(firstRun); });
@@ -525,7 +528,8 @@
       '<div style="text-align:center;margin-top:16px;display:flex;gap:18px;justify-content:center">' +
         (saved ? '<span class="link" id="myScripts">My scripts (' + saved + ')</span>' : '') +
         (STATIC ? '<span class="link" id="apiKeyLink">API key</span>' : '') +
-      '</div>';
+      '</div>' +
+      creditTag();
     var ms = document.getElementById("myScripts");
     if (ms) ms.addEventListener("click", showHistory);
     var ak = document.getElementById("apiKeyLink");
