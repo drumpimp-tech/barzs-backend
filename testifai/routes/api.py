@@ -71,6 +71,13 @@ def _teleprompter_url(request: Request, title: str, script: str) -> str:
 
 @router.post("/generate")
 async def generate(request: Request, body: ScriptRequest):
+    # Fail fast with a clear message if the server has no Claude key.
+    if not os.environ.get("ANTHROPIC_API_KEY", "").strip():
+        raise HTTPException(
+            status_code=503,
+            detail="The server is missing its ANTHROPIC_API_KEY. Add it to the backend environment to generate scripts.",
+        )
+
     # Resolve reference selections.
     apps = {a["id"]: a for a in _load("ai_applications.json")}
     gls = {g["id"]: g for g in _load("advocacy_goals.json")}

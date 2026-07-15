@@ -193,6 +193,20 @@ _APP_HTML = r"""<!DOCTYPE html>
   .badge { font-size: 12px; color: var(--muted); background: var(--panel); border: 1px solid var(--line); border-radius: 20px; padding: 5px 11px; }
   .badge b { color: var(--fg); }
   .badge.ok b { color: var(--ok); }
+  .badge.tap { cursor: pointer; }
+
+  textarea.script { min-height: 240px; resize: vertical; line-height: 1.7; }
+  .edit-hint { color: var(--muted); font-size: 12px; margin: 8px 2px 0; }
+
+  /* history rows */
+  .hist { display: flex; flex-direction: column; gap: 9px; margin-top: 6px; }
+  .hist .row2 { background: var(--panel); border: 1px solid var(--line); border-radius: var(--radius);
+    padding: 12px 14px; display: flex; align-items: center; gap: 10px; }
+  .hist .row2 .meta { min-width: 0; flex: 1; cursor: pointer; }
+  .hist .row2 .name { font-weight: 650; font-size: 14.5px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .hist .row2 .desc { color: var(--muted); font-size: 12px; }
+  .hist .row2 .del { color: var(--muted); font-size: 20px; cursor: pointer; padding: 4px 8px; border: 1px solid var(--line); border-radius: 8px; }
+  .link { color: var(--gold); font-size: 13px; cursor: pointer; text-decoration: underline; }
 
   .msg { border-radius: var(--radius); padding: 12px 14px; font-size: 13.5px; margin-top: 12px; }
   .msg.err { background: #2a1414; border: 1px solid #5a2a2a; color: #ffb3b3; }
@@ -308,6 +322,7 @@ _APP_HTML = r"""<!DOCTYPE html>
     goal: null,
     minutes: 2,
     result: null,
+    fromHistory: false,
     loadingLegs: false,
     legError: "",
     generating: false,
@@ -386,6 +401,7 @@ _APP_HTML = r"""<!DOCTYPE html>
   }
 
   function screenIntro() {
+    var saved = loadHistory().length;
     screen.innerHTML =
       '<h2>Testify about AI.</h2>' +
       '<p class="sub">Pick a lawmaker, pick how AI touches your life, and TESTIFAI writes you a short, human speech to read. No em dashes. No AI buzzwords. Then read it on the built-in teleprompter.</p>' +
@@ -393,8 +409,11 @@ _APP_HTML = r"""<!DOCTYPE html>
         card2("Real legislators", "Your U.S. Senators and Representatives, pulled live by state.") +
         card2("100+ AI topics", "Music, healthcare, teaching, jobs, and more.") +
         card2("The Blackout list", "Every script is scrubbed of AI-sounding words and dashes.") +
-        card2("Teleprompter + read-aloud", "Record yourself reading it, your colors, your pace.") +
-      '</div>';
+        card2("Teleprompter + read-aloud", "Your colors, your pace, on-device voice.") +
+      '</div>' +
+      (saved ? '<div style="text-align:center;margin-top:16px"><span class="link" id="myScripts">My scripts (' + saved + ')</span></div>' : '');
+    var ms = document.getElementById("myScripts");
+    if (ms) ms.addEventListener("click", showHistory);
     nav([{ label: "Get started", onClick: function () { go(1); } }]);
   }
   function card2(t, d) { return '<div class="card" style="cursor:default"><div class="meta"><div class="name">' + esc(t) + '</div><div class="desc" style="white-space:normal">' + esc(d) + '</div></div></div>'; }
@@ -556,6 +575,8 @@ _APP_HTML = r"""<!DOCTYPE html>
         socials: state.socials,
       };
       state.result = await api("/advocacy/generate", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(body) });
+      state.result.id = saveToHistory(state.result);   // auto-save on device
+      state.fromHistory = false;
       state.generating = false; go(6);
     } catch (e) {
       state.generating = false; state.genError = e.message; go(5);
@@ -563,38 +584,90 @@ _APP_HTML = r"""<!DOCTYPE html>
     }
   }
 
+  function curScript() { var t = document.getElementById("scriptText"); return t ? t.value : (state.result ? state.result.script : ""); }
+
   function screenResult() {
     var r = state.result;
+    if (state.fromHistory) stepsEl.classList.add("hidden");
     var scrubbed = (r.blackout_scrubbed || []);
+    var wc = (r.script || "").trim().split(/\s+/).filter(Boolean).length;
     screen.innerHTML =
       '<h2>Your script</h2>' +
       '<div class="result-title">' + esc(r.title) + '</div>' +
       '<div class="badges">' +
-        '<span class="badge"><b>' + r.word_count + '</b> words</span>' +
+        '<span class="badge" id="wcBadge"><b>' + wc + '</b> words</span>' +
         '<span class="badge"><b>~' + r.estimated_minutes + '</b> min</span>' +
-        '<span class="badge ok">Blackout: <b>' + (scrubbed.length ? scrubbed.length + ' terms removed' : 'clean') + '</b></span>' +
+        (scrubbed.length ? '<span class="badge ok">Blackout: <b>' + scrubbed.length + ' removed</b></span>' : '<span class="badge ok">Blackout: <b>clean</b></span>') +
       '</div>' +
-      '<div class="script" id="scriptText">' + esc(r.script) + '</div>' +
+      '<textarea class="script" id="scriptText" spellcheck="true">' + esc(r.script) + '</textarea>' +
+      '<div class="edit-hint">You can edit the script here. Changes are saved and used by the teleprompter.</div>' +
       '<div class="row" style="margin-top:14px">' +
         '<button class="btn ghost" id="copyBtn">Copy</button>' +
-        '<button class="btn ghost" id="dlBtn">Download</button>' +
+        '<button class="btn ghost" id="dlBtn">Save / Share</button>' +
       '</div>' +
       '<button class="btn" id="teleBtn" style="margin-top:10px">Open teleprompter</button>';
+    var ta = document.getElementById("scriptText");
+    function persistEdit() {
+      r.script = ta.value;
+      var n = ta.value.trim().split(/\s+/).filter(Boolean).length;
+      var wb = document.getElementById("wcBadge"); if (wb) wb.innerHTML = "<b>" + n + "</b> words";
+      updateHistory(r.id, ta.value);
+    }
+    ta.addEventListener("input", persistEdit);
     document.getElementById("copyBtn").addEventListener("click", function () {
-      navigator.clipboard.writeText(r.script).then(function () { flash("copyBtn", "Copied!"); });
+      navigator.clipboard.writeText(curScript()).then(function () { flash("copyBtn", "Copied!"); });
     });
-    document.getElementById("dlBtn").addEventListener("click", function () {
-      shareOrDownload(r.title, r.script);
-    });
-    document.getElementById("teleBtn").addEventListener("click", function () {
-      openTeleprompter(r.title, r.script);
-    });
-    nav([
-      { label: "Start over", cls: "ghost", flex0: true, onClick: function () { reset(); } },
-      { label: "Rewrite", onClick: generate },
-    ]);
+    document.getElementById("dlBtn").addEventListener("click", function () { shareOrDownload(r.title, curScript()); });
+    document.getElementById("teleBtn").addEventListener("click", function () { openTeleprompter(r.title, curScript()); });
+    nav(state.fromHistory
+      ? [ { label: "Back", cls: "ghost", flex0: true, onClick: showHistory }, { label: "New script", onClick: function () { reset(); } } ]
+      : [ { label: "Start over", cls: "ghost", flex0: true, onClick: function () { reset(); } }, { label: "Rewrite", onClick: generate } ]);
   }
   function flash(id, txt) { var b = document.getElementById(id); if (!b) return; var o = b.textContent; b.textContent = txt; setTimeout(function () { b.textContent = o; }, 1200); }
+
+  // ── On-device saved scripts (localStorage, no account needed) ──
+  var HKEY = "testifai_scripts";
+  function loadHistory() { try { return JSON.parse(localStorage.getItem(HKEY) || "[]"); } catch (e) { return []; } }
+  function writeHistory(arr) { try { localStorage.setItem(HKEY, JSON.stringify(arr.slice(0, 50))); } catch (e) {} }
+  function saveToHistory(r) {
+    var arr = loadHistory();
+    var id = "s" + Date.now() + Math.floor(Math.random() * 1000);
+    arr.unshift({ id: id, title: r.title, script: r.script, word_count: r.word_count,
+      estimated_minutes: r.estimated_minutes, blackout_scrubbed: r.blackout_scrubbed || [], ts: Date.now() });
+    writeHistory(arr); return id;
+  }
+  function updateHistory(id, script) {
+    if (!id) return; var arr = loadHistory(); var hit = arr.filter(function (x) { return x.id === id; })[0];
+    if (hit) { hit.script = script; hit.word_count = script.trim().split(/\s+/).filter(Boolean).length; writeHistory(arr); }
+  }
+  function deleteHistory(id) { writeHistory(loadHistory().filter(function (x) { return x.id !== id; })); }
+  function fmtDate(ts) { try { return new Date(ts).toLocaleDateString(undefined, { month: "short", day: "numeric", year: "numeric" }); } catch (e) { return ""; } }
+
+  function showHistory() {
+    stepsEl.classList.add("hidden");
+    document.getElementById("tagline").classList.add("hidden");
+    var arr = loadHistory();
+    var body = '<h2>My scripts</h2>';
+    if (!arr.length) {
+      body += '<p class="sub">Scripts you generate are saved here on this device.</p><div class="msg info">No saved scripts yet.</div>';
+    } else {
+      body += '<p class="sub">' + arr.length + ' saved on this device.</p><div class="hist" id="histList"></div>';
+    }
+    screen.innerHTML = body;
+    if (arr.length) {
+      var list = document.getElementById("histList");
+      arr.forEach(function (rec) {
+        var row = el('<div class="row2"><div class="meta"><div class="name">' + esc(rec.title) + '</div>' +
+          '<div class="desc">' + fmtDate(rec.ts) + ' &middot; ' + rec.word_count + ' words</div></div>' +
+          '<div class="del" title="Delete">&times;</div></div>');
+        row.querySelector(".meta").addEventListener("click", function () { state.result = rec; state.fromHistory = true; go(6); });
+        row.querySelector(".del").addEventListener("click", function () { deleteHistory(rec.id); showHistory(); });
+        list.appendChild(row);
+      });
+    }
+    window.scrollTo(0, 0);
+    nav([{ label: "Back", cls: "ghost", flex0: true, onClick: function () { go(0); } }, { label: "New script", onClick: function () { reset(); } }]);
+  }
 
   // ── Save / share (iOS uses the native share sheet; a.download is ignored there) ──
   function slug(t) { return (String(t || "testifai-script").replace(/[^a-z0-9]+/gi, "-").toLowerCase().replace(/^-+|-+$/g, "")) || "testifai-script"; }
@@ -731,7 +804,7 @@ _APP_HTML = r"""<!DOCTYPE html>
   function go(step) { state.step = step; render(); }
   function reset() {
     state.step = 1; state.legislator = null; state.application = null; state.goal = null;
-    state.result = null; state.minutes = 2; state.targetState = ""; state.legislators = []; state.appSearch = "";
+    state.result = null; state.fromHistory = false; state.minutes = 2; state.targetState = ""; state.legislators = []; state.appSearch = "";
     render();
   }
 
