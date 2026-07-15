@@ -1,0 +1,546 @@
+"""
+TESTIFAI web/PWA app.
+
+A responsive single-page app served straight from the backend. It runs in any
+phone or desktop browser and installs to the iPhone/Android home screen as a
+standalone app (PWA), so "iOS and web" is one build. It drives the /advocacy
+API: profile, pick a state, pick a legislator, pick an AI use, pick a goal,
+set the length, generate, then read/download/teleprompt.
+"""
+
+from fastapi import APIRouter
+from fastapi.responses import HTMLResponse, JSONResponse, Response
+
+router = APIRouter()
+
+
+@router.get("/manifest.webmanifest")
+async def manifest():
+    return JSONResponse(
+        {
+            "name": "TESTIFAI",
+            "short_name": "TESTIFAI",
+            "description": "Write AI testimony to your legislators and read it on a built-in teleprompter.",
+            "start_url": "/app",
+            "scope": "/app",
+            "display": "standalone",
+            "orientation": "portrait",
+            "background_color": "#0d0d0d",
+            "theme_color": "#0d0d0d",
+            "icons": [
+                {"src": "/app/icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any maskable"},
+            ],
+        },
+        media_type="application/manifest+json",
+    )
+
+
+@router.get("/icon.svg")
+async def icon():
+    return Response(content=_ICON_SVG, media_type="image/svg+xml")
+
+
+@router.get("/sw.js")
+async def service_worker():
+    return Response(content=_SW_JS, media_type="application/javascript")
+
+
+@router.get("", response_class=HTMLResponse)
+@router.get("/", response_class=HTMLResponse)
+async def app_page():
+    return _APP_HTML
+
+
+_ICON_SVG = """<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+<rect width="512" height="512" rx="112" fill="#0d0d0d"/>
+<rect x="40" y="40" width="432" height="432" rx="84" fill="none" stroke="#c9a84c" stroke-width="10"/>
+<text x="256" y="326" font-family="Helvetica,Arial,sans-serif" font-size="200" font-weight="800"
+      text-anchor="middle" fill="#c9a84c" letter-spacing="-8">TF</text>
+</svg>"""
+
+
+_SW_JS = r"""
+const CACHE = 'testifai-v1';
+const SHELL = ['/app', '/app/icon.svg', '/app/manifest.webmanifest'];
+self.addEventListener('install', e => {
+  e.waitUntil(caches.open(CACHE).then(c => c.addAll(SHELL)).then(() => self.skipWaiting()));
+});
+self.addEventListener('activate', e => {
+  e.waitUntil(caches.keys().then(ks => Promise.all(ks.filter(k => k !== CACHE).map(k => caches.delete(k)))).then(() => self.clients.claim()));
+});
+self.addEventListener('fetch', e => {
+  const url = new URL(e.request.url);
+  // App shell: cache-first. Everything else (API): network-first.
+  if (SHELL.includes(url.pathname)) {
+    e.respondWith(caches.match(e.request).then(r => r || fetch(e.request)));
+  } else {
+    e.respondWith(fetch(e.request).catch(() => caches.match(e.request)));
+  }
+});
+"""
+
+
+_APP_HTML = r"""<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, maximum-scale=1.0, user-scalable=no">
+<title>TESTIFAI</title>
+<link rel="manifest" href="/app/manifest.webmanifest">
+<meta name="theme-color" content="#0d0d0d">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="TESTIFAI">
+<link rel="apple-touch-icon" href="/app/icon.svg">
+<link rel="icon" href="/app/icon.svg" type="image/svg+xml">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
+  :root {
+    --bg: #0d0d0d; --panel: #161616; --panel2: #1e1e1e; --line: #2a2a2a;
+    --fg: #eaeaea; --muted: #8f8f8f; --gold: #c9a84c; --gold-dim: #9c823a;
+    --ok: #7cf3a0; --bad: #ff6b6b; --radius: 14px;
+  }
+  html, body { height: 100%; }
+  body {
+    background: var(--bg); color: var(--fg);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+    line-height: 1.5; overscroll-behavior-y: none;
+  }
+  #app {
+    max-width: 620px; margin: 0 auto; min-height: 100%;
+    padding: calc(env(safe-area-inset-top) + 14px) 18px calc(env(safe-area-inset-bottom) + 96px);
+    display: flex; flex-direction: column;
+  }
+
+  /* header */
+  header { display: flex; align-items: center; gap: 10px; margin-bottom: 6px; }
+  .logo { width: 34px; height: 34px; border: 2px solid var(--gold); border-radius: 9px;
+    display: grid; place-items: center; color: var(--gold); font-weight: 800; font-size: 15px; }
+  .brand { font-weight: 800; letter-spacing: 1px; font-size: 20px; }
+  .brand span { color: var(--gold); }
+  .tag { color: var(--muted); font-size: 12.5px; margin: 2px 0 16px; }
+
+  /* progress */
+  .steps { display: flex; gap: 6px; margin-bottom: 18px; }
+  .steps .dot { flex: 1; height: 4px; border-radius: 3px; background: var(--line); }
+  .steps .dot.on { background: var(--gold); }
+  .steps .dot.done { background: var(--gold-dim); }
+
+  h2 { font-size: 20px; margin-bottom: 4px; }
+  .sub { color: var(--muted); font-size: 13.5px; margin-bottom: 16px; }
+
+  label { display: block; font-size: 12.5px; color: var(--muted); margin: 12px 0 5px; text-transform: uppercase; letter-spacing: .04em; }
+  input, select, textarea {
+    width: 100%; background: var(--panel); color: var(--fg); border: 1px solid var(--line);
+    border-radius: var(--radius); padding: 13px 14px; font-size: 16px; font-family: inherit;
+  }
+  input:focus, select:focus, textarea:focus { outline: none; border-color: var(--gold); }
+  .row { display: flex; gap: 10px; }
+  .row > * { flex: 1; }
+
+  /* buttons */
+  .btn {
+    display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+    width: 100%; padding: 15px; border-radius: var(--radius); border: 1px solid var(--gold);
+    background: var(--gold); color: #111; font-weight: 700; font-size: 16px; cursor: pointer;
+  }
+  .btn:disabled { opacity: .45; cursor: not-allowed; }
+  .btn.ghost { background: transparent; color: var(--fg); border-color: var(--line); }
+  .btn.ghost:hover { border-color: var(--gold); }
+
+  /* sticky footer nav */
+  .nav {
+    position: fixed; left: 0; right: 0; bottom: 0; z-index: 20;
+    background: linear-gradient(to top, var(--bg) 70%, transparent);
+    padding: 12px 18px calc(env(safe-area-inset-bottom) + 12px);
+  }
+  .nav-inner { max-width: 620px; margin: 0 auto; display: flex; gap: 10px; }
+  .nav-inner .btn { flex: 1; }
+  .nav-inner .btn.back { flex: 0 0 88px; }
+
+  /* selectable cards */
+  .list { display: flex; flex-direction: column; gap: 9px; margin-top: 6px; }
+  .card {
+    background: var(--panel); border: 1px solid var(--line); border-radius: var(--radius);
+    padding: 13px 14px; cursor: pointer; display: flex; align-items: center; gap: 12px;
+  }
+  .card:hover { border-color: var(--gold-dim); }
+  .card.sel { border-color: var(--gold); background: #1c1a12; }
+  .card .avatar { width: 42px; height: 42px; border-radius: 50%; object-fit: cover; background: var(--panel2);
+    flex: 0 0 42px; display: grid; place-items: center; color: var(--muted); font-size: 15px; font-weight: 700; }
+  .card .meta { min-width: 0; }
+  .card .name { font-weight: 650; font-size: 15px; }
+  .card .desc { color: var(--muted); font-size: 12.5px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .card .pill { margin-left: auto; font-size: 11px; color: var(--muted); border: 1px solid var(--line); border-radius: 20px; padding: 2px 9px; white-space: nowrap; }
+
+  .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 9px; margin-top: 6px; }
+  .grid .card { display: block; }
+
+  /* slider */
+  .slider-wrap { background: var(--panel); border: 1px solid var(--line); border-radius: var(--radius); padding: 20px 16px; text-align: center; margin-top: 8px; }
+  .slider-val { font-size: 40px; font-weight: 800; color: var(--gold); }
+  .slider-val small { font-size: 15px; color: var(--muted); font-weight: 500; }
+  input[type=range] { -webkit-appearance: none; appearance: none; height: 6px; border-radius: 6px; background: var(--line); margin: 20px 0 6px; }
+  input[type=range]::-webkit-slider-thumb { -webkit-appearance: none; width: 26px; height: 26px; border-radius: 50%; background: var(--gold); border: 3px solid #1a1a1a; }
+  input[type=range]::-moz-range-thumb { width: 26px; height: 26px; border-radius: 50%; background: var(--gold); border: 3px solid #1a1a1a; }
+  .range-legend { display: flex; justify-content: space-between; color: var(--muted); font-size: 12px; }
+
+  /* result */
+  .script { background: var(--panel); border: 1px solid var(--line); border-radius: var(--radius);
+    padding: 18px; white-space: pre-wrap; font-size: 16px; line-height: 1.7; margin-top: 10px; }
+  .result-title { font-weight: 700; font-size: 15px; color: var(--gold); margin-top: 8px; }
+  .badges { display: flex; flex-wrap: wrap; gap: 8px; margin: 12px 0 4px; }
+  .badge { font-size: 12px; color: var(--muted); background: var(--panel); border: 1px solid var(--line); border-radius: 20px; padding: 5px 11px; }
+  .badge b { color: var(--fg); }
+  .badge.ok b { color: var(--ok); }
+
+  .msg { border-radius: var(--radius); padding: 12px 14px; font-size: 13.5px; margin-top: 12px; }
+  .msg.err { background: #2a1414; border: 1px solid #5a2a2a; color: #ffb3b3; }
+  .msg.info { background: var(--panel); border: 1px solid var(--line); color: var(--muted); }
+
+  .spinner { width: 22px; height: 22px; border: 3px solid rgba(0,0,0,.25); border-top-color: #111; border-radius: 50%; animation: spin .8s linear infinite; }
+  .btn.ghost .spinner { border: 3px solid rgba(255,255,255,.2); border-top-color: var(--gold); }
+  @keyframes spin { to { transform: rotate(360deg); } }
+  .center { display: grid; place-items: center; gap: 14px; padding: 40px 0; text-align: center; color: var(--muted); }
+
+  .hidden { display: none !important; }
+  .muted { color: var(--muted); font-size: 12.5px; }
+  .search { margin-top: 8px; }
+  .count { color: var(--muted); font-size: 12px; margin: 10px 0 2px; }
+</style>
+</head>
+<body>
+<div id="app">
+  <header>
+    <div class="logo">TF</div>
+    <div class="brand">TESTIF<span>AI</span></div>
+  </header>
+  <div class="tag" id="tagline">Speak up to your lawmakers about AI.</div>
+  <div class="steps" id="steps"></div>
+  <div id="screen"></div>
+</div>
+
+<div class="nav" id="nav">
+  <div class="nav-inner" id="navInner"></div>
+</div>
+
+<script>
+(function () {
+  "use strict";
+  var API = "";
+  var TOTAL_STEPS = 6;
+
+  var state = {
+    step: 0,
+    ref: { states: [], applications: [], goals: [] },
+    user: { name: "", gender: "", age: "", state: "" },
+    socials: { youtube: "", facebook: "", instagram: "", linkedin: "" },
+    targetState: "",
+    chamber: "all",
+    legislators: [],
+    legislator: null,
+    application: null,
+    goal: null,
+    minutes: 2,
+    result: null,
+    loadingLegs: false,
+    legError: "",
+    generating: false,
+    genError: "",
+    appSearch: "",
+  };
+
+  var screen = document.getElementById("screen");
+  var navInner = document.getElementById("navInner");
+  var stepsEl = document.getElementById("steps");
+
+  function el(html) { var d = document.createElement("div"); d.innerHTML = html.trim(); return d.firstChild; }
+  function esc(s) { return String(s == null ? "" : s).replace(/[&<>"]/g, function (c) { return ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" })[c]; }); }
+  async function api(path, opts) {
+    var r = await fetch(API + path, opts);
+    if (!r.ok) { var t = await r.text().catch(function(){return "";}); throw new Error("(" + r.status + ") " + t.slice(0, 300)); }
+    return r.json();
+  }
+
+  // ── boot: load reference data ──
+  async function boot() {
+    renderLoading("Loading TESTIFAI...");
+    try {
+      var res = await Promise.all([api("/advocacy/states"), api("/advocacy/applications"), api("/advocacy/goals")]);
+      state.ref.states = res[0]; state.ref.applications = res[1]; state.ref.goals = res[2];
+      render();
+    } catch (e) {
+      screen.innerHTML = '<div class="msg err">Could not reach the server. ' + esc(e.message) + '</div>';
+      navInner.innerHTML = "";
+    }
+    if ("serviceWorker" in navigator) { navigator.serviceWorker.register("/app/sw.js").catch(function(){}); }
+  }
+
+  function renderLoading(txt) {
+    screen.innerHTML = '<div class="center"><div class="spinner" style="border-color:rgba(201,168,76,.25);border-top-color:var(--gold)"></div><div>' + esc(txt) + '</div></div>';
+    navInner.innerHTML = "";
+  }
+
+  function renderSteps() {
+    if (state.step < 1 || state.step > TOTAL_STEPS) { stepsEl.classList.add("hidden"); return; }
+    stepsEl.classList.remove("hidden");
+    var h = "";
+    for (var i = 1; i <= TOTAL_STEPS; i++) {
+      var cls = i === state.step ? "on" : (i < state.step ? "done" : "");
+      h += '<div class="dot ' + cls + '"></div>';
+    }
+    stepsEl.innerHTML = h;
+  }
+
+  function nav(buttons) {
+    navInner.innerHTML = "";
+    buttons.forEach(function (b) {
+      var btn = el('<button class="btn ' + (b.cls || "") + '">' + b.label + "</button>");
+      if (b.flex0) btn.classList.add("back");
+      if (b.disabled) btn.disabled = true;
+      btn.addEventListener("click", b.onClick);
+      navInner.appendChild(btn);
+    });
+  }
+
+  function stateOptions(selected) {
+    return '<option value="">Choose a state...</option>' + state.ref.states.map(function (s) {
+      return '<option value="' + s.abbr + '"' + (s.abbr === selected ? " selected" : "") + ">" + esc(s.name) + "</option>";
+    }).join("");
+  }
+
+  // ── screens ──
+  function render() {
+    renderSteps();
+    document.getElementById("tagline").classList.toggle("hidden", state.step !== 0);
+    var fns = [screenIntro, screenProfile, screenLegislator, screenApplication, screenGoal, screenLength, screenResult];
+    fns[state.step]();
+    window.scrollTo(0, 0);
+  }
+
+  function screenIntro() {
+    screen.innerHTML =
+      '<h2>Testify about AI.</h2>' +
+      '<p class="sub">Pick a lawmaker, pick how AI touches your life, and TESTIFAI writes you a short, human speech to read. No em dashes. No AI buzzwords. Then read it on the built-in teleprompter.</p>' +
+      '<div class="list">' +
+        card2("Real legislators", "Your U.S. Senators and Representatives, pulled live by state.") +
+        card2("100+ AI topics", "Music, healthcare, teaching, jobs, and more.") +
+        card2("The Blackout list", "Every script is scrubbed of AI-sounding words and dashes.") +
+        card2("Teleprompter + read-aloud", "Record yourself reading it, your colors, your pace.") +
+      '</div>';
+    nav([{ label: "Get started", onClick: function () { go(1); } }]);
+  }
+  function card2(t, d) { return '<div class="card" style="cursor:default"><div class="meta"><div class="name">' + esc(t) + '</div><div class="desc" style="white-space:normal">' + esc(d) + '</div></div></div>'; }
+
+  function screenProfile() {
+    var u = state.user, s = state.socials;
+    screen.innerHTML =
+      '<h2>About you</h2><p class="sub">This shapes the voice of your script. Only your name is required.</p>' +
+      '<label>Your name</label><input id="f_name" placeholder="e.g. Jordan Rivera" value="' + esc(u.name) + '">' +
+      '<div class="row"><div><label>Gender</label><select id="f_gender">' +
+        ["", "Woman", "Man", "Non-binary", "Prefer not to say"].map(function (g) {
+          return '<option value="' + esc(g) + '"' + (g === u.gender ? " selected" : "") + ">" + (g || "Select...") + "</option>";
+        }).join("") +
+      '</select></div><div><label>Age</label><input id="f_age" inputmode="numeric" placeholder="e.g. 29" value="' + esc(u.age) + '"></div></div>' +
+      '<label>Your home state</label><select id="f_state">' + stateOptions(u.state) + '</select>' +
+      '<label style="margin-top:18px">Your channels (optional, we read the public page to personalize)</label>' +
+      '<input class="search" id="f_youtube" placeholder="YouTube channel URL" value="' + esc(s.youtube) + '">' +
+      '<input class="search" id="f_facebook" placeholder="Facebook URL" value="' + esc(s.facebook) + '">' +
+      '<input class="search" id="f_instagram" placeholder="Instagram URL" value="' + esc(s.instagram) + '">' +
+      '<input class="search" id="f_linkedin" placeholder="LinkedIn URL" value="' + esc(s.linkedin) + '">';
+    function grab() {
+      state.user.name = val("f_name"); state.user.gender = val("f_gender"); state.user.age = val("f_age"); state.user.state = val("f_state");
+      state.socials.youtube = val("f_youtube"); state.socials.facebook = val("f_facebook");
+      state.socials.instagram = val("f_instagram"); state.socials.linkedin = val("f_linkedin");
+    }
+    nav([
+      { label: "Back", cls: "ghost", flex0: true, onClick: function () { grab(); go(0); } },
+      { label: "Next", onClick: function () { grab(); if (!state.user.name.trim()) { alert("Please enter your name."); return; } go(2); } },
+    ]);
+  }
+  function val(id) { var e = document.getElementById(id); return e ? e.value : ""; }
+
+  function screenLegislator() {
+    screen.innerHTML =
+      '<h2>Who are you testifying to?</h2><p class="sub">Pick the state, then the lawmaker you want to address.</p>' +
+      '<label>State</label><select id="t_state">' + stateOptions(state.targetState) + '</select>' +
+      '<label>Chamber</label><select id="t_chamber">' +
+        [["all", "All"], ["senate", "Senate"], ["house", "House"]].map(function (c) {
+          return '<option value="' + c[0] + '"' + (c[0] === state.chamber ? " selected" : "") + ">" + c[1] + "</option>";
+        }).join("") +
+      '</select>' +
+      '<div id="legs"></div>';
+    document.getElementById("t_state").addEventListener("change", function (e) { state.targetState = e.target.value; state.legislator = null; loadLegs(); });
+    document.getElementById("t_chamber").addEventListener("change", function (e) { state.chamber = e.target.value; loadLegs(); });
+    renderLegs();
+    updateLegNav();
+    if (state.targetState && !state.legislators.length && !state.loadingLegs) loadLegs();
+  }
+  async function loadLegs() {
+    if (!state.targetState) { state.legislators = []; renderLegs(); return; }
+    state.loadingLegs = true; state.legError = ""; renderLegs();
+    try {
+      state.legislators = await api("/advocacy/legislators?state=" + state.targetState + "&chamber=" + state.chamber);
+    } catch (e) { state.legislators = []; state.legError = e.message; }
+    state.loadingLegs = false; renderLegs();
+  }
+  function renderLegs() {
+    var box = document.getElementById("legs"); if (!box) return;
+    if (state.loadingLegs) { box.innerHTML = '<div class="center"><div class="spinner" style="border-color:rgba(201,168,76,.25);border-top-color:var(--gold)"></div><div>Finding lawmakers...</div></div>'; return; }
+    if (state.legError) { box.innerHTML = '<div class="msg err">Could not load lawmakers for this state. ' + esc(state.legError) + '</div><button class="btn ghost" id="retryLegs" style="margin-top:10px">Try again</button>'; var r = document.getElementById("retryLegs"); if (r) r.addEventListener("click", loadLegs); return; }
+    if (!state.targetState) { box.innerHTML = '<div class="msg info">Choose a state to see its lawmakers.</div>'; return; }
+    if (!state.legislators.length) { box.innerHTML = '<div class="msg info">No lawmakers found.</div>'; return; }
+    box.innerHTML = '<div class="count">' + state.legislators.length + ' lawmakers</div><div class="list" id="legList"></div>';
+    var list = document.getElementById("legList");
+    state.legislators.forEach(function (m) {
+      var initials = (m.name || "?").split(" ").map(function (w) { return w[0]; }).slice(0, 2).join("");
+      var sel = state.legislator && state.legislator.id === m.id;
+      var av = m.photo_url ? '<img class="avatar" src="' + esc(m.photo_url) + '" onerror="this.replaceWith(document.createTextNode(\'\'))">' : '<div class="avatar">' + esc(initials) + '</div>';
+      var desc = m.role + (m.district ? ", District " + m.district : "");
+      var c = el('<div class="card ' + (sel ? "sel" : "") + '">' + av +
+        '<div class="meta"><div class="name">' + esc(m.name) + '</div><div class="desc">' + esc(desc) + '</div></div>' +
+        '<div class="pill">' + esc(m.party) + '</div></div>');
+      c.addEventListener("click", function () { state.legislator = m; renderLegs(); updateLegNav(); });
+      list.appendChild(c);
+    });
+  }
+  function updateLegNav() {
+    nav([
+      { label: "Back", cls: "ghost", flex0: true, onClick: function () { go(1); } },
+      { label: "Next", disabled: !state.legislator, onClick: function () { if (state.legislator) go(3); } },
+    ]);
+  }
+
+  function screenApplication() {
+    screen.innerHTML =
+      '<h2>What about AI?</h2><p class="sub">Pick the one use of AI this script is about.</p>' +
+      '<input class="search" id="appSearch" placeholder="Search 100+ topics..." value="' + esc(state.appSearch) + '">' +
+      '<div id="appGrid"></div>';
+    document.getElementById("appSearch").addEventListener("input", function (e) { state.appSearch = e.target.value; renderApps(); });
+    renderApps(); updateAppNav();
+  }
+  function renderApps() {
+    var box = document.getElementById("appGrid"); if (!box) return;
+    var q = state.appSearch.trim().toLowerCase();
+    var items = state.ref.applications.filter(function (a) {
+      return !q || a.name.toLowerCase().indexOf(q) >= 0 || (a.category || "").toLowerCase().indexOf(q) >= 0 || (a.blurb || "").toLowerCase().indexOf(q) >= 0;
+    });
+    box.innerHTML = '<div class="count">' + items.length + ' topics</div><div class="grid" id="ag"></div>';
+    var g = document.getElementById("ag");
+    items.forEach(function (a) {
+      var sel = state.application && state.application.id === a.id;
+      var c = el('<div class="card ' + (sel ? "sel" : "") + '"><div class="name">' + esc(a.name) + '</div><div class="desc" style="white-space:normal">' + esc(a.category || "") + '</div></div>');
+      c.addEventListener("click", function () { state.application = a; renderApps(); updateAppNav(); });
+      g.appendChild(c);
+    });
+  }
+  function updateAppNav() {
+    nav([
+      { label: "Back", cls: "ghost", flex0: true, onClick: function () { go(2); } },
+      { label: "Next", disabled: !state.application, onClick: function () { if (state.application) go(4); } },
+    ]);
+  }
+
+  function screenGoal() {
+    screen.innerHTML = '<h2>What is your goal?</h2><p class="sub">The point you want to land with your lawmaker.</p><div class="list" id="goalList"></div>';
+    var list = document.getElementById("goalList");
+    state.ref.goals.forEach(function (g) {
+      var sel = state.goal && state.goal.id === g.id;
+      var c = el('<div class="card ' + (sel ? "sel" : "") + '"><div class="meta"><div class="name">' + esc(g.name) + '</div><div class="desc" style="white-space:normal">' + esc(g.blurb) + '</div></div></div>');
+      c.addEventListener("click", function () { state.goal = g; screenGoal(); });
+      list.appendChild(c);
+    });
+    nav([
+      { label: "Back", cls: "ghost", flex0: true, onClick: function () { go(3); } },
+      { label: "Next", disabled: !state.goal, onClick: function () { if (state.goal) go(5); } },
+    ]);
+  }
+
+  function screenLength() {
+    function words(m) { return Math.max(90, Math.round(m * 140)); }
+    screen.innerHTML =
+      '<h2>How long?</h2><p class="sub">Slide from a quick 1 minute to a full 10 minutes.</p>' +
+      '<div class="slider-wrap"><div class="slider-val" id="mval">' + state.minutes + ' <small>min</small></div>' +
+      '<input type="range" id="mrange" min="1" max="10" step="1" value="' + state.minutes + '">' +
+      '<div class="range-legend"><span>1 min</span><span>10 min</span></div>' +
+      '<div class="muted" id="wc" style="margin-top:10px">about ' + words(state.minutes) + ' words</div></div>' +
+      '<div class="msg info" style="margin-top:14px">Review: <b style="color:var(--fg)">' + esc(state.application.name) + '</b> for <b style="color:var(--fg)">' + esc(state.legislator.name) + '</b>, goal of <b style="color:var(--fg)">' + esc(state.goal.name) + '</b>.</div>';
+    var range = document.getElementById("mrange");
+    range.addEventListener("input", function (e) {
+      state.minutes = +e.target.value;
+      document.getElementById("mval").innerHTML = state.minutes + ' <small>min</small>';
+      document.getElementById("wc").textContent = "about " + words(state.minutes) + " words";
+    });
+    nav([
+      { label: "Back", cls: "ghost", flex0: true, onClick: function () { go(4); } },
+      { label: "Write my script", onClick: generate },
+    ]);
+  }
+
+  async function generate() {
+    state.generating = true; state.genError = "";
+    screen.innerHTML = '<div class="center"><div class="spinner" style="border-color:rgba(201,168,76,.25);border-top-color:var(--gold)"></div><div>Writing your script...</div><div class="muted">Applying the Blackout list</div></div>';
+    navInner.innerHTML = "";
+    try {
+      var body = {
+        state: state.targetState, legislator_id: state.legislator.id,
+        application_id: state.application.id, goal_id: state.goal.id, minutes: state.minutes,
+        user: { name: state.user.name, gender: state.user.gender, state: state.user.state, age: state.user.age || null },
+        socials: state.socials,
+      };
+      state.result = await api("/advocacy/generate", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(body) });
+      state.generating = false; go(6);
+    } catch (e) {
+      state.generating = false; state.genError = e.message; go(5);
+      setTimeout(function () { screen.insertAdjacentHTML("beforeend", '<div class="msg err">Could not write the script. ' + esc(e.message) + '</div>'); }, 0);
+    }
+  }
+
+  function screenResult() {
+    var r = state.result;
+    var scrubbed = (r.blackout_scrubbed || []);
+    screen.innerHTML =
+      '<h2>Your script</h2>' +
+      '<div class="result-title">' + esc(r.title) + '</div>' +
+      '<div class="badges">' +
+        '<span class="badge"><b>' + r.word_count + '</b> words</span>' +
+        '<span class="badge"><b>~' + r.estimated_minutes + '</b> min</span>' +
+        '<span class="badge ok">Blackout: <b>' + (scrubbed.length ? scrubbed.length + ' terms removed' : 'clean') + '</b></span>' +
+      '</div>' +
+      '<div class="script" id="scriptText">' + esc(r.script) + '</div>' +
+      '<div class="row" style="margin-top:14px">' +
+        '<button class="btn ghost" id="copyBtn">Copy</button>' +
+        '<button class="btn ghost" id="dlBtn">Download</button>' +
+      '</div>' +
+      '<button class="btn" id="teleBtn" style="margin-top:10px">Open teleprompter</button>';
+    document.getElementById("copyBtn").addEventListener("click", function () {
+      navigator.clipboard.writeText(r.script).then(function () { flash("copyBtn", "Copied!"); });
+    });
+    document.getElementById("dlBtn").addEventListener("click", function () {
+      var blob = new Blob([r.title + "\n\n" + r.script + "\n"], { type: "text/plain" });
+      var a = document.createElement("a"); a.href = URL.createObjectURL(blob);
+      a.download = (r.title || "testifai-script").replace(/[^a-z0-9]+/gi, "-").toLowerCase().replace(/^-+|-+$/g, "") + ".txt";
+      document.body.appendChild(a); a.click(); a.remove();
+    });
+    document.getElementById("teleBtn").addEventListener("click", function () {
+      if (r.teleprompter_url) { window.open(r.teleprompter_url, "_blank"); }
+    });
+    nav([
+      { label: "Start over", cls: "ghost", flex0: true, onClick: function () { reset(); } },
+      { label: "Rewrite", onClick: generate },
+    ]);
+  }
+  function flash(id, txt) { var b = document.getElementById(id); if (!b) return; var o = b.textContent; b.textContent = txt; setTimeout(function () { b.textContent = o; }, 1200); }
+
+  function go(step) { state.step = step; render(); }
+  function reset() {
+    state.step = 1; state.legislator = null; state.application = null; state.goal = null;
+    state.result = null; state.minutes = 2; state.targetState = ""; state.legislators = []; state.appSearch = "";
+    render();
+  }
+
+  boot();
+})();
+</script>
+</body>
+</html>"""

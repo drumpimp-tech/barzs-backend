@@ -38,6 +38,12 @@ async def goals():
     return _load("advocacy_goals.json")
 
 
+@router.get("/blacklist")
+async def blacklist():
+    """The blackout list: AI-tell terms scrubbed from every generated script."""
+    return _load("ai_blacklist.json")
+
+
 # ── Legislators ──────────────────────────────────────────────────────────────
 
 @router.get("/legislators", response_model=list[Legislator])

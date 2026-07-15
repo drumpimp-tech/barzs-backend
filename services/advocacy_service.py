@@ -8,12 +8,35 @@ and writes a personalized, ready-to-read testimony script via Claude.
 
 import os
 import re
+import json
 import asyncio
+from pathlib import Path
+
 import anthropic
 import httpx
 from bs4 import BeautifulSoup
 
 client = anthropic.AsyncAnthropic(api_key=os.environ.get("ANTHROPIC_API_KEY"))
+
+# ── Blackout list: banned AI-tell terms (data/ai_blacklist.json) ─────────────
+_BLACKLIST_PATH = Path(__file__).parent.parent / "data" / "ai_blacklist.json"
+
+
+def _load_blacklist() -> list[dict]:
+    try:
+        return json.loads(_BLACKLIST_PATH.read_text()).get("terms", [])
+    except Exception:
+        return []
+
+
+_BLACKLIST = _load_blacklist()
+# Longest terms first so phrases match before their component words.
+_BLACKLIST_SORTED = sorted(_BLACKLIST, key=lambda e: -len(e.get("term", "")))
+_BLACKLIST_COMPILED = [
+    (re.compile(r"(?<!\w)" + re.escape(e["term"]) + r"(?!\w)", re.IGNORECASE),
+     e.get("replacement", ""))
+    for e in _BLACKLIST_SORTED if e.get("term")
+]
 
 # Roughly how many words a comfortable teleprompter read covers per minute.
 WORDS_PER_MINUTE = 140
@@ -24,21 +47,24 @@ _BROWSER_UA = (
 )
 
 
-SYSTEM_PROMPT = """You write first-person testimony that a real person reads out \
-loud to their elected official about artificial intelligence. The speaker points \
-a camera at themselves, or stands at a town hall, or calls their rep, and says \
+def _prompt_banned_terms(limit: int = 40) -> str:
+    terms = [e["term"] for e in _BLACKLIST_SORTED if e.get("term")][:limit]
+    return ", ".join(f'"{t}"' for t in terms)
+
+
+def build_system_prompt() -> str:
+    return f"""You write first-person testimony that a real person reads out loud \
+to their elected official about artificial intelligence. The speaker points a \
+camera at themselves, or stands at a town hall, or calls their rep, and says \
 these exact words. It has to sound like THEM, not like a machine wrote it.
 
 HARD RULES:
 1. NEVER use an em dash or en dash. No "--". Use a comma, a period, or start a \
 new sentence. This is non-negotiable.
-2. Do not sound like AI. Banned tells: "It's not just X, it's Y." "In today's \
-world / In an era of." "delve", "tapestry", "testament to", "navigate the \
-landscape", "at the end of the day", "moreover", "furthermore", "unlock", \
-"empower", "harness", "foster", "vibrant", "ever-evolving", "double-edged \
-sword", "game-changer", stacked lists of three adjectives, and neat little \
-"on one hand / on the other hand" balance. If a sentence sounds like a press \
-release or a LinkedIn post, rewrite it.
+2. THE BLACKOUT LIST. Never use any of these AI-tell words or phrases: \
+{_prompt_banned_terms()}. Also avoid the constructions "It's not just X, it's \
+Y", "on one hand / on the other hand", and anything that reads like a press \
+release or a LinkedIn post.
 3. Write the way people actually talk. Use contractions. Short sentences. Let \
 some sentences be five words. Say plain things plainly. Name real, concrete \
 stuff, not vague uplift.
@@ -61,6 +87,55 @@ anyone can picture.
 
 Return ONLY the spoken words. No headings, no stage directions, no notes about \
 length, no quotation marks around the whole thing. Just what the speaker says."""
+
+
+def _clean_whitespace_punct(text: str) -> str:
+    """Fix artifacts left by deletions/replacements, then restore capitalization."""
+    # collapse ", ," and stray commas next to other punctuation
+    text = re.sub(r",\s*(?=[,.;:!?])", "", text)
+    text = re.sub(r"(?<=[.!?])\s*,\s*", " ", text)      # ". , foo" -> ". foo"
+    text = re.sub(r"^\s*,\s*", "", text)                 # leading comma
+    text = re.sub(r"[ \t]{2,}", " ", text)               # collapse spaces
+    text = re.sub(r" +([,.;:!?])", r"\1", text)          # space before punct
+    text = re.sub(r"[ \t]+\n", "\n", text)               # trailing space on lines
+    text = re.sub(r"\n{3,}", "\n\n", text)               # cap blank lines
+
+    # Re-capitalize the start of each sentence (deletions can lowercase openers).
+    def _cap(m):
+        return m.group(1) + m.group(2).upper()
+    text = re.sub(r"(^|[.!?]\s+|\n\s*)([a-z])", _cap, text)
+    return text.strip()
+
+
+def _strip_em_dashes(text: str) -> str:
+    """Guarantee no em/en dashes survive, whatever the model does."""
+    # em dash, en dash, horizontal bar, and the "--" typographic stand-in.
+    text = re.sub(r"\s*(?:--+|[—–―])\s*", ", ", text)
+    return text
+
+
+def scrub_ai_terms(text: str) -> tuple[str, list[str]]:
+    """Replace/delete every blacklisted AI term. Returns (clean_text, hits)."""
+    hits: list[str] = []
+    for pattern, replacement in _BLACKLIST_COMPILED:
+        if pattern.search(text):
+            hits.append(pattern.pattern)
+            text = pattern.sub(replacement, text)
+    return text, hits
+
+
+def clean_script(text: str) -> tuple[str, list[str]]:
+    """Full blackout pass: strip em dashes, scrub AI terms, tidy the result."""
+    text = _strip_em_dashes(text)
+    text, raw_hits = scrub_ai_terms(text)
+    text = _clean_whitespace_punct(text)
+    # Report the human-readable terms that were caught, not the regex source.
+    caught = []
+    for e in _BLACKLIST_SORTED:
+        rx = r"(?<!\w)" + re.escape(e["term"]) + r"(?!\w)"
+        if rx in raw_hits:
+            caught.append(e["term"])
+    return text, caught
 
 
 def _strip_em_dashes(text: str) -> str:
@@ -195,7 +270,8 @@ THE ONE GOAL:
 
 LENGTH:
 About {minutes:g} minute(s) out loud, roughly {target_words} words. Hit that \
-length closely. Do not go far over or under.
+length closely. Do not go far over or under. (Line breaks and short lines do not \
+count against the word budget.)
 
 Make it personal to the speaker, specific to {legislator.get('state')} and to \
 {legislator.get('name')}, focused only on {application.get('name')} and the goal \
@@ -205,11 +281,12 @@ sound like AI wrote it. Return ONLY the spoken words."""
     message = await client.messages.create(
         model=model,
         max_tokens=max_tokens,
-        system=SYSTEM_PROMPT,
+        system=build_system_prompt(),
         messages=[{"role": "user", "content": user_prompt}],
     )
 
-    script = _strip_em_dashes(message.content[0].text.strip())
+    # Blackout pass: strip em dashes + scrub every blacklisted AI term.
+    script, flagged = clean_script(message.content[0].text.strip())
     word_count = len(script.split())
 
     title = (
@@ -224,6 +301,7 @@ sound like AI wrote it. Return ONLY the spoken words."""
         "target_words": target_words,
         "estimated_minutes": round(word_count / WORDS_PER_MINUTE, 1),
         "model": model,
+        "blackout_scrubbed": flagged,
         "legislator": legislator,
         "application": application,
         "goal": goal,
