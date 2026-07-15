@@ -248,9 +248,9 @@ async def generate_script(
 
     # Higher-quality model for longer scripts, faster model for short ones.
     if minutes >= 6:
-        model, max_tokens = "claude-opus-4-7", 8000
+        model, max_tokens = "claude-opus-4-8", 8000
     else:
-        model, max_tokens = "claude-sonnet-4-6", 4000
+        model, max_tokens = "claude-sonnet-5", 4000
 
     user_prompt = f"""Write spoken testimony the speaker reads out loud.
 

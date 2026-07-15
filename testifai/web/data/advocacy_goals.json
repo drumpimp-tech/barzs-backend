@@ -1,0 +1,14 @@
+[
+  { "id": "acceptance", "name": "Acceptance", "blurb": "Build public and political acceptance of AI as a positive, trustworthy tool." },
+  { "id": "education", "name": "Education About AI", "blurb": "Explain plainly what AI is, how it works, and why it matters." },
+  { "id": "regulation", "name": "Smart Regulation & Guardrails", "blurb": "Call for balanced rules that protect people without stifling innovation." },
+  { "id": "workforce", "name": "Workforce Transition & Jobs", "blurb": "Support reskilling and protect workers as AI changes the job market." },
+  { "id": "investment", "name": "Public Funding & Investment", "blurb": "Advocate for research funding and investment in AI infrastructure." },
+  { "id": "ethics", "name": "Ethical & Responsible Use", "blurb": "Promote fairness, non-discrimination, and human oversight of AI." },
+  { "id": "privacy", "name": "Data Privacy Protections", "blurb": "Protect personal data and give people control over how AI uses it." },
+  { "id": "equity", "name": "Equitable Access & Digital Divide", "blurb": "Ensure everyone benefits from AI, not just the well-connected." },
+  { "id": "competitiveness", "name": "Innovation & Economic Competitiveness", "blurb": "Keep the state and country at the forefront of AI innovation." },
+  { "id": "transparency", "name": "Transparency & Accountability", "blurb": "Demand that AI systems be explainable and accountable." },
+  { "id": "safety", "name": "Safety & Risk Mitigation", "blurb": "Address real risks so AI is deployed safely and responsibly." },
+  { "id": "partnership", "name": "Public-Private Partnership", "blurb": "Bring government, industry, and communities together on AI." }
+]

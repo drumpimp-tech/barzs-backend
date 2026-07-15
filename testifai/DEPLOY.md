@@ -82,6 +82,36 @@ serve a page that sets the API base first:
 ```
 CORS is already open on the backend, so the CDN-hosted UI can call it.
 
+## Distribution build (static, bring-your-own-key) — Netlify & any static host
+
+`testifai/web/` is a **fully static** version of the whole app. There is no
+server: each user enters their **own** Anthropic API key on first launch (stored
+only on their device), and the browser calls Claude directly. This is the build
+to hand out widely and to host on Netlify, Cloudflare Pages, Vercel, GitHub
+Pages, etc.
+
+Rebuild it anytime (it is generated from the same app code, so it never drifts):
+```bash
+cd testifai
+python build_static.py      # writes testifai/web/
+```
+
+### Deploy `testifai/web/` to Netlify
+A Netlify project **`testifai-app`** (https://testifai-app.netlify.app) is
+already created on the connected account. Publish the `web/` folder either way:
+
+- **Git (recommended, no local tools):** In Netlify → Site `testifai-app` →
+  *Import from Git* → this repo → **Base directory:** `testifai/web`,
+  **Publish directory:** `testifai/web`, no build command. Every push redeploys.
+- **CLI from your machine:**
+  ```bash
+  cd testifai/web
+  npx netlify-cli deploy --prod --dir . --site testifai-app
+  ```
+
+No environment variables are needed on the host — the key is the user's own,
+entered in the app.
+
 ## Health & diagnostics
 - `GET /health` — liveness (used by the platform health checks).
 - `GET /diagnostic` — checks the Claude key + the live congress data source.

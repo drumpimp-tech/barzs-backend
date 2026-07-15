@@ -1,98 +1,18 @@
-"""
-TESTIFAI web/PWA app.
-
-A responsive single-page app served straight from the backend. It runs in any
-phone or desktop browser and installs to the iPhone/Android home screen as a
-standalone app (PWA), so "iOS and web" is one build. It drives the /advocacy
-API: profile, pick a state, pick a legislator, pick an AI use, pick a goal,
-set the length, generate, then read/download/teleprompt.
-"""
-
-from fastapi import APIRouter
-from fastapi.responses import HTMLResponse, JSONResponse, Response
-
-router = APIRouter()
-
-
-@router.get("/manifest.webmanifest")
-async def manifest():
-    return JSONResponse(
-        {
-            "name": "TESTIFAI",
-            "short_name": "TESTIFAI",
-            "description": "Write AI testimony to your legislators and read it on a built-in teleprompter.",
-            "start_url": "/app",
-            "scope": "/app",
-            "display": "standalone",
-            "orientation": "portrait",
-            "background_color": "#0d0d0d",
-            "theme_color": "#0d0d0d",
-            "icons": [
-                {"src": "/app/icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any maskable"},
-            ],
-        },
-        media_type="application/manifest+json",
-    )
-
-
-@router.get("/icon.svg")
-async def icon():
-    return Response(content=_ICON_SVG, media_type="image/svg+xml")
-
-
-@router.get("/sw.js")
-async def service_worker():
-    return Response(content=_SW_JS, media_type="application/javascript")
-
-
-@router.get("", response_class=HTMLResponse)
-@router.get("/", response_class=HTMLResponse)
-async def app_page():
-    return _APP_HTML
-
-
-_ICON_SVG = """<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
-<rect width="512" height="512" rx="112" fill="#0d0d0d"/>
-<rect x="40" y="40" width="432" height="432" rx="84" fill="none" stroke="#c9a84c" stroke-width="10"/>
-<text x="256" y="326" font-family="Helvetica,Arial,sans-serif" font-size="200" font-weight="800"
-      text-anchor="middle" fill="#c9a84c" letter-spacing="-8">TF</text>
-</svg>"""
-
-
-_SW_JS = r"""
-const CACHE = 'testifai-v1';
-const SHELL = ['/app', '/app/icon.svg', '/app/manifest.webmanifest'];
-self.addEventListener('install', e => {
-  e.waitUntil(caches.open(CACHE).then(c => c.addAll(SHELL)).then(() => self.skipWaiting()));
-});
-self.addEventListener('activate', e => {
-  e.waitUntil(caches.keys().then(ks => Promise.all(ks.filter(k => k !== CACHE).map(k => caches.delete(k)))).then(() => self.clients.claim()));
-});
-self.addEventListener('fetch', e => {
-  const url = new URL(e.request.url);
-  // App shell: cache-first. Everything else (API): network-first.
-  if (SHELL.includes(url.pathname)) {
-    e.respondWith(caches.match(e.request).then(r => r || fetch(e.request)));
-  } else {
-    e.respondWith(fetch(e.request).catch(() => caches.match(e.request)));
-  }
-});
-"""
-
-
-_APP_HTML = r"""<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, maximum-scale=1.0, user-scalable=no">
 <title>TESTIFAI</title>
-<link rel="manifest" href="/app/manifest.webmanifest">
+<link rel="manifest" href="./manifest.webmanifest">
 <meta name="theme-color" content="#0d0d0d">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="apple-mobile-web-app-title" content="TESTIFAI">
-<link rel="apple-touch-icon" href="/app/icon.svg">
-<link rel="icon" href="/app/icon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="./icon.png">
+<link rel="apple-touch-icon" sizes="180x180" href="./icon.png">
+<link rel="icon" type="image/png" href="./icon.png">
+<link rel="icon" href="./icon.svg" type="image/svg+xml">
 <style>
   * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
   :root {
@@ -303,6 +223,7 @@ _APP_HTML = r"""<!DOCTYPE html>
   </div>
 </div>
 
+<script>window.TESTIFAI_CONFIG = { static: true };</script>
 <script>
 (function () {
   "use strict";
@@ -994,4 +915,4 @@ _APP_HTML = r"""<!DOCTYPE html>
 })();
 </script>
 </body>
-</html>"""
+</html>
