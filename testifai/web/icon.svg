@@ -1,6 +1,9 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
-<rect width="512" height="512" rx="112" fill="#0d0d0d"/>
-<rect x="40" y="40" width="432" height="432" rx="84" fill="none" stroke="#c9a84c" stroke-width="10"/>
-<text x="256" y="326" font-family="Helvetica,Arial,sans-serif" font-size="200" font-weight="800"
-      text-anchor="middle" fill="#c9a84c" letter-spacing="-8">TF</text>
+<rect width="512" height="512" rx="112" fill="#0a1a3a"/>
+<rect x="34" y="34" width="444" height="444" rx="88" fill="none" stroke="#e02a3c" stroke-width="12"/>
+<rect x="50" y="50" width="412" height="412" rx="76" fill="none" stroke="#4f83e8" stroke-width="6"/>
+<text x="256" y="300" font-family="Helvetica,Arial,sans-serif" font-size="150" font-weight="800"
+      text-anchor="middle" letter-spacing="-6"><tspan fill="#ffffff">TESTIF</tspan></text>
+<text x="256" y="392" font-family="Helvetica,Arial,sans-serif" font-size="150" font-weight="800"
+      text-anchor="middle" letter-spacing="-6"><tspan fill="#4f83e8">AI</tspan></text>
 </svg>

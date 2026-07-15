@@ -54,8 +54,8 @@ MANIFEST = {
     "scope": "/",
     "display": "standalone",
     "orientation": "portrait",
-    "background_color": "#0d0d0d",
-    "theme_color": "#0d0d0d",
+    "background_color": "#0a1a3a",
+    "theme_color": "#0a1a3a",
     "icons": [
         {"src": "./icon.png", "sizes": "512x512", "type": "image/png", "purpose": "any maskable"},
         {"src": "./icon.svg", "sizes": "any", "type": "image/svg+xml"},
@@ -96,28 +96,29 @@ NETLIFY_TOML = """# Static deploy of the TESTIFAI app (bring-your-own-key). No b
 
 
 def make_placeholder_png(path: Path):
-    """A simple on-brand placeholder. Replace web/icon.png with the real art."""
+    """A simple red/white/blue placeholder. Replace web/icon.png with the real art."""
     from PIL import Image, ImageDraw
-    S = 512
-    img = Image.new("RGB", (S, S), (13, 20, 40))
-    d = ImageDraw.Draw(img)
-    d.rounded_rectangle([28, 28, S - 28, S - 28], radius=96, outline=(201, 168, 76), width=10)
-    # a document shape
-    d.rounded_rectangle([150, 130, 362, 382], radius=22, fill=(240, 240, 240))
-    d.rectangle([176, 250, 336, 262], fill=(90, 90, 110))
-    d.rectangle([176, 285, 336, 297], fill=(90, 90, 110))
-    d.rectangle([176, 320, 300, 332], fill=(90, 90, 110))
-    # gold chip
-    d.rounded_rectangle([176, 160, 250, 226], radius=10, fill=(201, 168, 76))
-    # star
     import math
-    cx, cy, r1, r2 = 256, 430, 30, 13
+    NAVY, RED, BLUE, WHITE = (10, 26, 58), (224, 42, 60), (79, 131, 232), (245, 248, 255)
+    S = 512
+    img = Image.new("RGB", (S, S), NAVY)
+    d = ImageDraw.Draw(img)
+    d.rounded_rectangle([26, 26, S - 26, S - 26], radius=100, outline=RED, width=14)
+    d.rounded_rectangle([44, 44, S - 44, S - 44], radius=84, outline=BLUE, width=7)
+    # a document shape
+    d.rounded_rectangle([158, 128, 354, 372], radius=22, fill=WHITE)
+    d.rectangle([184, 244, 328, 256], fill=(120, 130, 150))
+    d.rectangle([184, 278, 328, 290], fill=(120, 130, 150))
+    d.rectangle([184, 312, 292, 324], fill=(120, 130, 150))
+    d.rounded_rectangle([184, 158, 256, 222], radius=10, fill=BLUE)   # chip
+    # star
+    cx, cy, r1, r2 = 256, 428, 32, 13
     pts = []
     for i in range(10):
         ang = -math.pi / 2 + i * math.pi / 5
         rr = r1 if i % 2 == 0 else r2
         pts.append((cx + rr * math.cos(ang), cy + rr * math.sin(ang)))
-    d.polygon(pts, fill=(201, 168, 76))
+    d.polygon(pts, fill=RED)
     img.save(path, "PNG")
 
 

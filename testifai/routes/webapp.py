@@ -25,8 +25,8 @@ async def manifest():
             "scope": "/app",
             "display": "standalone",
             "orientation": "portrait",
-            "background_color": "#0d0d0d",
-            "theme_color": "#0d0d0d",
+            "background_color": "#0a1a3a",
+            "theme_color": "#0a1a3a",
             "icons": [
                 {"src": "/app/icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any maskable"},
             ],
@@ -52,10 +52,13 @@ async def app_page():
 
 
 _ICON_SVG = """<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
-<rect width="512" height="512" rx="112" fill="#0d0d0d"/>
-<rect x="40" y="40" width="432" height="432" rx="84" fill="none" stroke="#c9a84c" stroke-width="10"/>
-<text x="256" y="326" font-family="Helvetica,Arial,sans-serif" font-size="200" font-weight="800"
-      text-anchor="middle" fill="#c9a84c" letter-spacing="-8">TF</text>
+<rect width="512" height="512" rx="112" fill="#0a1a3a"/>
+<rect x="34" y="34" width="444" height="444" rx="88" fill="none" stroke="#e02a3c" stroke-width="12"/>
+<rect x="50" y="50" width="412" height="412" rx="76" fill="none" stroke="#4f83e8" stroke-width="6"/>
+<text x="256" y="300" font-family="Helvetica,Arial,sans-serif" font-size="150" font-weight="800"
+      text-anchor="middle" letter-spacing="-6"><tspan fill="#ffffff">TESTIF</tspan></text>
+<text x="256" y="392" font-family="Helvetica,Arial,sans-serif" font-size="150" font-weight="800"
+      text-anchor="middle" letter-spacing="-6"><tspan fill="#4f83e8">AI</tspan></text>
 </svg>"""
 
 
@@ -87,7 +90,7 @@ _APP_HTML = r"""<!DOCTYPE html>
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, maximum-scale=1.0, user-scalable=no">
 <title>TESTIFAI</title>
 <link rel="manifest" href="/app/manifest.webmanifest">
-<meta name="theme-color" content="#0d0d0d">
+<meta name="theme-color" content="#0a1a3a">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="apple-mobile-web-app-title" content="TESTIFAI">
@@ -96,8 +99,11 @@ _APP_HTML = r"""<!DOCTYPE html>
 <style>
   * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
   :root {
-    --bg: #0d0d0d; --panel: #161616; --panel2: #1e1e1e; --line: #2a2a2a;
-    --fg: #eaeaea; --muted: #8f8f8f; --gold: #c9a84c; --gold-dim: #9c823a;
+    /* Red, white & blue. --gold kept as the var name but is now the primary red. */
+    --bg: #0a1a3a; --panel: #11244a; --panel2: #172c57; --line: #2a3f6b;
+    --fg: #f5f8ff; --muted: #9fb2d6;
+    --gold: #e02a3c; --gold-dim: #b21f2e;   /* primary red */
+    --blue: #4f83e8; --red: #e02a3c; --white: #ffffff;
     --ok: #7cf3a0; --bad: #ff6b6b; --radius: 14px;
   }
   html, body { height: 100%; }
@@ -114,17 +120,18 @@ _APP_HTML = r"""<!DOCTYPE html>
 
   /* header */
   header { display: flex; align-items: center; gap: 10px; margin-bottom: 6px; }
-  .logo { width: 34px; height: 34px; border: 2px solid var(--gold); border-radius: 9px;
-    display: grid; place-items: center; color: var(--gold); font-weight: 800; font-size: 15px; }
+  .logo { width: 36px; height: 36px; border-radius: 9px; display: block; object-fit: cover; }
   .brand { font-weight: 800; letter-spacing: 1px; font-size: 20px; }
-  .brand span { color: var(--gold); }
+  .brand span { color: var(--blue); }
+  .brand-icon { display: block; margin: 6px auto 14px; width: 96px; height: 96px;
+    border-radius: 22px; object-fit: cover; box-shadow: 0 10px 34px rgba(0,0,0,.55); }
   .tag { color: var(--muted); font-size: 12.5px; margin: 2px 0 16px; }
 
   /* progress */
   .steps { display: flex; gap: 6px; margin-bottom: 18px; }
   .steps .dot { flex: 1; height: 4px; border-radius: 3px; background: var(--line); }
-  .steps .dot.on { background: var(--gold); }
-  .steps .dot.done { background: var(--gold-dim); }
+  .steps .dot.on { background: var(--red); }
+  .steps .dot.done { background: var(--blue); }
 
   h2 { font-size: 20px; margin-bottom: 4px; }
   .sub { color: var(--muted); font-size: 13.5px; margin-bottom: 16px; }
@@ -142,7 +149,7 @@ _APP_HTML = r"""<!DOCTYPE html>
   .btn {
     display: inline-flex; align-items: center; justify-content: center; gap: 8px;
     width: 100%; padding: 15px; border-radius: var(--radius); border: 1px solid var(--gold);
-    background: var(--gold); color: #111; font-weight: 700; font-size: 16px; cursor: pointer;
+    background: var(--gold); color: #fff; font-weight: 700; font-size: 16px; cursor: pointer;
   }
   .btn:disabled { opacity: .45; cursor: not-allowed; }
   .btn.ghost { background: transparent; color: var(--fg); border-color: var(--line); }
@@ -164,8 +171,8 @@ _APP_HTML = r"""<!DOCTYPE html>
     background: var(--panel); border: 1px solid var(--line); border-radius: var(--radius);
     padding: 13px 14px; cursor: pointer; display: flex; align-items: center; gap: 12px;
   }
-  .card:hover { border-color: var(--gold-dim); }
-  .card.sel { border-color: var(--gold); background: #1c1a12; }
+  .card:hover { border-color: var(--blue); }
+  .card.sel { border-color: var(--blue); background: rgba(79,131,232,.15); }
   .card .avatar { width: 42px; height: 42px; border-radius: 50%; object-fit: cover; background: var(--panel2);
     flex: 0 0 42px; display: grid; place-items: center; color: var(--muted); font-size: 15px; font-weight: 700; }
   .card .meta { min-width: 0; }
@@ -206,7 +213,7 @@ _APP_HTML = r"""<!DOCTYPE html>
   .hist .row2 .name { font-weight: 650; font-size: 14.5px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
   .hist .row2 .desc { color: var(--muted); font-size: 12px; }
   .hist .row2 .del { color: var(--muted); font-size: 20px; cursor: pointer; padding: 4px 8px; border: 1px solid var(--line); border-radius: 8px; }
-  .link { color: var(--gold); font-size: 13px; cursor: pointer; text-decoration: underline; }
+  .link { color: var(--blue); font-size: 13px; cursor: pointer; text-decoration: underline; }
 
   .msg { border-radius: var(--radius); padding: 12px 14px; font-size: 13.5px; margin-top: 12px; }
   .msg.err { background: #2a1414; border: 1px solid #5a2a2a; color: #ffb3b3; }
@@ -239,7 +246,7 @@ _APP_HTML = r"""<!DOCTYPE html>
     font-size: var(--tp-size, 40px); line-height: 1.55; font-weight: 650;
     color: var(--tp-fg, #fff); text-align: center; }
   .tp-inner .sent { transition: background .15s; padding: 0 2px; border-radius: 6px; }
-  .tp-inner .sent.active { background: rgba(201,168,76,.32); }
+  .tp-inner .sent.active { background: rgba(79,131,232,.42); }
   .tp-title { font-size: .5em; color: var(--gold); margin-bottom: .8em; font-weight: 700; }
   .tp-guide { position: absolute; top: 50%; left: 0; right: 0; height: 2px;
     background: linear-gradient(90deg, transparent, var(--gold), transparent); opacity: .3; pointer-events: none; }
@@ -250,7 +257,7 @@ _APP_HTML = r"""<!DOCTYPE html>
   .tp-bar.hidden { display: none; }
   .tp-bar button { background: #2a2a2a; color: #eee; border: 1px solid #3a3a3a; border-radius: 9px;
     padding: 9px 13px; font-size: 13px; font-weight: 650; cursor: pointer; }
-  .tp-bar button.on { background: var(--gold); color: #111; border-color: var(--gold); }
+  .tp-bar button.on { background: var(--gold); color: #fff; border-color: var(--gold); }
   .tp-bar .grp { display: flex; align-items: center; gap: 6px; color: var(--muted); font-size: 12px; }
   .tp-bar input[type=range] { width: 84px; accent-color: var(--gold); }
   .tp-bar select { background: #2a2a2a; color: #eee; border: 1px solid #3a3a3a; border-radius: 8px;
@@ -263,7 +270,7 @@ _APP_HTML = r"""<!DOCTYPE html>
 <body>
 <div id="app">
   <header>
-    <div class="logo">TF</div>
+    <img class="logo" id="brandIcon" alt="TESTIFAI">
     <div class="brand">TESTIF<span>AI</span></div>
   </header>
   <div class="tag" id="tagline">Speak up to your lawmakers about AI.</div>
@@ -349,6 +356,8 @@ _APP_HTML = r"""<!DOCTYPE html>
   // supplies their own Anthropic key, and the browser calls Claude directly.
   var CFG = window.TESTIFAI_CONFIG || {};
   var STATIC = !!CFG.static;
+  var ICON = CFG.icon || (STATIC ? "./icon.png" : "/app/icon.svg");
+  function brandIconTag() { return '<img class="brand-icon" src="' + ICON + '" alt="TESTIFAI">'; }
   var MODEL = CFG.model || "claude-sonnet-5";
   var WPM = 140;
   var KKEY = "testifai_anthropic_key";
@@ -483,6 +492,7 @@ _APP_HTML = r"""<!DOCTYPE html>
 
   // ── boot: load reference data ──
   async function boot() {
+    var bi = document.getElementById("brandIcon"); if (bi) bi.src = ICON;
     renderLoading("Loading TESTIFAI...");
     try {
       await loadRefData();
@@ -504,7 +514,8 @@ _APP_HTML = r"""<!DOCTYPE html>
     document.getElementById("tagline").classList.add("hidden");
     var existing = getKey();
     screen.innerHTML =
-      '<h2>' + (firstRun ? 'Welcome to TESTIFAI' : 'Your Claude API key') + '</h2>' +
+      brandIconTag() +
+      '<h2 style="text-align:center">' + (firstRun ? 'Welcome to TESTIFAI' : 'Your Claude API key') + '</h2>' +
       '<p class="sub">TESTIFAI writes your script with Claude. You use your own Anthropic API key. It is stored only on this device and sent straight to Anthropic, never to us.</p>' +
       '<div class="msg info" style="line-height:1.7">' +
         '<b style="color:var(--fg)">How to get a key</b><br>' +
@@ -532,7 +543,7 @@ _APP_HTML = r"""<!DOCTYPE html>
   }
 
   function renderLoading(txt) {
-    screen.innerHTML = '<div class="center"><div class="spinner" style="border-color:rgba(201,168,76,.25);border-top-color:var(--gold)"></div><div>' + esc(txt) + '</div></div>';
+    screen.innerHTML = '<div class="center"><div class="spinner" style="border-color:rgba(255,255,255,.18);border-top-color:var(--gold)"></div><div>' + esc(txt) + '</div></div>';
     navInner.innerHTML = "";
   }
 
@@ -576,7 +587,8 @@ _APP_HTML = r"""<!DOCTYPE html>
   function screenIntro() {
     var saved = loadHistory().length;
     screen.innerHTML =
-      '<h2>Testify about AI.</h2>' +
+      brandIconTag() +
+      '<h2 style="text-align:center">Testify about AI.</h2>' +
       '<p class="sub">Pick a lawmaker, pick how AI touches your life, and TESTIFAI writes you a short, human speech to read. No em dashes. No AI buzzwords. Then read it on the built-in teleprompter.</p>' +
       '<div class="list">' +
         card2("Real legislators", "Your U.S. Senators and Representatives, pulled live by state.") +
@@ -652,7 +664,7 @@ _APP_HTML = r"""<!DOCTYPE html>
   }
   function renderLegs() {
     var box = document.getElementById("legs"); if (!box) return;
-    if (state.loadingLegs) { box.innerHTML = '<div class="center"><div class="spinner" style="border-color:rgba(201,168,76,.25);border-top-color:var(--gold)"></div><div>Finding lawmakers...</div></div>'; return; }
+    if (state.loadingLegs) { box.innerHTML = '<div class="center"><div class="spinner" style="border-color:rgba(255,255,255,.18);border-top-color:var(--gold)"></div><div>Finding lawmakers...</div></div>'; return; }
     if (state.legError) { box.innerHTML = '<div class="msg err">Could not load lawmakers for this state. ' + esc(state.legError) + '</div><button class="btn ghost" id="retryLegs" style="margin-top:10px">Try again</button>'; var r = document.getElementById("retryLegs"); if (r) r.addEventListener("click", loadLegs); return; }
     if (!state.targetState) { box.innerHTML = '<div class="msg info">Choose a state to see its lawmakers.</div>'; return; }
     if (!state.legislators.length) { box.innerHTML = '<div class="msg info">No lawmakers found.</div>'; return; }
@@ -745,7 +757,7 @@ _APP_HTML = r"""<!DOCTYPE html>
 
   async function generate() {
     state.generating = true; state.genError = "";
-    screen.innerHTML = '<div class="center"><div class="spinner" style="border-color:rgba(201,168,76,.25);border-top-color:var(--gold)"></div><div>Writing your script...</div><div class="muted">Applying the Blackout list</div></div>';
+    screen.innerHTML = '<div class="center"><div class="spinner" style="border-color:rgba(255,255,255,.18);border-top-color:var(--gold)"></div><div>Writing your script...</div><div class="muted">Applying the Blackout list</div></div>';
     navInner.innerHTML = "";
     try {
       var body = {
