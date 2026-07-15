@@ -23,7 +23,7 @@ app.include_router(lyrics.router,     prefix="/lyrics",     tags=["Lyrics"])
 app.include_router(transcribe.router, prefix="/transcribe", tags=["Transcription"])
 app.include_router(dictionary.router, prefix="/dictionary", tags=["Dictionary"])
 app.include_router(tts.router,        prefix="/tts",        tags=["TTS"])
-app.include_router(advocacy.router,   prefix="/advocacy",   tags=["AI Advocacy"])
+app.include_router(advocacy.router,   prefix="/advocacy",   tags=["TESTIFAI"])
 
 
 @app.get("/health")

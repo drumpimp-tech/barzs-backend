@@ -1,12 +1,13 @@
 """
-AI Advocacy Script generation service.
+TESTIFAI script generation service.
 
 Takes a target legislator, an AI application, an advocacy goal, the user's
 profile, a desired length, and (optionally) the user's public social links,
-and writes a personalized, ready-to-read advocacy script via Claude.
+and writes a personalized, ready-to-read testimony script via Claude.
 """
 
 import os
+import re
 import asyncio
 import anthropic
 import httpx
@@ -23,30 +24,54 @@ _BROWSER_UA = (
 )
 
 
-SYSTEM_PROMPT = """You are an expert political speechwriter who specializes in \
-persuasive, respectful advocacy addressed to elected officials. You write \
-scripts that ordinary citizens and creators can read aloud — to camera, at a \
-town hall, or in a call to their representative — to advocate for the positive, \
-responsible role of artificial intelligence.
+SYSTEM_PROMPT = """You write first-person testimony that a real person reads out \
+loud to their elected official about artificial intelligence. The speaker points \
+a camera at themselves, or stands at a town hall, or calls their rep, and says \
+these exact words. It has to sound like THEM, not like a machine wrote it.
 
-Your scripts are:
-- Warm, human, and grounded in the speaker's own life and community.
-- Specific to the legislator being addressed (their state, their role, their constituents).
-- Focused on ONE AI application and ONE advocacy goal, without drifting.
-- Honest and balanced: acknowledge real concerns while making the case.
-- Free of partisan attacks, insults, or misinformation.
-- Written to be SPOKEN, not read on a page: short sentences, natural rhythm, \
-clear signposting, easy to say out loud.
+HARD RULES:
+1. NEVER use an em dash or en dash. No "--". Use a comma, a period, or start a \
+new sentence. This is non-negotiable.
+2. Do not sound like AI. Banned tells: "It's not just X, it's Y." "In today's \
+world / In an era of." "delve", "tapestry", "testament to", "navigate the \
+landscape", "at the end of the day", "moreover", "furthermore", "unlock", \
+"empower", "harness", "foster", "vibrant", "ever-evolving", "double-edged \
+sword", "game-changer", stacked lists of three adjectives, and neat little \
+"on one hand / on the other hand" balance. If a sentence sounds like a press \
+release or a LinkedIn post, rewrite it.
+3. Write the way people actually talk. Use contractions. Short sentences. Let \
+some sentences be five words. Say plain things plainly. Name real, concrete \
+stuff, not vague uplift.
 
-Structure every script with:
-1. A greeting that names the legislator and the speaker.
-2. A personal hook — why the speaker cares (drawn from their profile and creator work).
-3. The core message about the chosen AI application and goal, with a concrete example.
-4. A specific, reasonable ask of the legislator.
-5. A memorable closing line and thank-you.
+VOICE:
+- First person, direct address to the legislator by name.
+- Grounded in the speaker's own life, work, and community (use their profile and \
+their creator presence when given, but never invent facts about them).
+- Focused on ONE AI use and ONE goal. Don't drift.
+- Honest. You can admit a worry, then say why you still believe in it. No \
+partisan attacks, no insults, no made-up statistics.
 
-Return ONLY the script text — no stage directions, no markdown headers, no \
-word-count notes, no commentary. Write it exactly as it should be read aloud."""
+SHAPE (do not label these out loud, just write them):
+- Open by naming the official and yourself in one plain breath.
+- Say why this is personal to you, fast, with a real detail.
+- Make the case for this one AI use and this one goal, with a concrete example \
+anyone can picture.
+- Make one clear, reasonable ask of this official.
+- Close with a line that sticks, and a thank you.
+
+Return ONLY the spoken words. No headings, no stage directions, no notes about \
+length, no quotation marks around the whole thing. Just what the speaker says."""
+
+
+def _strip_em_dashes(text: str) -> str:
+    """Guarantee no em/en dashes survive, whatever the model does."""
+    # em dash, en dash, horizontal bar, and the "--" typographic stand-in.
+    text = re.sub(r"\s*(?:--+|[—–―])\s*", ", ", text)
+    # Clean up artifacts like ", ," or ", ." the substitution can create.
+    text = re.sub(r",\s*([,.;:!?])", r"\1", text)
+    text = re.sub(r"\bI,\s*([a-z])", r"I \1", text)  # avoid "I, m" style glitches
+    text = re.sub(r"[ \t]{2,}", " ", text)
+    return text
 
 
 def _estimate_words(minutes: float) -> int:
@@ -130,7 +155,7 @@ async def generate_script(
     target_words = _estimate_words(minutes)
 
     leg_line = (
-        f"{legislator.get('name')} — {legislator.get('role')}"
+        f"{legislator.get('name')}, {legislator.get('role')}"
         + (f", District {legislator['district']}" if legislator.get("district") else "")
         + f" ({legislator.get('party')}, {legislator.get('state')})"
     )
@@ -152,29 +177,30 @@ async def generate_script(
     else:
         model, max_tokens = "claude-sonnet-4-6", 4000
 
-    user_prompt = f"""Write an AI-advocacy script to be read aloud.
+    user_prompt = f"""Write spoken testimony the speaker reads out loud.
 
-TARGET LEGISLATOR (address this person directly and respectfully):
+WHO THEY ARE TALKING TO (address this person directly and respectfully):
 {leg_line}
 
-SPEAKER PROFILE:
+WHO IS SPEAKING:
 {profile}
 
 {creator_block or "SPEAKER'S PUBLIC PRESENCE: (none provided)"}
 
-AI APPLICATION THIS SCRIPT IS ABOUT:
-{application.get('name')} — {application.get('blurb')}
+THE ONE AI USE THIS IS ABOUT:
+{application.get('name')}: {application.get('blurb')}
 
-GOAL OF THIS SCRIPT:
-{goal.get('name')} — {goal.get('blurb')}
+THE ONE GOAL:
+{goal.get('name')}: {goal.get('blurb')}
 
 LENGTH:
-About {minutes:g} minute(s) when read aloud — roughly {target_words} words. \
-Hit that length closely; do not go far over or under.
+About {minutes:g} minute(s) out loud, roughly {target_words} words. Hit that \
+length closely. Do not go far over or under.
 
 Make it personal to the speaker, specific to {legislator.get('state')} and to \
 {legislator.get('name')}, focused only on {application.get('name')} and the goal \
-of {goal.get('name')}. Return ONLY the spoken script text."""
+of {goal.get('name')}. Remember the hard rules: no em dashes, and it must not \
+sound like AI wrote it. Return ONLY the spoken words."""
 
     message = await client.messages.create(
         model=model,
@@ -183,11 +209,11 @@ of {goal.get('name')}. Return ONLY the spoken script text."""
         messages=[{"role": "user", "content": user_prompt}],
     )
 
-    script = message.content[0].text.strip()
+    script = _strip_em_dashes(message.content[0].text.strip())
     word_count = len(script.split())
 
     title = (
-        f"AI Advocacy — {application.get('name')} to {legislator.get('name')} "
+        f"TESTIFAI: {application.get('name')} for {legislator.get('name')} "
         f"({legislator.get('state')})"
     )
 

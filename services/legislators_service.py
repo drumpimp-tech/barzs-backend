@@ -1,5 +1,5 @@
 """
-Legislator data service for the AI Advocacy Script app.
+Legislator data service for the TESTIFAI script app.
 
 Pulls **live, current** legislator data so scripts can be addressed to real
 officials:

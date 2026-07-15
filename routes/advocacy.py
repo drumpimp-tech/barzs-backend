@@ -111,8 +111,8 @@ async def download(body: dict):
     script = body.get("script", "")
     if not script:
         raise HTTPException(status_code=400, detail="script is required")
-    title = body.get("title", "ai-advocacy-script")
-    slug = re.sub(r"[^a-z0-9]+", "-", title.lower()).strip("-") or "ai-advocacy-script"
+    title = body.get("title", "testifai-script")
+    slug = re.sub(r"[^a-z0-9]+", "-", title.lower()).strip("-") or "testifai-script"
     header = f"{title}\n{'=' * len(title)}\n\n" if body.get("include_title", True) else ""
     content = header + script + "\n"
     return Response(
@@ -134,7 +134,7 @@ _TELEPROMPTER_HTML = r"""<!DOCTYPE html>
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<title>AI Advocacy — Teleprompter</title>
+<title>TESTIFAI Teleprompter</title>
 <style>
   * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
   :root {
@@ -273,9 +273,9 @@ _TELEPROMPTER_HTML = r"""<!DOCTYPE html>
   <div id="hint">Tap screen to hide/show controls</div>
 
   <div id="paste">
-    <h1>AI Advocacy Teleprompter</h1>
+    <h1>TESTIFAI Teleprompter</h1>
     <p>No script loaded. Paste your script below, or open this page from the app with a generated script.</p>
-    <textarea id="pasteText" placeholder="Paste your advocacy script here..."></textarea>
+    <textarea id="pasteText" placeholder="Paste your testimony script here..."></textarea>
     <button class="primary" id="loadPaste">Load Script</button>
   </div>
 </div>

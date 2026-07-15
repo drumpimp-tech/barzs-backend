@@ -96,7 +96,7 @@ class DictionaryTerm(BaseModel):
     related_terms: list[str] = []
 
 
-# ── AI Advocacy Script app ───────────────────────────────────────────────────
+# ── TESTIFAI script app ──────────────────────────────────────────────────────
 
 class Legislator(BaseModel):
     id: str
