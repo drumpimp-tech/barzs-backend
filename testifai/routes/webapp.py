@@ -207,6 +207,43 @@ _APP_HTML = r"""<!DOCTYPE html>
   .muted { color: var(--muted); font-size: 12.5px; }
   .search { margin-top: 8px; }
   .count { color: var(--muted); font-size: 12px; margin: 10px 0 2px; }
+
+  /* iOS add-to-home-screen hint */
+  .a2hs { position: fixed; left: 12px; right: 12px; bottom: calc(env(safe-area-inset-bottom) + 88px);
+    z-index: 15; background: var(--panel2); border: 1px solid var(--gold); border-radius: var(--radius);
+    padding: 11px 14px; font-size: 13px; display: flex; gap: 10px; align-items: center;
+    box-shadow: 0 6px 24px rgba(0,0,0,.5); }
+  .a2hs .x { margin-left: auto; color: var(--muted); font-size: 20px; cursor: pointer; padding: 0 4px; }
+  .a2hs b { color: var(--gold); }
+
+  /* in-app teleprompter (stays inside the installed app / PWA scope) */
+  .tp { position: fixed; inset: 0; z-index: 100; display: flex; flex-direction: column;
+    background: var(--tp-bg, #000); }
+  .tp.hidden { display: none; }
+  .tp-scroll { flex: 1; overflow-y: auto; -webkit-overflow-scrolling: touch; scroll-behavior: auto; }
+  .tp-inner { padding: 46vh 8vw calc(46vh + env(safe-area-inset-bottom));
+    font-size: var(--tp-size, 40px); line-height: 1.55; font-weight: 650;
+    color: var(--tp-fg, #fff); text-align: center; }
+  .tp-inner .sent { transition: background .15s; padding: 0 2px; border-radius: 6px; }
+  .tp-inner .sent.active { background: rgba(201,168,76,.32); }
+  .tp-title { font-size: .5em; color: var(--gold); margin-bottom: .8em; font-weight: 700; }
+  .tp-guide { position: absolute; top: 50%; left: 0; right: 0; height: 2px;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent); opacity: .3; pointer-events: none; }
+  .tp-bar { position: absolute; left: 0; right: 0; bottom: 0; background: rgba(18,18,18,.96);
+    backdrop-filter: blur(8px); border-top: 1px solid var(--line);
+    padding: 10px 12px calc(env(safe-area-inset-bottom) + 10px);
+    display: flex; gap: 8px; flex-wrap: wrap; align-items: center; }
+  .tp-bar.hidden { display: none; }
+  .tp-bar button { background: #2a2a2a; color: #eee; border: 1px solid #3a3a3a; border-radius: 9px;
+    padding: 9px 13px; font-size: 13px; font-weight: 650; cursor: pointer; }
+  .tp-bar button.on { background: var(--gold); color: #111; border-color: var(--gold); }
+  .tp-bar .grp { display: flex; align-items: center; gap: 6px; color: var(--muted); font-size: 12px; }
+  .tp-bar input[type=range] { width: 84px; accent-color: var(--gold); }
+  .tp-bar select { background: #2a2a2a; color: #eee; border: 1px solid #3a3a3a; border-radius: 8px;
+    padding: 7px 8px; font-size: 12.5px; max-width: 130px; }
+  .tp-bar .sw { width: 22px; height: 22px; border-radius: 6px; border: 2px solid #444; cursor: pointer; padding: 0; }
+  .tp-hint { position: absolute; top: calc(env(safe-area-inset-top) + 10px); left: 0; right: 0;
+    text-align: center; color: rgba(255,255,255,.35); font-size: 12px; pointer-events: none; }
 </style>
 </head>
 <body>
@@ -222,6 +259,34 @@ _APP_HTML = r"""<!DOCTYPE html>
 
 <div class="nav" id="nav">
   <div class="nav-inner" id="navInner"></div>
+</div>
+
+<!-- in-app teleprompter overlay (kept inside the app so the iPhone PWA stays standalone) -->
+<div class="tp hidden" id="tp">
+  <div class="tp-scroll" id="tpScroll"><div class="tp-inner" id="tpInner"></div></div>
+  <div class="tp-guide"></div>
+  <div class="tp-hint">Tap the script to hide controls</div>
+  <div class="tp-bar" id="tpBar">
+    <button id="tpPlay">▶ Scroll</button>
+    <button id="tpRead">🔊 Read</button>
+    <div class="grp">Speed<input type="range" id="tpSpeed" min="10" max="200" value="55"></div>
+    <div class="grp">Size<input type="range" id="tpSize" min="24" max="80" value="40"></div>
+    <div class="grp">BG
+      <button class="sw" style="background:#000" data-bg="#000000"></button>
+      <button class="sw" style="background:#0b3d2e" data-bg="#0b3d2e"></button>
+      <button class="sw" style="background:#101828" data-bg="#101828"></button>
+      <button class="sw" style="background:#fff" data-bg="#ffffff"></button>
+    </div>
+    <div class="grp">Text
+      <button class="sw" style="background:#fff" data-fg="#ffffff"></button>
+      <button class="sw" style="background:#c9a84c" data-fg="#c9a84c"></button>
+      <button class="sw" style="background:#7cf3a0" data-fg="#7cf3a0"></button>
+      <button class="sw" style="background:#000" data-fg="#000000"></button>
+    </div>
+    <div class="grp" id="tpVoiceGrp">Voice<select id="tpVoice"></select></div>
+    <div class="grp">Rate<input type="range" id="tpRate" min="0.5" max="1.5" step="0.05" value="1"></div>
+    <button id="tpClose">Done</button>
+  </div>
 </div>
 
 <script>
@@ -268,7 +333,9 @@ _APP_HTML = r"""<!DOCTYPE html>
     try {
       var res = await Promise.all([api("/advocacy/states"), api("/advocacy/applications"), api("/advocacy/goals")]);
       state.ref.states = res[0]; state.ref.applications = res[1]; state.ref.goals = res[2];
+      initTeleprompter();
       render();
+      maybeShowA2HS();
     } catch (e) {
       screen.innerHTML = '<div class="msg err">Could not reach the server. ' + esc(e.message) + '</div>';
       navInner.innerHTML = "";
@@ -517,13 +584,10 @@ _APP_HTML = r"""<!DOCTYPE html>
       navigator.clipboard.writeText(r.script).then(function () { flash("copyBtn", "Copied!"); });
     });
     document.getElementById("dlBtn").addEventListener("click", function () {
-      var blob = new Blob([r.title + "\n\n" + r.script + "\n"], { type: "text/plain" });
-      var a = document.createElement("a"); a.href = URL.createObjectURL(blob);
-      a.download = (r.title || "testifai-script").replace(/[^a-z0-9]+/gi, "-").toLowerCase().replace(/^-+|-+$/g, "") + ".txt";
-      document.body.appendChild(a); a.click(); a.remove();
+      shareOrDownload(r.title, r.script);
     });
     document.getElementById("teleBtn").addEventListener("click", function () {
-      if (r.teleprompter_url) { window.open(r.teleprompter_url, "_blank"); }
+      openTeleprompter(r.title, r.script);
     });
     nav([
       { label: "Start over", cls: "ghost", flex0: true, onClick: function () { reset(); } },
@@ -531,6 +595,138 @@ _APP_HTML = r"""<!DOCTYPE html>
     ]);
   }
   function flash(id, txt) { var b = document.getElementById(id); if (!b) return; var o = b.textContent; b.textContent = txt; setTimeout(function () { b.textContent = o; }, 1200); }
+
+  // ── Save / share (iOS uses the native share sheet; a.download is ignored there) ──
+  function slug(t) { return (String(t || "testifai-script").replace(/[^a-z0-9]+/gi, "-").toLowerCase().replace(/^-+|-+$/g, "")) || "testifai-script"; }
+  async function shareOrDownload(title, text) {
+    var body = title + "\n\n" + text + "\n";
+    var fname = slug(title) + ".txt";
+    try {
+      if (navigator.canShare) {
+        var file = new File([body], fname, { type: "text/plain" });
+        if (navigator.canShare({ files: [file] })) { await navigator.share({ files: [file], title: title }); return; }
+      }
+    } catch (e) {}
+    try { if (navigator.share) { await navigator.share({ title: title, text: body }); return; } } catch (e) {}
+    try {
+      var blob = new Blob([body], { type: "text/plain" });
+      var a = document.createElement("a"); a.href = URL.createObjectURL(blob); a.download = fname;
+      document.body.appendChild(a); a.click(); a.remove(); return;
+    } catch (e) {}
+    try { await navigator.clipboard.writeText(body); alert("Copied to clipboard."); } catch (e) {}
+  }
+
+  // ── In-app teleprompter (never leaves the app, so the iPhone PWA stays standalone) ──
+  var TP = { scrolling: false, raf: null, speed: 55, reading: false, sentences: [], voices: [], keepAlive: null };
+  var tpEl, tpScroll, tpInner;
+
+  function splitSentences(para) { return (para.match(/[^.!?]+[.!?]*/g) || [para]).filter(function (s) { return s.trim().length; }); }
+
+  function openTeleprompter(title, script) {
+    tpInner.innerHTML = ""; TP.sentences = [];
+    if (title) { var t = document.createElement("div"); t.className = "tp-title"; t.textContent = title; tpInner.appendChild(t); }
+    script.split(/\n{2,}/).forEach(function (para) {
+      var pdiv = document.createElement("div"); pdiv.style.marginBottom = "0.85em";
+      splitSentences(para.replace(/\n+/g, " ")).forEach(function (s) {
+        var span = document.createElement("span"); span.className = "sent"; span.textContent = s.trim() + " ";
+        pdiv.appendChild(span); TP.sentences.push(span);
+      });
+      tpInner.appendChild(pdiv);
+    });
+    tpEl.style.setProperty("--tp-size", document.getElementById("tpSize").value + "px");
+    tpScroll.scrollTop = 0;
+    tpEl.classList.remove("hidden");
+    document.body.style.overflow = "hidden";
+    loadVoices();
+  }
+  function closeTeleprompter() { setTpScroll(false); stopRead(); tpEl.classList.add("hidden"); document.body.style.overflow = ""; }
+
+  function setTpScroll(on) {
+    TP.scrolling = on; var b = document.getElementById("tpPlay");
+    b.classList.toggle("on", on); b.textContent = on ? "⏸ Pause" : "▶ Scroll";
+    if (on) { cancelAnimationFrame(TP.raf); TP.raf = requestAnimationFrame(tpTick); }
+  }
+  function tpTick() {
+    if (!TP.scrolling) return;
+    tpScroll.scrollTop += TP.speed / 60;
+    if (tpScroll.scrollTop + tpScroll.clientHeight >= tpScroll.scrollHeight - 1) { setTpScroll(false); return; }
+    TP.raf = requestAnimationFrame(tpTick);
+  }
+
+  function hasSpeech() { return "speechSynthesis" in window && "SpeechSynthesisUtterance" in window; }
+  function loadVoices() {
+    var grp = document.getElementById("tpVoiceGrp");
+    if (!hasSpeech()) { grp.style.display = "none"; document.getElementById("tpRead").style.display = "none"; return; }
+    var all = window.speechSynthesis.getVoices();
+    TP.voices = all.filter(function (v) { return /^en/i.test(v.lang); });
+    if (!TP.voices.length) TP.voices = all;
+    var sel = document.getElementById("tpVoice"); sel.innerHTML = "";
+    TP.voices.forEach(function (v, i) { var o = document.createElement("option"); o.value = i; o.textContent = v.name; if (v.default) o.selected = true; sel.appendChild(o); });
+    grp.style.display = TP.voices.length ? "" : "none";
+  }
+  function highlight(i) { TP.sentences.forEach(function (s, j) { s.classList.toggle("active", j === i); }); }
+  function nearestSentence() {
+    var mid = tpScroll.scrollTop + tpScroll.clientHeight / 2, best = 0, bd = 1e12;
+    TP.sentences.forEach(function (s, i) { var c = s.offsetTop + s.offsetHeight / 2; var d = Math.abs(c - mid); if (d < bd) { bd = d; best = i; } });
+    return best;
+  }
+  function speakFrom(i) {
+    if (i >= TP.sentences.length) { stopRead(); return; }
+    highlight(i);
+    TP.sentences[i].scrollIntoView({ behavior: "smooth", block: "center" });
+    var u = new SpeechSynthesisUtterance(TP.sentences[i].textContent.trim());
+    var sel = document.getElementById("tpVoice"); var v = TP.voices[+sel.value]; if (v) u.voice = v;
+    u.rate = parseFloat(document.getElementById("tpRate").value) || 1;
+    u.onend = function () { if (TP.reading) speakFrom(i + 1); };
+    u.onerror = function () { if (TP.reading) speakFrom(i + 1); };
+    window.speechSynthesis.speak(u);
+  }
+  function startRead() {
+    if (!hasSpeech()) { alert("Read aloud isn't supported in this browser."); return; }
+    window.speechSynthesis.cancel();
+    TP.reading = true; setReadBtn(true);
+    // iOS silently pauses long synth queues; nudge it back awake.
+    clearInterval(TP.keepAlive);
+    TP.keepAlive = setInterval(function () { var s = window.speechSynthesis; if (TP.reading && s.paused) s.resume(); }, 2500);
+    speakFrom(nearestSentence());
+  }
+  function stopRead() {
+    TP.reading = false; setReadBtn(false); clearInterval(TP.keepAlive);
+    if (hasSpeech()) window.speechSynthesis.cancel();
+    highlight(-1);
+  }
+  function setReadBtn(on) { var b = document.getElementById("tpRead"); b.classList.toggle("on", on); b.textContent = on ? "⏹ Stop" : "🔊 Read"; }
+
+  function initTeleprompter() {
+    tpEl = document.getElementById("tp"); tpScroll = document.getElementById("tpScroll"); tpInner = document.getElementById("tpInner");
+    document.getElementById("tpPlay").onclick = function () { setTpScroll(!TP.scrolling); };
+    document.getElementById("tpRead").onclick = function () { TP.reading ? stopRead() : startRead(); };
+    document.getElementById("tpSpeed").oninput = function (e) { TP.speed = +e.target.value; };
+    document.getElementById("tpSize").oninput = function (e) { tpEl.style.setProperty("--tp-size", e.target.value + "px"); };
+    document.getElementById("tpRate").oninput = function () { if (TP.reading) startRead(); };
+    document.getElementById("tpVoice").onchange = function () { if (TP.reading) startRead(); };
+    document.getElementById("tpClose").onclick = closeTeleprompter;
+    Array.prototype.forEach.call(document.querySelectorAll("#tpBar .sw"), function (sw) {
+      sw.onclick = function () {
+        if (sw.dataset.bg) tpEl.style.setProperty("--tp-bg", sw.dataset.bg);
+        if (sw.dataset.fg) tpEl.style.setProperty("--tp-fg", sw.dataset.fg);
+      };
+    });
+    tpScroll.addEventListener("click", function () { document.getElementById("tpBar").classList.toggle("hidden"); });
+    if (hasSpeech()) window.speechSynthesis.onvoiceschanged = loadVoices;
+  }
+
+  // ── iOS "Add to Home Screen" hint (only on iOS Safari, not already installed) ──
+  function maybeShowA2HS() {
+    var isIOS = /iphone|ipad|ipod/i.test(navigator.userAgent);
+    var standalone = navigator.standalone === true || (window.matchMedia && window.matchMedia("(display-mode: standalone)").matches);
+    var dismissed = false; try { dismissed = !!localStorage.getItem("a2hs_dismissed"); } catch (e) {}
+    if (!isIOS || standalone || dismissed) return;
+    var d = document.createElement("div"); d.className = "a2hs";
+    d.innerHTML = '<div>Install the app: tap <b>Share</b>, then <b>Add to Home Screen</b>.</div><div class="x">&times;</div>';
+    d.querySelector(".x").onclick = function () { d.remove(); try { localStorage.setItem("a2hs_dismissed", "1"); } catch (e) {} };
+    document.body.appendChild(d);
+  }
 
   function go(step) { state.step = step; render(); }
   function reset() {

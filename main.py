@@ -1,12 +1,12 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from fastapi.responses import HTMLResponse, RedirectResponse
+from fastapi.responses import HTMLResponse
 from dotenv import load_dotenv
 import os
 
 load_dotenv(override=True)
 
-from routes import analysis, lyrics, transcribe, dictionary, tts, advocacy, webapp
+from routes import analysis, lyrics, transcribe, dictionary, tts
 
 app = FastAPI(title="BARZS Backend", version="1.0.0")
 
@@ -23,18 +23,11 @@ app.include_router(lyrics.router,     prefix="/lyrics",     tags=["Lyrics"])
 app.include_router(transcribe.router, prefix="/transcribe", tags=["Transcription"])
 app.include_router(dictionary.router, prefix="/dictionary", tags=["Dictionary"])
 app.include_router(tts.router,        prefix="/tts",        tags=["TTS"])
-app.include_router(advocacy.router,   prefix="/advocacy",   tags=["TESTIFAI"])
-app.include_router(webapp.router,     prefix="/app",        tags=["TESTIFAI App"])
 
 
 @app.get("/health")
 async def health():
     return {"status": "BARZS backend is live"}
-
-
-@app.get("/testifai", include_in_schema=False)
-async def testifai_shortcut():
-    return RedirectResponse(url="/app")
 
 
 @app.get("/diagnostic")
