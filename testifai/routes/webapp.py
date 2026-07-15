@@ -397,7 +397,7 @@ _APP_HTML = r"""<!DOCTYPE html>
   var PARTY = { "Democrat": "Democrat", "Republican": "Republican", "Independent": "Independent", "D": "Democrat", "R": "Republican", "I": "Independent" };
   async function clientLegislators(stateAbbr, chamber) {
     if (!_congressCache) {
-      var raw = await loadJSON("https://theunitedstates.io/congress-legislators/legislators-current.json");
+      var raw = await loadJSON("https://cdn.jsdelivr.net/gh/unitedstates/congress-legislators@main/legislators-current.json");
       var byState = {};
       raw.forEach(function (p) {
         var terms = p.terms || []; if (!terms.length) return;
