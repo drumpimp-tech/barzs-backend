@@ -298,9 +298,19 @@
   // Client-side legislators (U.S. Senators + Representatives from the key-free dataset).
   var _congressCache = null;
   var PARTY = { "Democrat": "Democrat", "Republican": "Republican", "Independent": "Independent", "D": "Democrat", "R": "Republican", "I": "Independent" };
+  var CONGRESS_SOURCES = [
+    "https://raw.githubusercontent.com/unitedstates/congress-legislators/main/legislators-current.json",
+    "https://raw.githubusercontent.com/unitedstates/congress-legislators/master/legislators-current.json",
+    "https://cdn.jsdelivr.net/gh/unitedstates/congress-legislators/legislators-current.json"
+  ];
   async function clientLegislators(stateAbbr, chamber) {
     if (!_congressCache) {
-      var raw = await loadJSON("https://cdn.jsdelivr.net/gh/unitedstates/congress-legislators@main/legislators-current.json");
+      var raw = null, lastErr = null;
+      for (var si = 0; si < CONGRESS_SOURCES.length; si++) {
+        try { raw = await loadJSON(CONGRESS_SOURCES[si]); break; }
+        catch (e) { lastErr = e; }
+      }
+      if (!raw) throw (lastErr || new Error("Could not load legislator data"));
       var byState = {};
       raw.forEach(function (p) {
         var terms = p.terms || []; if (!terms.length) return;
