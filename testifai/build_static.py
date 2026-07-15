@@ -31,18 +31,10 @@ def build_html() -> str:
         "<script>window.TESTIFAI_CONFIG = { static: true };</script>\n<script>\n(function () {",
         1,
     )
-    # Point head assets at same-folder files and add PNG app icons.
-    html = html.replace('href="/app/manifest.webmanifest"', 'href="./manifest.webmanifest"')
-    html = html.replace(
-        '<link rel="apple-touch-icon" href="/app/icon.svg">',
-        '<link rel="apple-touch-icon" href="./icon.png">\n'
-        '<link rel="apple-touch-icon" sizes="180x180" href="./icon.png">',
-    )
-    html = html.replace(
-        '<link rel="icon" href="/app/icon.svg" type="image/svg+xml">',
-        '<link rel="icon" type="image/png" href="./icon.png">\n'
-        '<link rel="icon" href="./icon.svg" type="image/svg+xml">',
-    )
+    # Point every /app/ asset reference at same-folder files.
+    html = html.replace("/app/manifest.webmanifest", "./manifest.webmanifest")
+    html = html.replace("/app/icon.png", "./icon.png")
+    html = html.replace("/app/icon.svg", "./icon.svg")
     return html
 
 

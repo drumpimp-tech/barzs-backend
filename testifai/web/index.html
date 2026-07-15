@@ -10,7 +10,6 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="apple-mobile-web-app-title" content="TESTIFAI">
 <link rel="apple-touch-icon" href="./icon.png">
-<link rel="apple-touch-icon" sizes="180x180" href="./icon.png">
 <link rel="icon" type="image/png" href="./icon.png">
 <link rel="icon" href="./icon.svg" type="image/svg+xml">
 <style>
@@ -274,7 +273,7 @@
   // supplies their own Anthropic key, and the browser calls Claude directly.
   var CFG = window.TESTIFAI_CONFIG || {};
   var STATIC = !!CFG.static;
-  var ICON = CFG.icon || (STATIC ? "./icon.png" : "/app/icon.svg");
+  var ICON = CFG.icon || (STATIC ? "./icon.png" : "./icon.png");
   function brandIconTag() { return '<img class="brand-icon" src="' + ICON + '" alt="TESTIFAI">'; }
   var MODEL = CFG.model || "claude-sonnet-5";
   var WPM = 140;

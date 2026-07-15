@@ -8,10 +8,15 @@ API: profile, pick a state, pick a legislator, pick an AI use, pick a goal,
 set the length, generate, then read/download/teleprompt.
 """
 
+from pathlib import Path
+
 from fastapi import APIRouter
 from fastapi.responses import HTMLResponse, JSONResponse, Response
 
 router = APIRouter()
+
+_ICON_PNG_PATH = Path(__file__).parent.parent / "assets" / "icon.png"
+_ICON_PNG = _ICON_PNG_PATH.read_bytes() if _ICON_PNG_PATH.exists() else b""
 
 
 @router.get("/manifest.webmanifest")
@@ -28,7 +33,8 @@ async def manifest():
             "background_color": "#0a1a3a",
             "theme_color": "#0a1a3a",
             "icons": [
-                {"src": "/app/icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any maskable"},
+                {"src": "/app/icon.png", "sizes": "512x512", "type": "image/png", "purpose": "any maskable"},
+                {"src": "/app/icon.svg", "sizes": "any", "type": "image/svg+xml"},
             ],
         },
         media_type="application/manifest+json",
@@ -38,6 +44,13 @@ async def manifest():
 @router.get("/icon.svg")
 async def icon():
     return Response(content=_ICON_SVG, media_type="image/svg+xml")
+
+
+@router.get("/icon.png")
+async def icon_png():
+    if not _ICON_PNG:
+        return Response(content=_ICON_SVG, media_type="image/svg+xml")
+    return Response(content=_ICON_PNG, media_type="image/png")
 
 
 @router.get("/sw.js")
@@ -94,7 +107,8 @@ _APP_HTML = r"""<!DOCTYPE html>
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="apple-mobile-web-app-title" content="TESTIFAI">
-<link rel="apple-touch-icon" href="/app/icon.svg">
+<link rel="apple-touch-icon" href="/app/icon.png">
+<link rel="icon" type="image/png" href="/app/icon.png">
 <link rel="icon" href="/app/icon.svg" type="image/svg+xml">
 <style>
   * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
@@ -356,7 +370,7 @@ _APP_HTML = r"""<!DOCTYPE html>
   // supplies their own Anthropic key, and the browser calls Claude directly.
   var CFG = window.TESTIFAI_CONFIG || {};
   var STATIC = !!CFG.static;
-  var ICON = CFG.icon || (STATIC ? "./icon.png" : "/app/icon.svg");
+  var ICON = CFG.icon || (STATIC ? "./icon.png" : "/app/icon.png");
   function brandIconTag() { return '<img class="brand-icon" src="' + ICON + '" alt="TESTIFAI">'; }
   var MODEL = CFG.model || "claude-sonnet-5";
   var WPM = 140;
