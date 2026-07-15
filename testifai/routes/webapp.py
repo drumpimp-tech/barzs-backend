@@ -396,9 +396,8 @@ _APP_HTML = r"""<!DOCTYPE html>
   var _congressCache = null;
   var PARTY = { "Democrat": "Democrat", "Republican": "Republican", "Independent": "Independent", "D": "Democrat", "R": "Republican", "I": "Independent" };
   var CONGRESS_SOURCES = [
-    "https://raw.githubusercontent.com/unitedstates/congress-legislators/main/legislators-current.json",
-    "https://raw.githubusercontent.com/unitedstates/congress-legislators/master/legislators-current.json",
-    "https://cdn.jsdelivr.net/gh/unitedstates/congress-legislators/legislators-current.json"
+    "https://unitedstates.github.io/congress-legislators/legislators-current.json",
+    "https://raw.githubusercontent.com/unitedstates/congress-legislators/main/legislators-current.json"
   ];
   async function clientLegislators(stateAbbr, chamber) {
     if (!_congressCache) {
