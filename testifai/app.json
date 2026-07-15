@@ -1,0 +1,21 @@
+{
+  "name": "TESTIFAI",
+  "description": "Write AI testimony to your legislators and read it on a built-in teleprompter.",
+  "repository": "https://github.com/drumpimp-tech/barzs-backend",
+  "keywords": ["fastapi", "ai", "advocacy", "teleprompter"],
+  "env": {
+    "ANTHROPIC_API_KEY": {
+      "description": "Anthropic Claude API key (required).",
+      "required": true
+    },
+    "OPENSTATES_API_KEY": {
+      "description": "Open States API key (optional; adds state legislators).",
+      "required": false
+    }
+  },
+  "formation": {
+    "web": { "quantity": 1, "size": "basic" }
+  },
+  "buildpacks": [{ "url": "heroku/python" }],
+  "stack": "heroku-24"
+}

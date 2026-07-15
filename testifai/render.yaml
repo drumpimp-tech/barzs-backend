@@ -1,0 +1,16 @@
+# Render Blueprint. In the Render dashboard set Root Directory to "testifai",
+# or use the Deploy to Render button (see DEPLOY.md).
+services:
+  - type: web
+    name: testifai
+    runtime: python
+    rootDir: testifai
+    plan: free
+    buildCommand: pip install -r requirements.txt
+    startCommand: uvicorn main:app --host 0.0.0.0 --port $PORT
+    healthCheckPath: /health
+    envVars:
+      - key: ANTHROPIC_API_KEY
+        sync: false
+      - key: OPENSTATES_API_KEY
+        sync: false

@@ -306,7 +306,9 @@ _APP_HTML = r"""<!DOCTYPE html>
 <script>
 (function () {
   "use strict";
-  var API = "";
+  // Same-origin by default. If you host this page on a static CDN, set
+  // window.TESTIFAI_API_BASE = "https://your-api-host" before this script runs.
+  var API = (window.TESTIFAI_API_BASE || "").replace(/\/$/, "");
   var TOTAL_STEPS = 6;
 
   var state = {

@@ -53,7 +53,8 @@ share sheet.
 
 ## Deploy
 
-Railway/Render: point the service at this `testifai/` directory (root
-directory = `testifai`), start command `uvicorn main:app --host 0.0.0.0 --port
-$PORT`. Set `ANTHROPIC_API_KEY` (and optionally `OPENSTATES_API_KEY`) as
-environment variables.
+See **[DEPLOY.md](DEPLOY.md)** for one-command/one-click deploys to Fly.io,
+Render, Railway, Google Cloud Run, Heroku, and any Docker host. Every path needs
+only `ANTHROPIC_API_KEY` (and optionally `OPENSTATES_API_KEY`). A `Dockerfile`,
+`render.yaml`, `fly.toml`, `railway.json`, `app.json`, and `Procfile` are all
+included so the service runs anywhere.
