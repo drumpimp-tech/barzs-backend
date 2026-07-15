@@ -1,13 +1,16 @@
 
-const CACHE = 'testifai-static-v1';
-const SHELL = ['/', './index.html', './icon.png', './icon.svg', './manifest.webmanifest',
-  './data/us_states.json', './data/ai_applications.json', './data/advocacy_goals.json', './data/ai_blacklist.json'];
-self.addEventListener('install', e => { e.waitUntil(caches.open(CACHE).then(c => c.addAll(SHELL)).then(() => self.skipWaiting())); });
-self.addEventListener('activate', e => { e.waitUntil(caches.keys().then(ks => Promise.all(ks.filter(k => k !== CACHE).map(k => caches.delete(k)))).then(() => self.clients.claim())); });
+const CACHE = 'testifai-static-v3';
+self.addEventListener('install', e => { self.skipWaiting(); });
+self.addEventListener('activate', e => {
+  e.waitUntil(caches.keys().then(ks => Promise.all(ks.map(k => caches.delete(k)))).then(() => self.clients.claim()));
+});
 self.addEventListener('fetch', e => {
   if (e.request.method !== 'GET') return;                  // never cache Claude POSTs
   const url = new URL(e.request.url);
-  if (url.origin === location.origin) {
-    e.respondWith(caches.match(e.request).then(r => r || fetch(e.request)));
-  }
+  if (url.origin !== location.origin) return;              // leave cross-origin (data/API) to the network
+  // Network-first: every deploy is picked up immediately; cache is only an offline fallback.
+  e.respondWith(
+    fetch(e.request).then(r => { const c = r.clone(); caches.open(CACHE).then(cache => cache.put(e.request, c)); return r; })
+                    .catch(() => caches.match(e.request))
+  );
 });
