@@ -77,9 +77,11 @@ self.addEventListener('fetch', e => {
 });
 """
 
-NETLIFY_TOML = """# Static deploy of the TESTIFAI app (bring-your-own-key).
+NETLIFY_TOML = """# Static deploy of the TESTIFAI app (bring-your-own-key). No build step:
+# this command overrides any build command set in the Netlify UI.
 [build]
   publish = "."
+  command = "echo 'TESTIFAI static site - nothing to build'"
 
 [[headers]]
   for = "/sw.js"
