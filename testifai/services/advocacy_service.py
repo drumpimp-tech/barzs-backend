@@ -248,7 +248,7 @@ async def generate_script(
 
     # Higher-quality model for longer scripts, faster model for short ones.
     if minutes >= 6:
-        model, max_tokens = "claude-opus-4-8", 8000
+        model, max_tokens = "claude-opus-5", 8000
     else:
         model, max_tokens = "claude-sonnet-5", 4000
 

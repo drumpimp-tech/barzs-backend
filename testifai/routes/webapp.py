@@ -375,6 +375,9 @@ _APP_HTML = r"""<!DOCTYPE html>
   function brandIconTag() { return '<img class="brand-icon" src="' + ICON + '" alt="TESTIFAI">'; }
   function creditTag() { return '<div class="credit">Created and developed by Trevor Lawrence Jr. for TREVBEATS MULTIMEDIA LLC</div>'; }
   var MODEL = CFG.model || "claude-sonnet-5";
+  // Gemini: "-latest" aliases track Google's newest models so we never pin a
+  // retired id; the discovery call below picks the newest available at runtime.
+  var GEMINI_FALLBACKS = ["gemini-flash-latest", "gemini-3-flash-preview", "gemini-2.5-flash"];
   var WPM = 140;
   var KKEY = "testifai_anthropic_key";
   function getKey() { try { return localStorage.getItem(KKEY) || ""; } catch (e) { return ""; } }
@@ -488,7 +491,7 @@ _APP_HTML = r"""<!DOCTYPE html>
       "\n\nTHE ONE AI USE:\n" + app.name + ": " + app.blurb + "\n\nTHE ONE GOAL:\n" + goal.name + ": " + goal.blurb +
       "\n\nLENGTH: about " + minutes + " minute(s) out loud, roughly " + target + " words. Hit that length closely.\n\n" +
       "Make it personal, specific to " + leg.state + " and to " + leg.name + ", focused only on " + app.name + " and " + goal.name + ". No em dashes. Do not sound like AI. Return ONLY the spoken words.";
-    var text = await callClaude(systemPrompt(), userPrompt, 4000);
+    var text = await callModel(systemPrompt(), userPrompt, 4000);
     var cleaned = cleanScript(text.trim());
     var script = cleaned[0], flagged = cleaned[1];
     var wc = script.trim().split(/\s+/).filter(Boolean).length;
@@ -513,6 +516,65 @@ _APP_HTML = r"""<!DOCTYPE html>
     if (!r.ok) { var t = await r.text().catch(function () { return ""; }); throw new Error("Claude error (" + r.status + "): " + t.slice(0, 200)); }
     var d = await r.json();
     return (d.content && d.content[0] && d.content[0].text) || "";
+  }
+
+  // ── Google AI (Gemini) support: keys starting with "AIza" ──
+  function keyProvider(k) { k = k || getKey(); return k.indexOf("AIza") === 0 ? "google" : "anthropic"; }
+  var _geminiModel = null;
+  async function pickGeminiModel() {
+    // Ask Google which models this key can use right now; pick the newest Flash.
+    if (_geminiModel) return _geminiModel;
+    try {
+      var r = await fetch("https://generativelanguage.googleapis.com/v1beta/models?pageSize=200&key=" + encodeURIComponent(getKey()));
+      if (r.ok) {
+        var d = await r.json();
+        var scored = (d.models || [])
+          .filter(function (m) { return (m.supportedGenerationMethods || []).indexOf("generateContent") >= 0; })
+          .map(function (m) {
+            var n = (m.name || "").replace(/^models\//, "");
+            var mm = n.match(/^gemini-(\d+(?:\.\d+)?)-(flash|pro)\b/);
+            return mm ? { n: n, v: parseFloat(mm[1]), t: mm[2] } : null;
+          })
+          .filter(Boolean);
+        scored.sort(function (a, b) {
+          if (b.v !== a.v) return b.v - a.v;                    // newest version first
+          if (a.t !== b.t) return a.t === "flash" ? -1 : 1;     // flash before pro (speed)
+          return a.n.length - b.n.length;                        // shortest/stable name first
+        });
+        if (scored.length) { _geminiModel = scored[0].n; return _geminiModel; }
+      }
+    } catch (e) {}
+    _geminiModel = GEMINI_FALLBACKS[0];
+    return _geminiModel;
+  }
+  async function callGemini(system, userText) {
+    var first = await pickGeminiModel();
+    var models = [first].concat(GEMINI_FALLBACKS.filter(function (m) { return m !== first; }));
+    var lastStatus = 0, lastText = "";
+    for (var i = 0; i < models.length; i++) {
+      var r = await fetch("https://generativelanguage.googleapis.com/v1beta/models/" + models[i] + ":generateContent?key=" + encodeURIComponent(getKey()), {
+        method: "POST",
+        headers: { "content-type": "application/json" },
+        body: JSON.stringify({
+          systemInstruction: { parts: [{ text: system }] },
+          contents: [{ role: "user", parts: [{ text: userText }] }],
+        }),
+      });
+      if (r.ok) {
+        var d = await r.json();
+        var c = d.candidates && d.candidates[0];
+        var parts = (c && c.content && c.content.parts) || [];
+        return parts.map(function (p) { return p.text || ""; }).join("");
+      }
+      lastStatus = r.status; lastText = await r.text().catch(function () { return ""; });
+      if (r.status !== 404) break;   // only "model not found" falls through to the next model
+    }
+    if (lastStatus === 400 || lastStatus === 401 || lastStatus === 403)
+      throw new Error("Your Google AI key was rejected (" + lastStatus + "). Check it under 'API key' on the home screen.");
+    throw new Error("Google AI error (" + lastStatus + "): " + lastText.slice(0, 200));
+  }
+  async function callModel(system, userText, maxTokens) {
+    return keyProvider() === "google" ? callGemini(system, userText) : callClaude(system, userText, maxTokens);
   }
 
   // ── boot: load reference data ──
@@ -540,28 +602,29 @@ _APP_HTML = r"""<!DOCTYPE html>
     var existing = getKey();
     screen.innerHTML =
       brandIconTag() +
-      '<h2 style="text-align:center">' + (firstRun ? 'Welcome to TESTIF<span style="color:var(--blue)">AI</span>' : 'Your Claude API key') + '</h2>' +
-      '<p class="sub">TESTIFAI writes your script with Claude. You use your own Anthropic API key. It is stored only on this device and sent straight to Anthropic, never to us.</p>' +
+      '<h2 style="text-align:center">' + (firstRun ? 'Welcome to TESTIF<span style="color:var(--blue)">AI</span>' : 'Your AI API key') + '</h2>' +
+      '<p class="sub">TESTIFAI writes your script with AI. Use your own Anthropic (Claude) or Google AI (Gemini) API key. It is stored only on this device and sent straight to the AI provider, never to us.</p>' +
       '<div class="msg info" style="line-height:1.7">' +
-        '<b style="color:var(--fg)">How to get a key</b><br>' +
-        '1. Open <span class="link" id="consoleLink">console.anthropic.com/settings/keys</span><br>' +
-        '2. Sign in, then <b style="color:var(--fg)">Create Key</b><br>' +
-        '3. Copy it (starts with <code>sk-ant-</code>) and paste below.' +
+        '<b style="color:var(--fg)">How to get a key (either one works)</b><br>' +
+        '&bull; Anthropic: <span class="link" id="consoleLink">console.anthropic.com/settings/keys</span> &rarr; Create Key (starts with <code>sk-ant-</code>)<br>' +
+        '&bull; Google AI: <span class="link" id="googleLink">aistudio.google.com/apikey</span> &rarr; Create API key (starts with <code>AIza</code>)<br>' +
+        'Copy it and paste below. TESTIFAI auto-detects which one you use.' +
       '</div>' +
-      '<label>Anthropic API key</label>' +
-      '<input id="keyInput" type="password" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="sk-ant-..." value="' + esc(existing) + '">' +
+      '<label>API key (Anthropic or Google AI)</label>' +
+      '<input id="keyInput" type="password" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="sk-ant-... or AIza..." value="' + esc(existing) + '">' +
       '<div class="edit-hint">Stored on this device only. You can change or remove it anytime.</div>' +
       (existing ? '<div style="margin-top:10px"><span class="link" id="removeKey">Remove key from this device</span></div>' : '') +
       creditTag();
     document.getElementById("consoleLink").addEventListener("click", function () { window.open("https://console.anthropic.com/settings/keys", "_blank"); });
+    document.getElementById("googleLink").addEventListener("click", function () { window.open("https://aistudio.google.com/apikey", "_blank"); });
     var rm = document.getElementById("removeKey");
     if (rm) rm.addEventListener("click", function () { clearKey(); showKeyOnboarding(firstRun); });
     nav([
       (firstRun ? null : { label: "Back", cls: "ghost", flex0: true, onClick: function () { go(0); } }),
       { label: firstRun ? "Save and start" : "Save key", onClick: function () {
         var k = (document.getElementById("keyInput").value || "").trim();
-        if (!k) { alert("Please paste your API key, or get one from console.anthropic.com."); return; }
-        if (k.indexOf("sk-ant-") !== 0) { if (!confirm("That does not look like an Anthropic key (they start with sk-ant-). Save it anyway?")) return; }
+        if (!k) { alert("Please paste your API key. Get one from console.anthropic.com or aistudio.google.com/apikey."); return; }
+        if (k.indexOf("sk-ant-") !== 0 && k.indexOf("AIza") !== 0) { if (!confirm("That does not look like an Anthropic key (sk-ant-...) or a Google AI key (AIza...). Save it anyway?")) return; }
         setKey(k); go(0);
       } },
     ].filter(Boolean));
