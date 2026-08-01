@@ -159,33 +159,6 @@ export default async (req) => {
 """
 
 
-def make_placeholder_png(path: Path):
-    """A simple red/white/blue placeholder. Replace web/icon.png with the real art."""
-    from PIL import Image, ImageDraw
-    import math
-    NAVY, RED, BLUE, WHITE = (10, 26, 58), (224, 42, 60), (79, 131, 232), (245, 248, 255)
-    S = 512
-    img = Image.new("RGB", (S, S), NAVY)
-    d = ImageDraw.Draw(img)
-    d.rounded_rectangle([26, 26, S - 26, S - 26], radius=100, outline=RED, width=14)
-    d.rounded_rectangle([44, 44, S - 44, S - 44], radius=84, outline=BLUE, width=7)
-    # a document shape
-    d.rounded_rectangle([158, 128, 354, 372], radius=22, fill=WHITE)
-    d.rectangle([184, 244, 328, 256], fill=(120, 130, 150))
-    d.rectangle([184, 278, 328, 290], fill=(120, 130, 150))
-    d.rectangle([184, 312, 292, 324], fill=(120, 130, 150))
-    d.rounded_rectangle([184, 158, 256, 222], radius=10, fill=BLUE)   # chip
-    # star
-    cx, cy, r1, r2 = 256, 428, 32, 13
-    pts = []
-    for i in range(10):
-        ang = -math.pi / 2 + i * math.pi / 5
-        rr = r1 if i % 2 == 0 else r2
-        pts.append((cx + rr * math.cos(ang), cy + rr * math.sin(ang)))
-    d.polygon(pts, fill=RED)
-    img.save(path, "PNG")
-
-
 def main():
     if OUT.exists():
         shutil.rmtree(OUT)
@@ -202,15 +175,19 @@ def main():
     for name in ["us_states.json", "ai_applications.json", "advocacy_goals.json", "ai_blacklist.json"]:
         shutil.copy(DATA / name, OUT / "data" / name)
 
-    # Placeholder icon unless the real one has already been dropped in.
+    # The app icon MUST be the official TESTIFAI logo (the intro-animation
+    # logo). No placeholders, no substitutes: drop the real file at
+    # testifai/assets/icon.png or the build refuses to produce a site.
     icon = OUT / "icon.png"
     real = HERE / "assets" / "icon.png"
-    if real.exists():
-        shutil.copy(real, icon)
-        print("Using real icon from assets/icon.png")
-    else:
-        make_placeholder_png(icon)
-        print("Wrote placeholder icon.png (replace with your art at web/icon.png or assets/icon.png)")
+    if not real.exists():
+        raise SystemExit(
+            "ERROR: testifai/assets/icon.png is missing.\n"
+            "Add the official TESTIFAI logo (the intro-animation logo) there and rebuild.\n"
+            "No placeholder will be generated."
+        )
+    shutil.copy(real, icon)
+    print("Using official logo from assets/icon.png")
 
     files = sorted(p.relative_to(OUT).as_posix() for p in OUT.rglob("*") if p.is_file())
     print("Built", OUT)
