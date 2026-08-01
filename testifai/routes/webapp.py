@@ -380,6 +380,30 @@ _APP_HTML = r"""<!DOCTYPE html>
   var GEMINI_FALLBACKS = ["gemini-flash-latest", "gemini-3-flash-preview", "gemini-2.5-flash"];
   var WPM = 140;
   var KKEY = "testifai_anthropic_key";
+  // Server-key mode: when the site owner sets a key in the Netlify environment,
+  // /.netlify/functions/ai-proxy reports configured:true, users never see the
+  // key screen, and generation goes through the proxy.
+  var PROXY = false;
+  async function checkProxy() {
+    if (!STATIC) return;
+    try {
+      var r = await fetch("/.netlify/functions/ai-proxy", { method: "GET" });
+      if (r.ok) { var d = await r.json(); PROXY = !!d.configured; }
+    } catch (e) {}
+  }
+  async function callProxy(system, userText) {
+    var r = await fetch("/.netlify/functions/ai-proxy", {
+      method: "POST",
+      headers: { "content-type": "application/json" },
+      body: JSON.stringify({ system: system, user: userText }),
+    });
+    if (!r.ok) {
+      var t = await r.text().catch(function () { return ""; });
+      throw new Error("Server AI error (" + r.status + "): " + t.slice(0, 200));
+    }
+    var d = await r.json();
+    return d.text || "";
+  }
   function getKey() { try { return localStorage.getItem(KKEY) || ""; } catch (e) { return ""; } }
   function setKey(k) { try { localStorage.setItem(KKEY, k); } catch (e) {} }
   function clearKey() { try { localStorage.removeItem(KKEY); } catch (e) {} }
@@ -478,7 +502,7 @@ _APP_HTML = r"""<!DOCTYPE html>
   }
   async function clientGenerate() {
     var key = getKey();
-    if (!key) { showKeyOnboarding(false); throw new Error("Add your API key first."); }
+    if (!key && !PROXY) { showKeyOnboarding(false); throw new Error("Add your API key first."); }
     var leg = state.legislator, app = state.application, goal = state.goal, u = state.user;
     var minutes = state.minutes, target = Math.max(90, Math.round(minutes * WPM));
     var legLine = leg.name + ", " + leg.role + (leg.district ? ", District " + leg.district : "") + " (" + leg.party + ", " + leg.state + ")";
@@ -574,6 +598,7 @@ _APP_HTML = r"""<!DOCTYPE html>
     throw new Error("Google AI error (" + lastStatus + "): " + lastText.slice(0, 200));
   }
   async function callModel(system, userText, maxTokens) {
+    if (PROXY && !getKey()) return callProxy(system, userText);
     return keyProvider() === "google" ? callGemini(system, userText) : callClaude(system, userText, maxTokens);
   }
 
@@ -583,8 +608,9 @@ _APP_HTML = r"""<!DOCTYPE html>
     renderLoading("Loading TESTIFAI...");
     try {
       await loadRefData();
+      await checkProxy();
       initTeleprompter();
-      if (STATIC && !getKey()) { maybeShowA2HS(); showKeyOnboarding(true); return; }
+      if (STATIC && !getKey() && !PROXY) { maybeShowA2HS(); showKeyOnboarding(true); return; }
       render();
       maybeShowA2HS();
     } catch (e) {
